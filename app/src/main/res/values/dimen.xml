@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    外边距长度-->
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_80">80dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+    <dimen name="margin_180">180dp</dimen>
+    <!--    字体大小-->
+    <dimen name="font_10">10sp</dimen>
+    <dimen name="font_12">12sp</dimen>
+    <dimen name="font_15">15sp</dimen>
+    <dimen name="font_16">16sp</dimen>
+    <dimen name="font_18">18sp</dimen>
+    <dimen name="font_20">20sp</dimen>
+    <dimen name="font_22">22sp</dimen>
+    <dimen name="font_24">24sp</dimen>
+    <!--    圆弧的大小-->
+    <dimen name="radius_5">5dp</dimen>
+    <dimen name="radius_7">7dp</dimen>
+    <dimen name="radius_9">9dp</dimen>
+    <dimen name="radius_10">10dp</dimen>
+    <dimen name="radius_12">12dp</dimen>
+    <dimen name="radius_14">14dp</dimen>
+<!--    顶部标题栏-->
+    <dimen name="top_title_bar_height">40dp</dimen>
+    <dimen name="top_title_bar_text_size">16sp</dimen>
+    <dimen name="top_title_bar_back_size">24dp</dimen>
+<!--    领取任务item-->
+    <dimen name="item_task_contact_btn_width">60dp</dimen>
+    <dimen name="item_task_contact_btn_height">30dp</dimen>
+    <dimen name="item_task_get_task_btn_width">66dp</dimen>
+    <dimen name="item_task_get_task_btn_height">30dp</dimen>
+    <dimen name="item_task_bottom_small_icon_size">15dp</dimen>
+    <dimen name="item_task_get_task__btn_text_size">@dimen/font_10</dimen>
+<!--发布任务界面-->
+    <dimen name="post_task_calendar_size">24dp</dimen>
+    <dimen name="bottom_bar_size">24dp</dimen>
+    <dimen name="bottom_bar_text_size">12sp</dimen>
+    <dimen name="home_top_sort_icon">25dp</dimen>
+    <dimen name="message_top">30dp</dimen>
+
+
+</resources>

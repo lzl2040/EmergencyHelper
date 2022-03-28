@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    tools:context=".activity.enter.EnterActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:background="@mipmap/logo1"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+        </ImageView>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6">
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/slides"
+                app:tl_indicator_width_equal_title="true"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                app:tl_tab_space_equal="true"
+                app:tl_indicator_color="@color/select"
+                app:tl_textsize="15sp"
+                app:tl_textSelectColor="@color/select"
+                app:tl_textUnselectColor="@color/black"/>
+            <androidx.viewpager.widget.ViewPager
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <CheckBox
+        android:buttonTint="@color/teal_200"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/qianhui"
+        android:text="我已同意该软件用户服务协议和隐私政策">
+    </CheckBox>
+</RelativeLayout>

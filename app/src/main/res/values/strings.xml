@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">EmergencyHelper</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_service">家庭服务</string>
+    <string name="coporate_service">合作互助</string>
+    <string name="emergency_service">应急服务</string>
+    <string name="old_service">老人服务</string>
+    <string name="school_service">校园服务</string>
+    <string name="social_service">社会服务</string>
+    <string name="children_service">小孩服务</string>
+    <string name="my_task">我的任务</string>
+    <string name="my_post">我的发布</string>
+    <string name="point_shop">我的积分</string>
+    <string name="post_task">发布任务</string>
+<!--    一些输入提示-->
+    <string name="choose_deadline_tip">请选择任务截止时间</string>
+    <string name="task_content_tip">请输入任务内容</string>
+    <string name="task_position_tip">请输入任务地点</string>
+    <string name="task_reward_tip">请输入任务报酬</string>
+</resources>

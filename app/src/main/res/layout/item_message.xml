@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:id="@+id/communicate_box"
+    android:gravity="center_vertical"
+    android:layout_height="60dp">
+    <com.example.emergencyhelper.ui.RoundImage
+        android:id="@+id/header"
+        android:layout_width="40dp"
+        android:src="@drawable/head"
+        android:layout_height="40dp"/>
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:text="小红"/>
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/content"
+            android:textColor="@color/huibai_text"
+            android:textSize="12sp"
+            android:text="你好"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_alignParentRight="true"
+            android:text="2021-12-1"
+            android:id="@+id/message_time"/>/>
+    </RelativeLayout>
+</LinearLayout>

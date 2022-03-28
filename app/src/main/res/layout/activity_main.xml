@@ -1,0 +1,145 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clipChildren="false">
+    <LinearLayout
+        android:layout_weight="11"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <FrameLayout
+            android:id="@+id/framelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/home_page"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/dd"
+                android:layout_width="@dimen/bottom_bar_size"
+                android:layout_height="@dimen/bottom_bar_size"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/home" />
+
+            <TextView
+                android:id="@+id/home_text"
+                android:padding="2dp"
+                android:textSize="@dimen/bottom_bar_text_size"
+                android:layout_centerInParent="true"
+                android:text="首页"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dd"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/near"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/dd2"
+                android:layout_width="@dimen/bottom_bar_size"
+                android:layout_height="@dimen/bottom_bar_size"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/near" />
+            <TextView
+                android:id="@+id/near_text"
+                android:padding="2dp"
+                android:textSize="@dimen/bottom_bar_text_size"
+                android:layout_centerInParent="true"
+                android:text="附近"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dd2"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/add"
+            android:layout_width="70dp"
+            android:layout_height="70dp">
+
+            <ImageView
+                android:id="@+id/dd5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/add" />
+            <TextView
+                android:id="@+id/add_text"
+                android:padding="2dp"
+                android:textSize="@dimen/bottom_bar_text_size"
+                android:layout_centerInParent="true"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_below="@+id/dd5"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/message"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/dd3"
+                android:layout_width="@dimen/bottom_bar_size"
+                android:layout_height="@dimen/bottom_bar_size"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/message" />
+            <TextView
+                android:id="@+id/message_text"
+                android:padding="2dp"
+                android:textSize="@dimen/bottom_bar_text_size"
+                android:layout_centerInParent="true"
+                android:text="消息"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dd3"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/my"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/dd4"
+                android:layout_width="@dimen/bottom_bar_size"
+                android:layout_height="@dimen/bottom_bar_size"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/my" />
+            <TextView
+                android:id="@+id/my_text"
+                android:padding="2dp"
+                android:textSize="@dimen/bottom_bar_text_size"
+                android:layout_centerInParent="true"
+                android:text="我的"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dd4"/>
+
+        </RelativeLayout>>
+
+    </LinearLayout>
+
+</LinearLayout>
