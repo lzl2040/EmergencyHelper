@@ -1,6 +1,5 @@
 package com.example.emergencyhelper.fragment.add;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -12,13 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.emergencyhelper.constant.TimeType;
 import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.PostActivity;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.entity.TaskEntity;
-import com.xuexiang.xui.widget.button.roundbutton.RoundButton;
 import com.xuexiang.xui.widget.edittext.MultiLineEditText;
 import com.xuexiang.xui.widget.picker.widget.TimePickerView;
 import com.xuexiang.xui.widget.picker.widget.builder.TimePickerBuilder;

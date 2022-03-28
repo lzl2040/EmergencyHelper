@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.adapter.GetTaskAdapter;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.entity.TaskEntity;
 
@@ -38,8 +39,8 @@ public class DingdanActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        TaskAdapter taskAdapter = new TaskAdapter(tasks,this);
-        recyclerView.setAdapter(taskAdapter);
+        GetTaskAdapter adapter = new GetTaskAdapter(context,tasks);
+        recyclerView.setAdapter(adapter);
 
     }
 

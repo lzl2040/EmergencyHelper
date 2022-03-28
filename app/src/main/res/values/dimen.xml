@@ -26,10 +26,13 @@
     <dimen name="radius_10">10dp</dimen>
     <dimen name="radius_12">12dp</dimen>
     <dimen name="radius_14">14dp</dimen>
+    <dimen name="radius_16">16dp</dimen>
+    <dimen name="radius_18">18dp</dimen>
+    <dimen name="radius_20">20dp</dimen>
 <!--    顶部标题栏-->
     <dimen name="top_title_bar_height">40dp</dimen>
     <dimen name="top_title_bar_text_size">16sp</dimen>
-    <dimen name="top_title_bar_back_size">24dp</dimen>
+    <dimen name="top_title_bar_back_size">20dp</dimen>
 <!--    领取任务item-->
     <dimen name="item_task_contact_btn_width">60dp</dimen>
     <dimen name="item_task_contact_btn_height">30dp</dimen>
@@ -43,6 +46,7 @@
     <dimen name="bottom_bar_text_size">12sp</dimen>
     <dimen name="home_top_sort_icon">25dp</dimen>
     <dimen name="message_top">30dp</dimen>
-
-
+<!--item_get_task-->
+    <dimen name="item_get_task_countdown_size">16dp</dimen>
+    <dimen name="item_get_task_countdown_text">@dimen/font_12</dimen>
 </resources>

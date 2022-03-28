@@ -48,13 +48,39 @@ public class DateUtils {
     }
 
     /**
-     * 时间戳转字符串
+     * 时间戳转日期字符串
      * @param times 毫秒
      * @return
      */
     public static String timeNum2String(long times){
         String dateStr = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(times);
         return dateStr;
+    }
+
+    /**
+     * 日期字符串转为时间戳
+     * @param timeStr
+     * @return
+     */
+    public static long string2TimeNum(String timeStr){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = simpleDateFormat.parse(timeStr);
+        long ts = date.getTime();
+        return ts;
+    }
+
+    /**
+     * 给定间隔的毫秒数,计算出时间
+     * @param interval 间隔的时间戳
+     * @return
+     */
+    public static String calInterval(long interval){
+        long seconds = interval / 1000;                         //转换为秒
+        int day = seconds / DateConstant.DAY_TIME_SECONDS;      //计算这是多少天
+        int hour = (seconds % DateConstant.DAY_TIME_SECONDS) / DateConstant.HOUR_TIME_SECONDS;      //计算这是多少小时
+        int minutes = (seconds % DateConstant.DAY_TIME_SECONDS) /% DateConstant.HOUR_TIME_SECONDS;  //计算这是多少分钟
+        int second = seconds % 60;                              //计算这是多少秒
+
     }
 
     /**
