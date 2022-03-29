@@ -44,8 +44,12 @@
     <dimen name="post_task_calendar_size">24dp</dimen>
     <dimen name="bottom_bar_size">24dp</dimen>
     <dimen name="bottom_bar_text_size">12sp</dimen>
+<!--    home界面-->
     <dimen name="home_top_sort_icon">25dp</dimen>
     <dimen name="message_top">30dp</dimen>
+    <dimen name="home_top_sort_text_size">@dimen/font_15</dimen>
+    <dimen name="home_search_box_text_size">@dimen/font_12</dimen>
+
 <!--item_get_task-->
     <dimen name="item_get_task_countdown_size">16dp</dimen>
     <dimen name="item_get_task_countdown_text">@dimen/font_12</dimen>

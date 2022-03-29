@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class StaticData {
     private static List<User> userList;
+    //底部导航栏的位置,默认为0
+    private static int bottomPosition = 0;
 
     public static List<User> getUserList() {
         return userList;
@@ -18,5 +20,13 @@ public class StaticData {
 
     public static void setUserList(List<User> userList) {
         StaticData.userList = userList;
+    }
+
+    public static int getBottomPosition() {
+        return bottomPosition;
+    }
+
+    public static void setBottomPosition(int bottomPosition) {
+        StaticData.bottomPosition = bottomPosition;
     }
 }

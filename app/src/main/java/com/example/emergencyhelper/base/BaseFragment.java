@@ -28,4 +28,8 @@ public class BaseFragment extends Fragment {
     public void setListener(){
 
     }
+
+    public void setAdapter(){
+
+    }
 }

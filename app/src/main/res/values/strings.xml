@@ -5,6 +5,7 @@
     <string name="home_service">家庭服务</string>
     <string name="coporate_service">合作互助</string>
     <string name="emergency_service">应急服务</string>
+    <string name="disable_service">残疾服务</string>
     <string name="old_service">老人服务</string>
     <string name="school_service">校园服务</string>
     <string name="social_service">社会服务</string>
@@ -14,9 +15,16 @@
     <string name="point_shop">我的积分</string>
     <string name="post_task">发布任务</string>
     <string name="message">消息</string>
+    <!--    底部栏-->
+    <string name="home">首页</string>
+    <string name="near">附近</string>
+    <string name="add">发布</string>
+    <string name="msg">消息</string>
+    <string name="my">我的</string>
     <!--    一些输入提示-->
     <string name="choose_deadline_tip">请选择任务截止时间</string>
     <string name="task_content_tip">请输入任务内容</string>
     <string name="task_position_tip">请输入任务地点</string>
     <string name="task_reward_tip">请输入任务报酬</string>
+    <string name="search_task_tip">请输入想查找的任务</string>
 </resources>

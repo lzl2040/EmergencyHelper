@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EmergencyHelper">
-        <activity android:name=".activity.message.CommunicateActivity"></activity>
+        <activity android:name=".activity.category.DisableActivity"></activity>
+        <activity android:name=".activity.message.CommunicateActivity" />
         <activity android:name=".activity.my.PointActivity" />
         <activity android:name=".activity.my.PostActivity" />
         <activity android:name=".activity.my.DingdanActivity" />

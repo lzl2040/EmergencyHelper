@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.activity.category.DisableActivity;
 import com.example.emergencyhelper.activity.category.SocialActivity;
 import com.example.emergencyhelper.activity.category.CoporateActivity;
 import com.example.emergencyhelper.activity.category.EmergencyActivity;
@@ -22,16 +24,18 @@ import com.example.emergencyhelper.activity.category.OldActivity;
 import com.example.emergencyhelper.activity.category.SchoolActivity;
 import com.example.emergencyhelper.activity.category.ChildrenActivity;
 import com.example.emergencyhelper.adapter.TaskAdapter;
+import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.entity.TaskEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomePageFragment extends Fragment implements View.OnClickListener{
-    RecyclerView recyclerView;
-    List<TaskEntity>tasks = new ArrayList<>();
-    LinearLayout old,social,emergency,family,corporate,school,children;
+public class HomePageFragment extends BaseFragment implements View.OnClickListener{
+    private String TAG = "HomePageFragment";
+    private RecyclerView recyclerView;
+    private List<TaskEntity>tasks = new ArrayList<>();
+    private LinearLayout old,social,emergency,family,corporate,school,children,disable;
     public  TaskAdapter ta;
     public Context context;
 
@@ -50,34 +54,58 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_home_page, container, false);
-        recyclerView = v.findViewById(R.id.recyclerview);
+    public void initView(View v) {
+        //super.initView(v);
+        Log.e(TAG,"initView...");
         context = getActivity();
+        recyclerView = v.findViewById(R.id.recyclerview);
         children = v.findViewById(R.id.children);
-        children.setOnClickListener(this);
         old = v.findViewById(R.id.old);
-        old.setOnClickListener(this);
         emergency = v.findViewById(R.id.emergency);
-        emergency.setOnClickListener(this);
         school = v.findViewById(R.id.school);
-        school.setOnClickListener(this);
         corporate = v.findViewById(R.id.coporate);
-        corporate.setOnClickListener(this);
         family = v.findViewById(R.id.family);
-        family.setOnClickListener(this);
         social = v.findViewById(R.id.social);
+        disable = v.findViewById(R.id.disable);
+    }
+
+    @Override
+    public void setListener() {
+        //super.setListener();
+        Log.e(TAG,"setListener...");
+        children.setOnClickListener(this);
+        old.setOnClickListener(this);
+        emergency.setOnClickListener(this);
+        school.setOnClickListener(this);
+        corporate.setOnClickListener(this);
+        family.setOnClickListener(this);
         social.setOnClickListener(this);
+        disable.setOnClickListener(this);
+    }
+
+    @Override
+    public void setAdapter() {
+        Log.e(TAG,"setAdapter...");
+        //super.setAdapter();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         addData();
         ta = new TaskAdapter(tasks,getActivity());
         recyclerView.setAdapter(ta);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_home_page, container, false);
+        initView(v);
+        setListener();
+        setAdapter();
         return v;
     }
+
     public void addData(){
         TaskEntity data1 = new TaskEntity();
         data1.setDesc("下水道堵住了，需要找人维修，有修一下的不");
@@ -137,6 +165,12 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
             case R.id.social:
                 Intent intent6 = new Intent(getActivity(), SocialActivity.class);
                 getActivity().startActivity(intent6);
+                break;
+            case R.id.disable:
+                Intent intent7 = new Intent(getActivity(), DisableActivity.class);
+                getActivity().startActivity(intent7);
+                break;
+            default:
                 break;
         }
     }

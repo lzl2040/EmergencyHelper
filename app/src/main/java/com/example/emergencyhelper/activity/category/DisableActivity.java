@@ -5,31 +5,33 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.MainActivity;
-import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
+import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SocialActivity extends BaseActivity {
-    private String TAG = "SocialActivity";
+public class DisableActivity extends BaseActivity {
+    private String TAG = "DisableActivity";
     private RecyclerView recyclerView;
     private ImageView backImg;
     private Context context;
     private List<TaskEntity> tasks = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_social);
+        setContentView(R.layout.activity_disable);
         initView();
         setListener();
         setAdapter();
@@ -47,7 +49,7 @@ public class SocialActivity extends BaseActivity {
     @Override
     public void setListener() {
         //super.setListener();
-        Log.e(TAG,"setListener...");
+        //设置返回按钮
         backImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,31 +63,8 @@ public class SocialActivity extends BaseActivity {
     public void setAdapter() {
         //super.setAdapter();
         Log.e(TAG,"setAdapter...");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        addData();
-        recyclerView.setAdapter(new TaskAdapter(tasks,this));
-    }
-
-    public void addData(){
-        TaskEntity data1 = new TaskEntity();
-        data1.setDesc("项目需要人帮忙辅助做一下，需要精通java");
-        data1.setName("安之若素");
-        data1.setDeadline("2021-7-30");
-        data1.setSite("凡汐科技");
-        data1.setReward("1000");
-        data1.setHeader(R.drawable.a5);
-        tasks.add(data1);
-
-        TaskEntity data2 = new TaskEntity();
-        data2.setDesc("在泰山旅游，想找一个熟悉这里环境的当地人");
-        data2.setName("清晓花浅笑");
-        data2.setDeadline("2021-7-8");
-        data2.setSite("泰山");
-        data2.setReward("400");
-        data2.setHeader(R.drawable.a15);
-        tasks.add(data2);
-
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
     }
 }

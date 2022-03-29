@@ -1,10 +1,13 @@
 package com.example.emergencyhelper.activity;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,115 +20,104 @@ import com.example.emergencyhelper.fragment.HomePageFragment;
 import com.example.emergencyhelper.fragment.message.MessageFragment;
 import com.example.emergencyhelper.fragment.my.MyFragment;
 import com.example.emergencyhelper.fragment.near.NearFragment;
+import com.example.emergencyhelper.util.StaticData;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
-    private RelativeLayout home;
-    private RelativeLayout near;
-    private RelativeLayout add;
-    private RelativeLayout message;
-    private RelativeLayout my;
-    private ImageView home_img,near_img,add_img,message_img,my_img;
-    private TextView home_text,near_text,add_text,message_text,my_text;
-    private List<ImageView>imageViews = new ArrayList<>();
-    private List<TextView> textViews = new ArrayList<>();
-    private int unselected_icon[] = {R.mipmap.home,R.mipmap.near,R.mipmap.add,R.mipmap.message,R.mipmap.my};
+public class MainActivity extends BaseActivity{
+    private String TAG = "MainActivity";
+    private BottomNavigationView bottomNavigationView;
+    //fragment管理器
+    private FragmentManager fragmentManager;
+    //fragment事务
+    private FragmentTransaction fragmentTransaction;
+    private Fragment preFragment = null;
+    //存放fragment的Map
+    private Map<Integer,Fragment> fragmentMap;
+    //当前fragment对应的int值
+    private int fragmentIds[] = new int[]{R.id.home,R.id.near,R.id.add,R.id.message,R.id.my};
+    private int curId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
         initView();
-        setUnSelected();
-        replaceFragment(new HomePageFragment());
-        home_text.setTextColor(this.getResources().getColor(R.color.blue));
-        home_img.setImageResource(R.mipmap.home_s);
+        initFragment();
+        setListener();
     }
 
     @Override
     public void initView() {
-        super.initView();
-        home = findViewById(R.id.home_page);
-        home.setOnClickListener(this);
-        near = findViewById(R.id.near);
-        near.setOnClickListener(this);
-        add = findViewById(R.id.add);
-        add.setOnClickListener(this);
-        message = findViewById(R.id.message);
-        message.setOnClickListener(this);
-        my = findViewById(R.id.my);
-        my.setOnClickListener(this);
-        home_img = findViewById(R.id.dd);
-        near_img = findViewById(R.id.dd2);
-        add_img = findViewById(R.id.dd5);
-        message_img = findViewById(R.id.dd3);
-        my_img = findViewById(R.id.dd4);
-        imageViews.add(home_img);
-        imageViews.add(near_img);
-        imageViews.add(add_img);
-        imageViews.add(message_img);
-        imageViews.add(my_img);
-        home_text = findViewById(R.id.home_text);
-        near_text = findViewById(R.id.near_text);
-        message_text = findViewById(R.id.message_text);
-        my_text = findViewById(R.id.my_text);
-        add_text = findViewById(R.id.add_text);
-        textViews.add(home_text);
-        textViews.add(near_text);
-        textViews.add(add_text);
-        textViews.add(message_text);
-        textViews.add(my_text);
+        //super.initView();
+        Log.e(TAG,"initView...");
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.home_page:
-                replaceFragment(new HomePageFragment());
-                setUnSelected();
-                home_img.setImageResource(R.mipmap.home_s);
-                home_text.setTextColor(this.getResources().getColor(R.color.blue));
-                break;
-            case R.id.near:
-                replaceFragment(new NearFragment());
-                setUnSelected();
-                near_img.setImageResource(R.mipmap.near_s);
-                near_text.setTextColor(this.getResources().getColor(R.color.blue));
-                break;
-            case R.id.add:
-                setUnSelected();
-                replaceFragment(new AddFragment());
-                add_text.setTextColor(this.getResources().getColor(R.color.blue));
-                break;
-            case R.id.message:
-                setUnSelected();
-                message_img.setImageResource(R.mipmap.message_s);
-                message_text.setTextColor(this.getResources().getColor(R.color.blue));
-                replaceFragment(new MessageFragment());
-                break;
-            case R.id.my:
-                setUnSelected();
-                my_img.setImageResource(R.mipmap.mys);
-                my_text.setTextColor(this.getResources().getColor(R.color.blue));
-                replaceFragment(new MyFragment());
-                break;
-            default:
-                break;
-        }
+    public void setListener() {
+        //super.setListener();
+        Log.e(TAG,"setListener...");
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Log.e(TAG,"item_id="+item.getItemId());
+                StaticData.setBottomPosition(item.getItemId());
+                return setFragmentTransaction(fragmentMap.get(item.getItemId()));
+            }
+        });
     }
-    private void replaceFragment(Fragment fragment){
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.framelayout,fragment);
-        transaction.commit();
-    }
-    public void setUnSelected(){
-        for(int i = 0;i<imageViews.size();i++){
-            ImageView imageView = imageViews.get(i);
-            TextView textView = textViews.get(i);
-            imageView.setImageResource(unselected_icon[i]);
-            textView.setTextColor(this.getResources().getColor(R.color.black));
+
+    public void initFragment(){
+        Log.e(TAG,"initFragment...");
+        fragmentManager = getSupportFragmentManager();
+        fragmentMap = new HashMap<>();
+        fragmentMap.put(R.id.home, HomePageFragment.newInstance());
+        fragmentMap.put(R.id.near, NearFragment.newInstance());
+        fragmentMap.put(R.id.add, AddFragment.newInstance());
+        fragmentMap.put(R.id.message, MessageFragment.newInstance());
+        fragmentMap.put(R.id.my, MyFragment.newInstance());
+        curId = StaticData.getBottomPosition();
+        if(curId == 0){
+            curId = R.id.home;
         }
+        Log.e(TAG,"curId:"+curId);
+        //设置当前的
+        setFragmentTransaction(fragmentMap.get(curId));
+
+        //通过getItem的方式默认将最左便的导航设置成未选择
+        //findItem根据id找相应的MenuItem
+        bottomNavigationView.getMenu().findItem(curId).setChecked(true);
+    }
+
+    /**
+     * 设置fragment切换的逻辑
+     * @param nowFragment 当前的fragment
+     * @return
+     */
+    private boolean setFragmentTransaction(Fragment nowFragment){
+        Log.e(TAG,"setFragmentTransaction...");
+        fragmentTransaction = fragmentManager.beginTransaction();
+        if(nowFragment == null){
+            Log.e(TAG, "setFragmentTransaction: nowFragment is null do nothing!");
+            return false;
+        }
+        if(preFragment != null){
+            //隐藏上一步的fragment
+            fragmentTransaction.hide(preFragment);
+            preFragment = nowFragment;
+        }
+        if(!nowFragment.isAdded()){
+            fragmentManager.beginTransaction().remove(nowFragment).commit();
+            fragmentTransaction.add(R.id.frame_container, nowFragment);
+        }
+        fragmentTransaction.show(nowFragment);
+        //更新上一次的fragment
+        preFragment=nowFragment;
+        fragmentTransaction.commitAllowingStateLoss();
+        return true;
     }
 }

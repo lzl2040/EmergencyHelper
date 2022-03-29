@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:orientation="horizontal"
     android:paddingLeft="10dp"
+    android:background="@color/white"
     android:id="@+id/communicate_box"
     android:gravity="center_vertical"
     android:layout_height="60dp">

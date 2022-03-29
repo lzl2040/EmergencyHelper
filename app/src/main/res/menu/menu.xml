@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@mipmap/home"/>
+    <item
+        android:id="@+id/near"
+        android:title="@string/near"
+        android:icon="@mipmap/near"/>
+    <item
+        android:id="@+id/add"
+        android:title="@string/add"
+        android:icon="@mipmap/add"/>
+    <item
+        android:id="@+id/message"
+        android:title="@string/msg"
+        android:icon="@mipmap/message"/>
+    <item
+        android:id="@+id/my"
+        android:title="@string/my"
+        android:icon="@mipmap/my"/>
+</menu>

@@ -3,10 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/back_color"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomePageFragment">
     <com.google.android.material.appbar.AppBarLayout
+        android:background="@color/alpha90_white"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="200dp">
@@ -25,6 +27,8 @@
                 android:src="@drawable/a6"/>
 
             <EditText
+                android:hint="@string/search_task_tip"
+                android:textSize="@dimen/home_search_box_text_size"
                 android:paddingLeft="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -34,17 +38,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </LinearLayout>
-        <HorizontalScrollView
-            android:scrollbars="none"
+        <androidx.cardview.widget.CardView
+            android:layout_marginBottom="@dimen/margin_5"
+            android:layout_marginLeft="@dimen/margin_5"
+            android:layout_marginRight="@dimen/margin_5"
+            android:layout_marginTop="@dimen/margin_5"
+            app:cardCornerRadius="@dimen/radius_5"
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="match_parent">
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <LinearLayout
+                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent">
                     <LinearLayout
                         android:id="@+id/family"
@@ -60,8 +69,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="家庭服务"
-                            android:textSize="15sp"/>
+                            android:text="@string/home_service"
+                            android:textSize="@dimen/home_top_sort_text_size"/>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/old"
@@ -77,13 +86,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="老人服务"
-                            android:textSize="15sp"/>
+                            android:text="@string/old_service"
+                            android:textSize="@dimen/home_top_sort_text_size"/>
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent">
                     <LinearLayout
                         android:id="@+id/social"
@@ -99,8 +109,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="社会服务"
-                            android:textSize="15sp"/>
+                            android:text="@string/social_service"
+                            android:textSize="@dimen/home_top_sort_text_size"/>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/children"
@@ -116,15 +126,16 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="小孩服务"
-                            android:textSize="15sp"/>
+                            android:text="@string/children_service"
+                            android:textSize="@dimen/home_top_sort_text_size"/>
 
                     </LinearLayout>
 
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent">
                     <LinearLayout
                         android:id="@+id/emergency"
@@ -140,8 +151,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="应急服务"
-                            android:textSize="15sp"/>
+                            android:text="@string/emergency_service"
+                            android:textSize="@dimen/home_top_sort_text_size"/>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/coporate"
@@ -152,19 +163,20 @@
                         android:layout_height="0dp">
 
                         <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="@dimen/home_top_sort_icon"
+                            android:layout_height="@dimen/home_top_sort_icon"
                             android:src="@drawable/q2"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="合作互助"
-                            android:textSize="15sp"/>
+                            android:text="@string/coporate_service"
+                            android:textSize="@dimen/home_top_sort_text_size"/>
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent">
                     <LinearLayout
                         android:id="@+id/school"
@@ -180,10 +192,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="校园服务"
-                            android:textSize="15sp"/>
+                            android:text="@string/school_service"
+                            android:textSize="@dimen/home_top_sort_text_size"/>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/disable"
                         android:orientation="vertical"
                         android:gravity="center"
                         android:layout_weight="1"
@@ -192,16 +205,17 @@
                         <ImageView
                             android:layout_width="@dimen/home_top_sort_icon"
                             android:layout_height="@dimen/home_top_sort_icon"
-                            android:src="@drawable/q10"/>
+                            android:src="@mipmap/disable"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="其他"
-                            android:textSize="15sp"/>
+                            android:text="残疾服务"
+                            android:textSize="@dimen/home_top_sort_text_size"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </HorizontalScrollView>
+        </androidx.cardview.widget.CardView>
+
     </com.google.android.material.appbar.AppBarLayout>
     <LinearLayout
         android:layout_marginLeft="5dp"
