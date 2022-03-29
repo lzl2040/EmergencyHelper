@@ -1,4 +1,4 @@
-package com.example.emergencyhelper.activity;
+package com.example.emergencyhelper.activity.my;
 
 import androidx.appcompat.app.AppCompatActivity;
 

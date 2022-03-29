@@ -14,13 +14,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.activity.SocialActivity;
-import com.example.emergencyhelper.activity.CoporateActivity;
-import com.example.emergencyhelper.activity.EmergencyActivity;
-import com.example.emergencyhelper.activity.FamilyActivity;
-import com.example.emergencyhelper.activity.OldActivity;
-import com.example.emergencyhelper.activity.SchoolActivity;
-import com.example.emergencyhelper.activity.ChildrenActivity;
+import com.example.emergencyhelper.activity.category.SocialActivity;
+import com.example.emergencyhelper.activity.category.CoporateActivity;
+import com.example.emergencyhelper.activity.category.EmergencyActivity;
+import com.example.emergencyhelper.activity.category.FamilyActivity;
+import com.example.emergencyhelper.activity.category.OldActivity;
+import com.example.emergencyhelper.activity.category.SchoolActivity;
+import com.example.emergencyhelper.activity.category.ChildrenActivity;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.entity.TaskEntity;
 
@@ -84,7 +84,8 @@ public class HomePageFragment extends Fragment implements View.OnClickListener{
         data1.setDeadline("2021-7-11");
         data1.setSite("中新街道-452");
         data1.setReward("80");
-        data1.setName("小西瓜");data1.setHeader(R.drawable.a13);
+        data1.setName("小西瓜");
+        data1.setHeader(R.drawable.a13);
         tasks.add(data1);
 
         TaskEntity data2 = new TaskEntity();

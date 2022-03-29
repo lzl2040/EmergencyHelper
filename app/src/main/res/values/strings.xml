@@ -13,7 +13,8 @@
     <string name="my_post">我的发布</string>
     <string name="point_shop">我的积分</string>
     <string name="post_task">发布任务</string>
-<!--    一些输入提示-->
+    <string name="message">消息</string>
+    <!--    一些输入提示-->
     <string name="choose_deadline_tip">请选择任务截止时间</string>
     <string name="task_content_tip">请输入任务内容</string>
     <string name="task_position_tip">请输入任务地点</string>

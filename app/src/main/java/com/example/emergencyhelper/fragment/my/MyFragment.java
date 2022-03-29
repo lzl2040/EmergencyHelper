@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.activity.DingdanActivity;
-import com.example.emergencyhelper.activity.PointActivity;
-import com.example.emergencyhelper.activity.PostActivity;
+import com.example.emergencyhelper.activity.my.DingdanActivity;
+import com.example.emergencyhelper.activity.my.PointActivity;
+import com.example.emergencyhelper.activity.my.PostActivity;
 
 /**
  * A simple {@link Fragment} subclass.

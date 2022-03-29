@@ -49,4 +49,11 @@
 <!--item_get_task-->
     <dimen name="item_get_task_countdown_size">16dp</dimen>
     <dimen name="item_get_task_countdown_text">@dimen/font_12</dimen>
+<!--    交流界面-->
+    <dimen name="communicate_top_bar_text_size">18sp</dimen>
+    <dimen name="communicate_input_box_height">60dp</dimen>
+    <dimen name="communicate_send_btn_text_size">@dimen/font_15</dimen>
+<!--    item_communicate_send-->
+    <dimen name="item_communicate_header">36dp</dimen>
+    <dimen name="item_communicate_text_size">@dimen/font_15</dimen>
 </resources>

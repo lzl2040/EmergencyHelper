@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.message.CommunicateActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/top_bar"
+        app:popupTheme="@style/TopBarTheme"
+        android:background="@color/gold"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_title_bar_height">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/back2"
+                android:layout_width="@dimen/top_title_bar_back_size"
+                android:layout_height="@dimen/top_title_bar_back_size"/>
+            <TextView
+                android:layout_marginLeft="@dimen/margin_10"
+                android:id="@+id/communicate_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/communicate_top_bar_text_size"
+                android:textColor="@color/white"
+                android:text="你好"/>
+        </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_above="@id/input_box"
+        android:layout_below="@id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/input_box"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/communicate_input_box_height"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/message_edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_weight="3"
+            android:background="@drawable/message_input_box" />
+
+        <Button
+            android:id="@+id/send_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_weight="1"
+            android:background="@drawable/send_btn"
+            android:baselineAligned="false"
+            android:text="发送"
+            android:textSize="@dimen/communicate_send_btn_text_size" />
+    </LinearLayout>
+</RelativeLayout>

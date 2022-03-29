@@ -2,6 +2,9 @@ package com.example.emergencyhelper.entity;
 
 import java.io.Serializable;
 
+/**
+ * 任务的实体类,暂时没有区分领取任务、发布任务,都用这个实体类
+ */
 public class TaskEntity implements Serializable {
     //用户名字
     private String name;
@@ -15,6 +18,10 @@ public class TaskEntity implements Serializable {
     private String site;
     //报酬
     private String reward;
+    //领取任务的人
+    private User getTaskUser;
+    //发布任务的人
+    private User postTaskUser;
     public String getName() {
         return name;
     }
@@ -61,5 +68,21 @@ public class TaskEntity implements Serializable {
 
     public void setDeadline(String deadline) {
         this.deadline = deadline;
+    }
+
+    public User getGetTaskUser() {
+        return getTaskUser;
+    }
+
+    public void setGetTaskUser(User getTaskUser) {
+        this.getTaskUser = getTaskUser;
+    }
+
+    public User getPostTaskUser() {
+        return postTaskUser;
+    }
+
+    public void setPostTaskUser(User postTaskUser) {
+        this.postTaskUser = postTaskUser;
     }
 }

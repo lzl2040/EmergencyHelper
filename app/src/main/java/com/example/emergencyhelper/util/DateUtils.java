@@ -64,9 +64,14 @@ public class DateUtils {
      */
     public static long string2TimeNum(String timeStr){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = simpleDateFormat.parse(timeStr);
-        long ts = date.getTime();
-        return ts;
+        try {
+            Date date = simpleDateFormat.parse(timeStr);
+            long ts = date.getTime();
+            return ts;
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     /**
@@ -76,11 +81,11 @@ public class DateUtils {
      */
     public static String calInterval(long interval){
         long seconds = interval / 1000;                         //转换为秒
-        int day = seconds / DateConstant.DAY_TIME_SECONDS;      //计算这是多少天
-        int hour = (seconds % DateConstant.DAY_TIME_SECONDS) / DateConstant.HOUR_TIME_SECONDS;      //计算这是多少小时
-        int minutes = (seconds % DateConstant.DAY_TIME_SECONDS) /% DateConstant.HOUR_TIME_SECONDS;  //计算这是多少分钟
-        int second = seconds % 60;                              //计算这是多少秒
-
+        long day = seconds / DateConstant.DAY_TIME_SECONDS;      //计算这是多少天
+        long hour = (seconds % DateConstant.DAY_TIME_SECONDS) / DateConstant.HOUR_TIME_SECONDS;      //计算这是多少小时
+        long minutes = (seconds % DateConstant.DAY_TIME_SECONDS) % DateConstant.HOUR_TIME_SECONDS;  //计算这是多少分钟
+        long second = seconds % 60;                              //计算这是多少秒
+        return "";
     }
 
     /**

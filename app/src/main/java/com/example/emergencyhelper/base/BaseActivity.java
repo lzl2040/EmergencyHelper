@@ -13,7 +13,16 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context =this;
     }
+
     public void initView(){
+
+    }
+
+    public void setListener(){
+
+    }
+
+    public void setAdapter(){
 
     }
 }

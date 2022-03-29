@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.PostActivity">
+    tools:context=".activity.my.PostActivity">
     <androidx.appcompat.widget.Toolbar
         app:popupTheme="@style/TopBarTheme"
         android:background="@color/gold"

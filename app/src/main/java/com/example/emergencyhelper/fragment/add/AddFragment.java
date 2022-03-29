@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.activity.PostActivity;
+import com.example.emergencyhelper.activity.my.PostActivity;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.entity.TaskEntity;
 import com.xuexiang.xui.widget.edittext.MultiLineEditText;
@@ -79,6 +79,10 @@ public class AddFragment extends BaseFragment {
                     taskEntity.setReward(Integer.valueOf(pays)+"");
                     taskEntity.setDeadline(deadlines);
                     PostActivity.tasks.add(taskEntity);
+                    content.setContentText("");
+                    site.setText("");
+                    deadline.setText("");
+                    pay.setText("");
                     Toast.makeText(getActivity(),"发布成功",Toast.LENGTH_LONG).show();
                 }
             }

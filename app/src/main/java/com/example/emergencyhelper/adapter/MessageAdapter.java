@@ -4,58 +4,73 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.entity.MessageEntity;
+import com.example.emergencyhelper.entity.Message;
 
-import java.util.ArrayList;
 import java.util.List;
+import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.ui.RoundImage;
 
+/**
+ * author ： yxm521
+ * time    ： 2022/3/29
+ */
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
+    private Context context;
+    private List<Message> messages;
 
-    private List<MessageEntity> mMessagesList = new ArrayList<>();
+    public MessageAdapter(Context context, List<Message> messages) {
+        this.context = context;
+        this.messages = messages;
+    }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView name;
-        TextView content;
-        ImageView header;
-        TextView time;
-        public ViewHolder(View view){
-            super(view);
-            name = view.findViewById(R.id.name);
-            content = view.findViewById(R.id.content);
-            header = view.findViewById(R.id.header);
-            time = view.findViewById(R.id.message_time);
-        }
-    }
-    public MessageAdapter(List<MessageEntity> messages){
-        mMessagesList=messages;
-    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message,parent,false);
+        View view = null;
+        if(viewType == 0){
+            //发送消息
+            view = LayoutInflater.from(context).inflate(R.layout.item_communicate_send_message,parent,false);
+        }else{
+            view = LayoutInflater.from(context).inflate(R.layout.item_communicate_receive_message,parent,false);
+        }
         ViewHolder holder = new ViewHolder(view);
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MessageEntity me = mMessagesList.get(position);
-        holder.header.setImageResource(me.getHeader());
-        holder.content.setText(me.getContent());
-        holder.name.setText(me.getName());
-        holder.time.setText(me.getTime());
+        Message message = messages.get(position);
+        holder.contentTxt.setText(message.getContent());
+        holder.headerImg.setImageResource(message.getImgId());
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return messages.get(position).getMsgType();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
     public int getItemCount() {
-        return mMessagesList.size();
+        return messages.size();
     }
 
+    class ViewHolder extends RecyclerView.ViewHolder{
+        RoundImage headerImg;
+        TextView contentTxt;
+        public ViewHolder(View v){
+            super(v);
+            headerImg = v.findViewById(R.id.user_header);
+            contentTxt = v.findViewById(R.id.message_content);
+        }
+    }
 }

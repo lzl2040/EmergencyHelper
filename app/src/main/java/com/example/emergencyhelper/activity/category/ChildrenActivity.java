@@ -1,4 +1,4 @@
-package com.example.emergencyhelper.activity;
+package com.example.emergencyhelper.activity.category;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,13 +13,13 @@ import com.example.emergencyhelper.entity.TaskEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoporateActivity extends AppCompatActivity {
+public class ChildrenActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<TaskEntity> tasks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_coporate);
+        setContentView(R.layout.activity_children);
         recyclerView = findViewById(R.id.recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -29,23 +29,30 @@ public class CoporateActivity extends AppCompatActivity {
     }
     public void addData(){
         TaskEntity data1 = new TaskEntity();
-        data1.setDesc("项目缺人，想找一个一起一起做的");
-        data1.setName("墨玲珑");
-        data1.setDeadline("2021-7-10");
-        data1.setSite("凡汐公司");
-        data1.setReward("1000");
-        data1.setHeader(R.drawable.a8);
+        data1.setDesc("需要外出几天，需要照顾一下宠物");
+        data1.setName("安之若素");
+        data1.setDeadline("2021-5-10");
+        data1.setSite("中信小区");
+        data1.setReward("300");
+        data1.setHeader(R.drawable.a10);
         tasks.add(data1);
 
         TaskEntity data2 = new TaskEntity();
-        data2.setDesc("本人最近事务繁多，需要找一位帮忙完成项目的开发，只需要1-2天时间即可");
-        data2.setName("十梦九他");
-        data2.setDeadline("2021-7-8");
-        data2.setSite("欣鑫公司");
-        data2.setReward("1100");
-        data2.setHeader(R.drawable.a15);
+        data2.setDesc("家里的衣柜比较乱，希望找能收拾屋子的家里的衣柜比较乱，希望找能收拾屋子的");
+        data2.setName("奶油桃子");
+        data2.setDeadline("2021-5-8");
+        data2.setSite("泰沙小区");
+        data2.setReward("500");
+        data2.setHeader(R.drawable.a2);
         tasks.add(data2);
 
-
+        TaskEntity data3 = new TaskEntity();
+        data3.setDesc("找一个上门打扫卫生的阿姨");
+        data3.setName("青草香氕");
+        data3.setDeadline("2021-5-1");
+        data3.setSite("大兴小区");
+        data3.setReward("200");
+        data3.setHeader(R.drawable.a13);
+        tasks.add(data3);
     }
 }

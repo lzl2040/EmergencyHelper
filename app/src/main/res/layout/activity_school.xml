@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".activity.SchoolActivity">
+    tools:context=".activity.category.SchoolActivity">
     <androidx.appcompat.widget.Toolbar
         app:popupTheme="@style/TopBarTheme"
         android:background="@color/gold"

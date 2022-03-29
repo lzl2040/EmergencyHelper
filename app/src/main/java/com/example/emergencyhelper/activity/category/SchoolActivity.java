@@ -1,4 +1,4 @@
-package com.example.emergencyhelper.activity;
+package com.example.emergencyhelper.activity.category;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,13 +13,13 @@ import com.example.emergencyhelper.entity.TaskEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SocialActivity extends AppCompatActivity {
+public class SchoolActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<TaskEntity> tasks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_social);
+        setContentView(R.layout.activity_school);
         recyclerView = findViewById(R.id.recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -29,22 +29,30 @@ public class SocialActivity extends AppCompatActivity {
     }
     public void addData(){
         TaskEntity data1 = new TaskEntity();
-        data1.setDesc("项目需要人帮忙辅助做一下，需要精通java");
-        data1.setName("安之若素");
-        data1.setDeadline("2021-7-30");
-        data1.setSite("凡汐科技");
-        data1.setReward("1000");
-        data1.setHeader(R.drawable.a5);
+        data1.setDesc("有会高数的吗，能帮忙补习一下高数吗");
+        data1.setName("凌末语");
+        data1.setDeadline("2021-7-10");
+        data1.setSite("湘潭大学");
+        data1.setReward("100");
+        data1.setHeader(R.drawable.a8);
         tasks.add(data1);
 
         TaskEntity data2 = new TaskEntity();
-        data2.setDesc("在泰山旅游，想找一个熟悉这里环境的当地人");
-        data2.setName("清晓花浅笑");
+        data2.setDesc("有多余的c语言书，有需要的吗");
+        data2.setName("小豆豆");
         data2.setDeadline("2021-7-8");
-        data2.setSite("泰山");
-        data2.setReward("400");
-        data2.setHeader(R.drawable.a15);
+        data2.setSite("湘潭大学");
+        data2.setReward("10");
+        data2.setHeader(R.drawable.a6);
         tasks.add(data2);
 
+        TaskEntity data3 = new TaskEntity();
+        data3.setDesc("能帮忙代取一下琴湖的快递吗");
+        data3.setName("青草香氕");
+        data3.setDeadline("2021-7-1");
+        data3.setSite("湘潭大学");
+        data3.setReward("1");
+        data3.setHeader(R.drawable.a12);
+        tasks.add(data3);
     }
 }
