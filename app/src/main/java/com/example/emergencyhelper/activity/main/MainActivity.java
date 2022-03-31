@@ -1,4 +1,4 @@
-package com.example.emergencyhelper.activity;
+package com.example.emergencyhelper.activity.main;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -8,24 +8,18 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.base.BaseActivity;
 import com.example.emergencyhelper.fragment.add.AddFragment;
-import com.example.emergencyhelper.fragment.HomePageFragment;
+import com.example.emergencyhelper.fragment.home.HomePageFragment;
 import com.example.emergencyhelper.fragment.message.MessageFragment;
 import com.example.emergencyhelper.fragment.my.MyFragment;
 import com.example.emergencyhelper.fragment.near.NearFragment;
 import com.example.emergencyhelper.util.StaticData;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends BaseActivity{

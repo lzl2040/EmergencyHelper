@@ -11,6 +11,7 @@ import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentActivity extends BaseActivity {
+    private String TAG = "CommentActivity";
     private Button send;
     private EditText input_box;
     private List<CommentEntity> cs = new ArrayList<>();
@@ -49,6 +51,12 @@ public class CommentActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
         initView();
+        setListener();
+        setAdapter();
+        addData();
+    }
+
+    public void addData(){
         CommentEntity ce = new CommentEntity();
         ce.setType(1);
         ce.setPage_post_time(getCurrentTime());
@@ -62,12 +70,12 @@ public class CommentActivity extends BaseActivity {
         super.initView();
         send = findViewById(R.id.send);
         input_box = findViewById(R.id.make_comment);
-
         recyclerView = findViewById(R.id.recyclerview);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(new CommentAdapter(this,cs));
+    }
+
+    @Override
+    public void setListener() {
+        Log.d(TAG,"setListener...");
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +92,17 @@ public class CommentActivity extends BaseActivity {
             }
         });
     }
+
+    @Override
+    public void setAdapter() {
+        //super.setAdapter();
+        Log.d(TAG,"setAdapter...");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(new CommentAdapter(this,cs));
+    }
+
     public String getCurrentTime(){
         SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-YY hh:mm");
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());

@@ -24,12 +24,12 @@
         </LinearLayout>
         <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/slide"
-        app:tl_textSelectColor="@color/blue"
+        app:tl_textSelectColor="@color/gold"
         app:tl_textUnselectColor="@color/black"
         app:tl_textsize="16sp"
         app:tl_tab_space_equal="true"
         app:tl_indicator_width="40dp"
-        app:tl_indicator_color="@color/blue"
+        app:tl_indicator_color="@color/gold"
         android:layout_width="match_parent"
         android:layout_height="60dp">
     </com.flyco.tablayout.SlidingTabLayout>

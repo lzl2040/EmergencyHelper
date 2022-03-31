@@ -5,6 +5,7 @@
     <dimen name="margin_10">10dp</dimen>
     <dimen name="margin_15">15dp</dimen>
     <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
     <dimen name="margin_40">40dp</dimen>
     <dimen name="margin_50">50dp</dimen>
     <dimen name="margin_80">80dp</dimen>
@@ -13,6 +14,7 @@
     <!--    字体大小-->
     <dimen name="font_10">10sp</dimen>
     <dimen name="font_12">12sp</dimen>
+    <dimen name="font_14">14sp</dimen>
     <dimen name="font_15">15sp</dimen>
     <dimen name="font_16">16sp</dimen>
     <dimen name="font_18">18sp</dimen>
@@ -72,4 +74,28 @@
     <dimen name="item_post_cancel_task_btn_height">30dp</dimen>
     <dimen name="item_post_cancel_task_btn_text">@dimen/font_12</dimen>
     <dimen name="item_post_more_size">20dp</dimen>
+<!--    search_activity-->
+    <dimen name="search_back_icon_size">16dp</dimen>
+<!--    topic_activity-->
+    <dimen name="topic_back_icon_size">16dp</dimen>
+    <dimen name="topic_top_text_size">@dimen/font_15</dimen>
+<!--    item_comment-->
+    <dimen name="item_comment_poster_name_size">@dimen/font_15</dimen>
+    <dimen name="item_comment_content_size">@dimen/font_14</dimen>
+    <dimen name="item_comment_content_time_text">@dimen/font_12</dimen>
+<!--    item_topic_top-->
+    <dimen name="item_topic_top_username_text">@dimen/font_15</dimen>
+    <dimen name="item_topic_top_content_size">@dimen/font_18</dimen>
+    <dimen name="item_topic_top_icon_size">24dp</dimen>
+    <dimen name="item_topic_top_icon_text_size">@dimen/font_12</dimen>
+    <dimen name="item_topic_top_time_text">@dimen/font_12</dimen>
+    <dimen name="item_topic_top_user_header_size">36dp</dimen>
+<!--    item_topic-->
+    <dimen name="item_topic_comment_icon_size">16dp</dimen>
+    <dimen name="item_topic_view_icon_size">20dp</dimen>
+    <dimen name="item_topic_icon_text_size">@dimen/font_14</dimen>
+    <dimen name="item_topic_user_header_size">36dp</dimen>
+    <dimen name="item_topic_username_text">@dimen/font_16</dimen>
+    <dimen name="item_topic_desc_text">@dimen/font_14</dimen>
+    <dimen name="item_topic_detail_text">@dimen/font_12</dimen>
 </resources>

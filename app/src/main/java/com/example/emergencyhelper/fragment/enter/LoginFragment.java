@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.activity.MainActivity;
+import com.example.emergencyhelper.activity.main.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.

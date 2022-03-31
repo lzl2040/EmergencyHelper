@@ -19,6 +19,7 @@ import java.util.List;
 public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static Context context;
     private List<CommentEntity> comments = new ArrayList<>();
+
     public CommentAdapter(Context context1, List<CommentEntity> comments){
         context =context1;
         this.comments=comments;
@@ -55,6 +56,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ViewHolder2) holder).time.setText(ce.getPage_post_time());
         }
     }
+
     @Override
     public int getItemViewType(int position) {
         return comments.get(position).getType();
@@ -78,6 +80,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             header = v.findViewById(R.id.header);
         }
     }
+
     public static class ViewHolder2 extends RecyclerView.ViewHolder{
         private TextView name;
         private TextView content;

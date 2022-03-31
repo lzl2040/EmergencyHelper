@@ -1,18 +1,15 @@
 package com.example.emergencyhelper.activity.category;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.emergencyhelper.activity.MainActivity;
+import com.example.emergencyhelper.activity.main.MainActivity;
 import com.example.emergencyhelper.base.BaseActivity;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.entity.TaskEntity;

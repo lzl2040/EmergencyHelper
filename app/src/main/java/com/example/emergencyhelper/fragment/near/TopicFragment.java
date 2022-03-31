@@ -6,23 +6,21 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.TopicAdapter;
+import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.entity.TopicEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TopicFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class TopicFragment extends Fragment {
+public class TopicFragment extends BaseFragment {
+    private String TAG = "TopicFragment";
     private RecyclerView recyclerView;
     private List<TopicEntity> topics = new ArrayList<>();
     public TopicFragment() {
@@ -40,19 +38,41 @@ public class TopicFragment extends Fragment {
     }
 
     @Override
+    public void initView(View v) {
+        //super.initView(v);
+        Log.d(TAG,"initView...");
+        recyclerView = v.findViewById(R.id.recyclerview);
+    }
+
+    @Override
+    public void setListener() {
+        //super.setListener();
+        Log.d(TAG,"setListener...");
+    }
+
+    @Override
+    public void setAdapter() {
+        //super.setAdapter();
+        Log.d(TAG,"setAdapter...");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        addData();
+        recyclerView.setAdapter(new TopicAdapter(topics,getActivity()));
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_topic, container, false);
-        recyclerView = v.findViewById(R.id.recyclerview);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        addDate();
-        recyclerView.setAdapter(new TopicAdapter(topics,getActivity()));
+        initView(v);
+        setListener();
+        setAdapter();
         return v;
     }
-    public void addDate(){
+
+    public void addData(){
 
         TopicEntity data1 = new TopicEntity();
         data1.setComment_num(0);

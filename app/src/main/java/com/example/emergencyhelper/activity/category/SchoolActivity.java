@@ -1,6 +1,5 @@
 package com.example.emergencyhelper.activity.category;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.activity.MainActivity;
+import com.example.emergencyhelper.activity.main.MainActivity;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
 import com.example.emergencyhelper.entity.TaskEntity;

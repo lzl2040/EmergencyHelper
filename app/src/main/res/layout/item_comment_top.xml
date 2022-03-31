@@ -3,6 +3,7 @@
     android:id="@+id/top"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
@@ -14,9 +15,9 @@
         android:layout_height="60dp">
         <com.example.emergencyhelper.ui.RoundImage
             android:id="@+id/post_header"
-            android:layout_width="40dp"
+            android:layout_width="@dimen/item_topic_top_user_header_size"
             android:src="@drawable/a3"
-            android:layout_height="40dp"/>
+            android:layout_height="@dimen/item_topic_top_user_header_size"/>
         <LinearLayout
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
@@ -24,14 +25,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:textSize="14sp"
+                android:textSize="@dimen/item_topic_top_username_text"
                 android:text="醉挽清风"
                 android:id="@+id/post_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:layout_marginTop="5dp"
-                android:background="@color/blue_sort"
+                android:background="@color/gold"
                 android:text="楼主"
                 android:textAlignment="center"
                 android:textSize="12sp"
@@ -50,68 +51,76 @@
         <TextView
             android:textStyle="bold"
             android:id="@+id/title"
-            android:textSize="18sp"
+            android:textSize="@dimen/item_topic_top_content_size"
             android:text="电视坏了怎么办"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:paddingRight="@dimen/margin_10"
+        android:paddingLeft="@dimen/margin_10"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/q13"
+                    android:layout_width="@dimen/item_topic_top_icon_size"
+                    android:layout_height="@dimen/item_topic_top_icon_size"/>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/browser_num"
+                    android:text="300"
+                    android:textColor="@color/huibai_text"
+                    android:textSize="@dimen/item_topic_top_icon_text_size"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:src="@drawable/q13"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/browser_num"
-                        android:text="300"
-                        android:textColor="@color/huibai_text"
-                        android:textSize="12sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_marginLeft="15dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <ImageView
-                        android:src="@drawable/q11"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"/>
-                    <TextView
-                        android:layout_marginLeft="5dp"
-                        android:id="@+id/comment_num"
-                        android:text="0"
-                        android:textColor="@color/huibai_text"
-                        android:textSize="12sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@mipmap/comment_num"
+                    android:layout_width="@dimen/item_topic_top_icon_size"
+                    android:layout_height="@dimen/item_topic_top_icon_size"/>
+                <TextView
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/comment_num"
+                    android:text="0"
+                    android:textColor="@color/huibai_text"
+                    android:textSize="@dimen/item_topic_top_icon_text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <TextView
-                android:layout_marginTop="2dp"
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/huibai_text"
-                android:layout_marginLeft="200dp"
-                android:textSize="12sp"
+                android:textSize="@dimen/item_topic_top_time_text"
                 android:text="昨天20:00"/>
         </LinearLayout>
-    </LinearLayout>
+
+        </RelativeLayout>
     <View
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"

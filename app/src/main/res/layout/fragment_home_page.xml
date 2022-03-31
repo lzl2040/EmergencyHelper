@@ -6,7 +6,7 @@
     android:background="@color/back_color"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.HomePageFragment">
+    tools:context=".fragment.home.HomePageFragment">
     <com.google.android.material.appbar.AppBarLayout
         android:background="@color/alpha90_white"
         android:layout_width="match_parent"
@@ -27,6 +27,7 @@
                 android:src="@drawable/a6"/>
 
             <EditText
+                android:id="@+id/search_box"
                 android:hint="@string/search_task_tip"
                 android:textSize="@dimen/home_search_box_text_size"
                 android:paddingLeft="10dp"
@@ -36,7 +37,8 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/search_box"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:focusable="false"/>
         </LinearLayout>
         <androidx.cardview.widget.CardView
             android:layout_marginBottom="@dimen/margin_5"

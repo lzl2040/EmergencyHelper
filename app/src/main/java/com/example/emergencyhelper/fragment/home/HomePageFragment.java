@@ -1,17 +1,18 @@
-package com.example.emergencyhelper.fragment;
+package com.example.emergencyhelper.fragment.home;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.emergencyhelper.R;
@@ -23,9 +24,11 @@ import com.example.emergencyhelper.activity.category.FamilyActivity;
 import com.example.emergencyhelper.activity.category.OldActivity;
 import com.example.emergencyhelper.activity.category.SchoolActivity;
 import com.example.emergencyhelper.activity.category.ChildrenActivity;
+import com.example.emergencyhelper.activity.main.SearchActivity;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.entity.TaskEntity;
+import com.example.emergencyhelper.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,7 @@ public class HomePageFragment extends BaseFragment implements View.OnClickListen
     private RecyclerView recyclerView;
     private List<TaskEntity>tasks = new ArrayList<>();
     private LinearLayout old,social,emergency,family,corporate,school,children,disable;
+    private EditText searchEdit;
     public  TaskAdapter ta;
     public Context context;
 
@@ -67,6 +71,7 @@ public class HomePageFragment extends BaseFragment implements View.OnClickListen
         family = v.findViewById(R.id.family);
         social = v.findViewById(R.id.social);
         disable = v.findViewById(R.id.disable);
+        searchEdit = v.findViewById(R.id.search_box);
     }
 
     @Override
@@ -81,6 +86,7 @@ public class HomePageFragment extends BaseFragment implements View.OnClickListen
         family.setOnClickListener(this);
         social.setOnClickListener(this);
         disable.setOnClickListener(this);
+        searchEdit.setOnClickListener(this);
     }
 
     @Override
@@ -169,6 +175,9 @@ public class HomePageFragment extends BaseFragment implements View.OnClickListen
             case R.id.disable:
                 Intent intent7 = new Intent(getActivity(), DisableActivity.class);
                 getActivity().startActivity(intent7);
+                break;
+            case R.id.search_box:
+                ViewUtil.jumpTo(context, SearchActivity.class);
                 break;
             default:
                 break;

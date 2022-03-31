@@ -1,6 +1,5 @@
 package com.example.emergencyhelper.activity.message;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.emergencyhelper.activity.MainActivity;
+import com.example.emergencyhelper.activity.main.MainActivity;
 import com.example.emergencyhelper.adapter.MessageAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
 import com.example.emergencyhelper.R;

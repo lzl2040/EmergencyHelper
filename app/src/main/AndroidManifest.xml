@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EmergencyHelper">
-        <activity android:name=".activity.category.DisableActivity"></activity>
+        <activity android:name=".activity.main.SearchActivity" android:launchMode="singleTask"></activity>
+        <activity android:name=".activity.category.DisableActivity" />
         <activity android:name=".activity.message.CommunicateActivity" />
         <activity android:name=".activity.my.PointActivity" />
         <activity android:name=".activity.my.PostActivity" />
@@ -23,7 +24,7 @@
         <activity android:name=".activity.category.SocialActivity" />
         <activity android:name=".activity.category.ChildrenActivity" />
         <activity android:name=".activity.topic.CommentActivity" />
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.main.MainActivity" />
         <activity android:name=".activity.enter.EnterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

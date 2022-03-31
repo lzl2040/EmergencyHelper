@@ -13,10 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.activity.MainActivity;
 import com.example.emergencyhelper.activity.topic.CommentActivity;
 import com.example.emergencyhelper.entity.TopicEntity;
-import com.example.emergencyhelper.fragment.near.TopicFragment;
 
 import java.util.ArrayList;
 import java.util.List;

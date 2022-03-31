@@ -20,8 +20,8 @@
                 android:id="@+id/header"
                 android:src="@drawable/q6"
                 android:layout_centerVertical="true"
-                android:layout_width="40dp"
-                android:layout_height="40dp"/>
+                android:layout_width="@dimen/item_topic_user_header_size"
+                android:layout_height="@dimen/item_topic_user_header_size"/>
             <TextView
                 android:layout_marginLeft="10dp"
                 android:id="@+id/name"
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:text="124"
                 android:textColor="@color/black"
-                android:textSize="18sp"/>
+                android:textSize="@dimen/item_topic_username_text"/>
         </LinearLayout>
         <TextView
             android:layout_marginRight="10dp"
@@ -49,7 +49,7 @@
         <TextView
             android:id="@+id/desc"
             android:text="怎么修电视?"
-            android:textSize="16sp"
+            android:textSize="@dimen/item_topic_desc_text"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -58,7 +58,7 @@
             android:id="@+id/detail"
             android:maxLines="4"
             android:textColor="@color/huibai_text"
-            android:textSize="12sp"
+            android:textSize="@dimen/item_topic_detail_text"
             android:text="2323232"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -77,14 +77,14 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:src="@drawable/q13"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"/>
+                    android:layout_width="@dimen/item_topic_view_icon_size"
+                    android:layout_height="@dimen/item_topic_view_icon_size"/>
                 <TextView
                     android:layout_marginLeft="5dp"
                     android:id="@+id/browser_num"
                     android:text="12"
                     android:textColor="@color/huibai_text"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/item_topic_icon_text_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -96,14 +96,14 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:src="@drawable/q11"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"/>
+                    android:layout_width="@dimen/item_topic_comment_icon_size"
+                    android:layout_height="@dimen/item_topic_comment_icon_size"/>
                 <TextView
                     android:layout_marginLeft="5dp"
                     android:id="@+id/comment_num"
                     android:text="12"
                     android:textColor="@color/huibai_text"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/item_topic_icon_text_size"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>

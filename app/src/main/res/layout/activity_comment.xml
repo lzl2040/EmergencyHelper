@@ -8,26 +8,28 @@
     android:layout_height="match_parent"
     tools:context=".activity.topic.CommentActivity">
     <LinearLayout
+        android:paddingLeft="@dimen/margin_5"
         android:id="@+id/top_bar"
-        android:background="@color/blue_sort"
+        android:background="@color/gold"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="@dimen/top_title_bar_height">
         <ImageView
             android:layout_marginRight="10dp"
-            android:src="@mipmap/back"
+            android:src="@mipmap/back2"
             android:id="@+id/back"
-            android:layout_width="20dp"
-            android:layout_height="20dp"/>
+            android:layout_width="@dimen/topic_back_icon_size"
+            android:layout_height="@dimen/topic_back_icon_size"/>
         <TextView
             android:text="附近"
-            android:textSize="16sp"
+            android:textSize="@dimen/top_title_bar_text_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"/>
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:background="@color/white"
         android:layout_above="@+id/commet"
         android:layout_below="@+id/top_bar"
         android:id="@+id/recyclerview"
@@ -50,6 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"/>
         <Button
+            android:background="@drawable/send_btn"
             android:layout_marginLeft="10dp"
             android:layout_weight="2"
             android:textColor="@color/white"
