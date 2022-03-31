@@ -38,8 +38,9 @@
     <dimen name="item_task_contact_btn_height">30dp</dimen>
     <dimen name="item_task_get_task_btn_width">66dp</dimen>
     <dimen name="item_task_get_task_btn_height">30dp</dimen>
-    <dimen name="item_task_bottom_small_icon_size">15dp</dimen>
+    <dimen name="item_task_bottom_small_icon_size">12dp</dimen>
     <dimen name="item_task_get_task__btn_text_size">@dimen/font_10</dimen>
+    <dimen name="item_task_information_text_size">@dimen/font_12</dimen>
 <!--发布任务界面-->
     <dimen name="post_task_calendar_size">24dp</dimen>
     <dimen name="bottom_bar_size">24dp</dimen>
@@ -60,4 +61,15 @@
 <!--    item_communicate_send-->
     <dimen name="item_communicate_header">36dp</dimen>
     <dimen name="item_communicate_text_size">@dimen/font_15</dimen>
+<!--    item_post_task-->
+    <dimen name="item_post_information_icon">12dp</dimen>
+    <dimen name="item_post_information_text">@dimen/font_12</dimen>
+    <dimen name="item_post_get_task_text_size">@dimen/font_12</dimen>
+    <dimen name="item_post_get_task_header_icon_size">24dp</dimen>
+    <dimen name="item_post_get_task_right_icon_size">18dp</dimen>
+    <dimen name="item_post_get_task_user_text">@dimen/font_12</dimen>
+    <dimen name="item_post_cancel_task_btn_width">75dp</dimen>
+    <dimen name="item_post_cancel_task_btn_height">30dp</dimen>
+    <dimen name="item_post_cancel_task_btn_text">@dimen/font_12</dimen>
+    <dimen name="item_post_more_size">20dp</dimen>
 </resources>

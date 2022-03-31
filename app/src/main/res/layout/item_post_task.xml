@@ -9,7 +9,8 @@
     android:layout_marginRight="@dimen/margin_5"
     android:layout_height="140dp">
     <LinearLayout
-        android:paddingLeft="10dp"
+        android:paddingLeft="@dimen/margin_10"
+        android:paddingRight="@dimen/margin_10"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -33,55 +34,156 @@
 <!--                android:textColor="@color/black"-->
 <!--                android:text="234"/>-->
 <!--        </LinearLayout>-->
+        <RelativeLayout
+            android:layout_weight="4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:id="@+id/task_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="242424"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+            <ImageView
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginRight="@dimen/margin_5"
+                android:id="@+id/more"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/more"
+                android:layout_width="@dimen/item_post_more_size"
+                android:layout_height="@dimen/item_post_more_size"/>
+<!--            <Button-->
+<!--                android:id="@+id/cancel_btn"-->
+<!--                android:background="@drawable/cancel_task_btn"-->
+<!--                android:layout_marginTop="@dimen/margin_5"-->
+<!--                android:layout_marginRight="@dimen/margin_5"-->
+<!--                android:textSize="@dimen/item_post_cancel_task_btn_text"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:text="@string/cancel_task"-->
+<!--                android:layout_width="@dimen/item_post_cancel_task_btn_width"-->
+<!--                android:layout_height="@dimen/item_post_cancel_task_btn_height"/>-->
 
-        <TextView
-            android:id="@+id/task_desc"
-            android:layout_width="382dp"
-            android:layout_height="90dp"
-            android:layout_marginTop="10dp"
-            android:text="242424"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+        </RelativeLayout>
+
 
         <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="@dimen/item_post_information_icon"
+                    android:layout_height="@dimen/item_post_information_icon"
                     android:src="@drawable/task_time"
                     android:layout_marginRight="6dp"
                     android:layout_gravity="center"/>
                 <TextView
+                    android:textSize="@dimen/item_post_information_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2021-7-5"
                     android:id="@+id/task_time"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="@dimen/item_post_information_icon"
+                    android:layout_height="@dimen/item_post_information_icon"
                     android:layout_marginRight="6dp"
                     android:layout_marginLeft="15dp"
                     android:src="@drawable/task_site"
                     android:layout_gravity="center"/>
                 <TextView
+                    android:textSize="@dimen/item_post_information_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="湘潭大学"
                     android:id="@+id/task_site"/>
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
                 <ImageView
-                    android:layout_width="15dp"
+                    android:layout_width="@dimen/item_post_information_icon"
                     android:layout_marginRight="6dp"
                     android:layout_marginLeft="15dp"
-                    android:layout_height="15dp"
+                    android:layout_height="@dimen/item_post_information_icon"
                     android:src="@drawable/task_reward"
                     android:layout_gravity="center"/>
                 <TextView
+                    android:textSize="@dimen/item_post_information_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="100元/天"
+                    android:text="100币/天"
                     android:id="@+id/task_reward"/>
             </LinearLayout>
 
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/back_color"/>
+        <RelativeLayout
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textSize="@dimen/item_post_get_task_text_size"
+                    android:text="@string/get_task_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:id="@+id/get_task_user_situation"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <com.example.emergencyhelper.ui.RoundImage
+                        android:layout_marginLeft="@dimen/margin_5"
+                        android:id="@+id/get_task_user_header"
+                        android:src="@drawable/a10"
+                        android:layout_width="@dimen/item_post_get_task_header_icon_size"
+                        android:layout_height="@dimen/item_post_get_task_header_icon_size"/>
+                    <TextView
+                        android:id="@+id/get_task_user_name"
+                        android:layout_marginLeft="@dimen/margin_5"
+                        android:text="123"
+                        android:textSize="@dimen/item_post_get_task_user_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/view_more"
+                android:gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:textSize="@dimen/item_post_get_task_text_size"
+                    android:text="@string/view_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <ImageView
+                    android:src="@mipmap/right"
+                    android:layout_width="@dimen/item_post_get_task_right_icon_size"
+                    android:layout_height="@dimen/item_post_get_task_right_icon_size"/>
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

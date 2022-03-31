@@ -1,7 +1,8 @@
-package com.example.emergencyhelper;
+package com.example.emergencyhelper.application;
 
 import android.app.Application;
 
+import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.entity.User;
 import com.example.emergencyhelper.util.StaticData;
 
@@ -18,11 +19,12 @@ public class HelperApplication extends Application {
     public void onCreate() {
         super.onCreate();
         saveUsers();
+        saveTasks();
     }
 
     public void saveUsers(){
         List<User> users = new ArrayList<>();
-        User user1 = new User("小西瓜",R.drawable.a13);
+        User user1 = new User("小西瓜", R.drawable.a13);
         User user2 = new User("张先生",R.drawable.a12);
         User user3 = new User("lZL2040",R.drawable.a11);
         User user4 = new User("安之若素",R.drawable.a10);
@@ -49,5 +51,9 @@ public class HelperApplication extends Application {
         users.add(user12);
         users.add(user13);
         StaticData.setUserList(users);
+    }
+    
+    public void saveTasks(){
+        
     }
 }

@@ -94,8 +94,9 @@ public class AddFragment extends BaseFragment {
                 if(timePickerViewDialog == null){
                     Log.d(TAG,"calendarImg:click..");
                     Calendar calendar = Calendar.getInstance();
+                    //获得当前时间的时间字符串
                     String timeStr = DateUtils.timeNum2String(System.currentTimeMillis());
-                    Log.d(TAG,"now time:"+timeStr);
+                    //Log.d(TAG,"now time:"+timeStr);
                     calendar.setTime(DateUtils.string2Date(timeStr, DateUtils.yyyyMMddHHmm.get()));
                     timePickerViewDialog = new TimePickerBuilder(getActivity(), new OnTimeSelectListener() {
                         @Override

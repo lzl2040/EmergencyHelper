@@ -63,7 +63,7 @@ public class DateUtils {
      * @return
      */
     public static long string2TimeNum(String timeStr){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
             Date date = simpleDateFormat.parse(timeStr);
             long ts = date.getTime();
@@ -83,9 +83,10 @@ public class DateUtils {
         long seconds = interval / 1000;                         //转换为秒
         long day = seconds / DateConstant.DAY_TIME_SECONDS;      //计算这是多少天
         long hour = (seconds % DateConstant.DAY_TIME_SECONDS) / DateConstant.HOUR_TIME_SECONDS;      //计算这是多少小时
-        long minutes = (seconds % DateConstant.DAY_TIME_SECONDS) % DateConstant.HOUR_TIME_SECONDS;  //计算这是多少分钟
+        long minutes = ((seconds % DateConstant.DAY_TIME_SECONDS) - hour * DateConstant.HOUR_TIME_SECONDS) / 60;  //计算这是多少分钟
         long second = seconds % 60;                              //计算这是多少秒
-        return "";
+        String timeStr = day + "天" + hour + "小时" + minutes + "分" + second + "秒";
+        return timeStr;
     }
 
     /**

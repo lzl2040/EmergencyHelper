@@ -86,6 +86,7 @@
                         android:layout_marginRight="6dp"
                         android:layout_gravity="center"/>
                     <TextView
+                        android:textSize="@dimen/item_task_information_text_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2021-7-5"
@@ -98,10 +99,11 @@
                         android:layout_width="@dimen/item_task_bottom_small_icon_size"
                         android:layout_height="@dimen/item_task_bottom_small_icon_size"
                         android:layout_marginRight="6dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="@dimen/margin_10"
                         android:src="@drawable/task_site"
                         android:layout_gravity="center"/>
                     <TextView
+                        android:textSize="@dimen/item_task_information_text_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="湘潭大学"
@@ -113,11 +115,12 @@
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_marginRight="6dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="@dimen/margin_10"
                         android:layout_height="15dp"
                         android:src="@drawable/task_reward"
                         android:layout_gravity="center"/>
                     <TextView
+                        android:textSize="@dimen/item_task_information_text_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="100"

@@ -109,7 +109,7 @@ public class HomePageFragment extends BaseFragment implements View.OnClickListen
     public void addData(){
         TaskEntity data1 = new TaskEntity();
         data1.setDesc("下水道堵住了，需要找人维修，有修一下的不");
-        data1.setDeadline("2021-7-11");
+        data1.setDeadline("2022-04-01 12:00");
         data1.setSite("中新街道-452");
         data1.setReward("80");
         data1.setName("小西瓜");
@@ -119,7 +119,7 @@ public class HomePageFragment extends BaseFragment implements View.OnClickListen
         TaskEntity data2 = new TaskEntity();
         data2.setDesc("门锁坏了，回不了家了，有住在附近的吗，有方便上门维修一下的吗");
         data2.setName("张先生");
-        data2.setDeadline("2021-7-10");
+        data2.setDeadline("2022-04-10 12:30");
         data2.setSite("东坡街道-112");
         data2.setReward("40");
         data2.setHeader(R.drawable.a12);
@@ -128,7 +128,7 @@ public class HomePageFragment extends BaseFragment implements View.OnClickListen
         TaskEntity data3 = new TaskEntity();
         data3.setDesc("本小区有不忙的吗，需要外出几天，想找人照顾一下宠物");
         data3.setName("张先生");
-        data3.setDeadline("2021-7-9");
+        data3.setDeadline("2022-04-01 01:20");
         data3.setSite("星海小区");
         data3.setReward("500");
         data3.setHeader(R.drawable.a11);
