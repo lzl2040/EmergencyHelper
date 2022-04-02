@@ -98,4 +98,15 @@
     <dimen name="item_topic_username_text">@dimen/font_16</dimen>
     <dimen name="item_topic_desc_text">@dimen/font_14</dimen>
     <dimen name="item_topic_detail_text">@dimen/font_12</dimen>
+<!--    my-->
+    <dimen name="my_edit_information_text">@dimen/font_12</dimen>
+    <dimen name="my_edit_btn_width">80dp</dimen>
+    <dimen name="my_edit_btn_height">30dp</dimen>
+    <dimen name="my_username_text">@dimen/font_16</dimen>
+    <dimen name="my_welcome_text">@dimen/font_12</dimen>
+    <dimen name="my_user_header_icon_size">36dp</dimen>
+    <dimen name="my_task_information_text_size">@dimen/font_12</dimen>
+    <dimen name="my_task_information_num_text">@dimen/font_16</dimen>
+    <dimen name="my_function_icon_size">24dp</dimen>
+    <dimen name="my_function_text_size">@dimen/font_14</dimen>
 </resources>

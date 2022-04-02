@@ -14,33 +14,40 @@
         android:src="@drawable/head"
         android:layout_height="40dp"/>
     <RelativeLayout
-        android:layout_marginTop="5dp"
         android:orientation="vertical"
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="小红"/>
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/content"
+                android:textColor="@color/huibai_text"
+                android:textSize="12sp"
+                android:text="你好"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
         <TextView
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="8dp"
-            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:text="小红"/>
-        <TextView
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/content"
-            android:textColor="@color/huibai_text"
-            android:textSize="12sp"
-            android:text="你好"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_centerInParent="true"
             android:layout_alignParentRight="true"
             android:text="2021-12-1"
             android:id="@+id/message_time"/>/>

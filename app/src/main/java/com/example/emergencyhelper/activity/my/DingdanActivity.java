@@ -18,6 +18,7 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.GetTaskAdapter;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
 
 import java.util.ArrayList;
@@ -28,7 +29,8 @@ public class DingdanActivity extends BaseActivity {
     public static RecyclerView recyclerView;
     public static Context context;
     public static TaskEntity task;
-    public static List<TaskEntity> tasks = new ArrayList<>();
+    //public static List<TaskEntity> tasks = new ArrayList<>();
+    public static List<Task> tasks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

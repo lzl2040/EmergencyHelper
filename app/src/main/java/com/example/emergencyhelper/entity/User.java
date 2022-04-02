@@ -20,6 +20,13 @@ public class User {
         this.imgId = imgId;
     }
 
+    public User(String phone, String username, int imgId, String pwd) {
+        this.phone = phone;
+        this.username = username;
+        this.imgId = imgId;
+        this.pwd = pwd;
+    }
+
     public String getPhone() {
         return phone;
     }

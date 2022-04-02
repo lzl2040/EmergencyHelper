@@ -2,6 +2,9 @@ package com.example.emergencyhelper.entity;
 
 import java.io.Serializable;
 
+/**
+ * 消息界面聊天框的实体类
+ */
 public class MessageUserEntity implements Serializable {
     private int header;
     private String name;

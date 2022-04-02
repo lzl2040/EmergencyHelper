@@ -13,7 +13,9 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.main.MainActivity;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
+import com.example.emergencyhelper.util.StaticData;
 import com.example.emergencyhelper.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -24,7 +26,8 @@ public class CoporateActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private ImageView backImg;
     private Context context;
-    private List<TaskEntity> tasks = new ArrayList<>();
+    //private List<TaskEntity> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,22 +71,6 @@ public class CoporateActivity extends BaseActivity {
     }
 
     public void addData(){
-        TaskEntity data1 = new TaskEntity();
-        data1.setDesc("项目缺人，想找一个一起一起做的");
-        data1.setName("墨玲珑");
-        data1.setDeadline("2022-04-02 06:30");
-        data1.setSite("凡汐公司");
-        data1.setReward("1000");
-        data1.setHeader(R.drawable.a8);
-        tasks.add(data1);
-
-        TaskEntity data2 = new TaskEntity();
-        data2.setDesc("本人最近事务繁多，需要找一位帮忙完成项目的开发，只需要1-2天时间即可");
-        data2.setName("十梦九他");
-        data2.setDeadline("2022-04-01 08:40");
-        data2.setSite("欣鑫公司");
-        data2.setReward("1100");
-        data2.setHeader(R.drawable.a15);
-        tasks.add(data2);
+        tasks = StaticData.getCategories().get(6).getTasks();
     }
 }

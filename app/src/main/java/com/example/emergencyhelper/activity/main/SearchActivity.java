@@ -16,6 +16,7 @@ import android.widget.ImageView;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.base.BaseActivity;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.fragment.home.SearchFragment;
 import com.example.emergencyhelper.util.CheckUtil;
@@ -94,11 +95,11 @@ public class SearchActivity extends BaseActivity {
         ft.commit();
     }
 
-    public List<TaskEntity> findFitTask(String keyWord){
-        List<TaskEntity> result = new ArrayList<>();
-        List<TaskEntity> allTasks = StaticData.getTasks();
-        for(TaskEntity entity:allTasks){
-            String desc = entity.getDesc();
+    public List<Task> findFitTask(String keyWord){
+        List<Task> result = new ArrayList<>();
+        List<Task> allTasks = StaticData.getTaskList();
+        for(Task entity:allTasks){
+            String desc = entity.getContent();
             if(desc.contains(keyWord)){
                 result.add(entity);
             }

@@ -1,5 +1,6 @@
 package com.example.emergencyhelper.fragment.add;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -11,11 +12,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.my.PostActivity;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.entity.TaskEntity;
+import com.example.emergencyhelper.util.StaticData;
 import com.xuexiang.xui.widget.edittext.MultiLineEditText;
 import com.xuexiang.xui.widget.picker.widget.TimePickerView;
 import com.xuexiang.xui.widget.picker.widget.builder.TimePickerBuilder;
@@ -68,17 +71,23 @@ public class AddFragment extends BaseFragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TaskEntity taskEntity = new TaskEntity();
+                Task task = new Task();
+                //TaskEntity taskEntity = new TaskEntity();
                 String pays = pay.getText().toString();
                 String contents = content.getContentText().toString();
                 String sites = site.getText().toString();
                 String deadlines = deadline.getText().toString();
                 if(pays.length()!=0&&contents.length()!=0&&sites.length()!=0){
-                    taskEntity.setDesc(contents);
-                    taskEntity.setSite(sites);
-                    taskEntity.setReward(Integer.valueOf(pays)+"");
-                    taskEntity.setDeadline(deadlines);
-                    PostActivity.tasks.add(taskEntity);
+                    task.setContent(contents);
+                    task.setDeadline(deadlines);
+                    task.setSite(sites);
+                    task.setReward(Integer.valueOf(pays));
+                    task.setPostUser(StaticData.getUserList().get(0));
+//                    taskEntity.setDesc(contents);
+//                    taskEntity.setSite(sites);
+//                    taskEntity.setReward(Integer.valueOf(pays)+"");
+//                    taskEntity.setDeadline(deadlines);
+                    PostActivity.tasks.add(task);
                     content.setContentText("");
                     site.setText("");
                     deadline.setText("");

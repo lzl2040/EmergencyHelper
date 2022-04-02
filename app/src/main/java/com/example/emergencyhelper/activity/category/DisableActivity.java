@@ -10,9 +10,12 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.emergencyhelper.activity.main.MainActivity;
+import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
 import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
+import com.example.emergencyhelper.util.StaticData;
 import com.example.emergencyhelper.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -23,7 +26,7 @@ public class DisableActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private ImageView backImg;
     private Context context;
-    private List<TaskEntity> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,5 +66,13 @@ public class DisableActivity extends BaseActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
+        addData();
+        TaskAdapter adapter = new TaskAdapter(tasks,context);
+        recyclerView.setAdapter(adapter);
+    }
+
+    public void addData(){
+        tasks = StaticData.getCategories().get(7).getTasks();
+        Log.d(TAG,"SIZE:"+tasks.size());
     }
 }

@@ -13,7 +13,9 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.main.MainActivity;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
+import com.example.emergencyhelper.util.StaticData;
 import com.example.emergencyhelper.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -24,7 +26,8 @@ public class SchoolActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private ImageView backImg;
     private Context context;
-    private List<TaskEntity> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
+    //private List<TaskEntity> tasks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,31 +71,6 @@ public class SchoolActivity extends BaseActivity {
     }
 
     public void addData(){
-        TaskEntity data1 = new TaskEntity();
-        data1.setDesc("有会高数的吗，能帮忙补习一下高数吗");
-        data1.setName("凌末语");
-        data1.setDeadline("2022-04-01 16:30");
-        data1.setSite("湘潭大学");
-        data1.setReward("100");
-        data1.setHeader(R.drawable.a8);
-        tasks.add(data1);
-
-        TaskEntity data2 = new TaskEntity();
-        data2.setDesc("有多余的c语言书，有需要的吗");
-        data2.setName("小豆豆");
-        data2.setDeadline("2022-03-31 12:23");
-        data2.setSite("湘潭大学");
-        data2.setReward("10");
-        data2.setHeader(R.drawable.a6);
-        tasks.add(data2);
-
-        TaskEntity data3 = new TaskEntity();
-        data3.setDesc("能帮忙代取一下琴湖的快递吗");
-        data3.setName("青草香氕");
-        data3.setDeadline("2021-04-01 18:00");
-        data3.setSite("湘潭大学");
-        data3.setReward("1");
-        data3.setHeader(R.drawable.a12);
-        tasks.add(data3);
+        tasks = StaticData.getCategories().get(3).getTasks();
     }
 }

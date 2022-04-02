@@ -9,14 +9,16 @@ import android.widget.LinearLayout;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.PostTaskAdapter;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PostActivity extends AppCompatActivity {
-    RecyclerView recyclerView;
-    public static List<TaskEntity> tasks = new ArrayList<>();
+    private RecyclerView recyclerView;
+    public static List<Task> tasks = new ArrayList<>();
+    //public static List<TaskEntity> tasks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

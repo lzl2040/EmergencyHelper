@@ -74,4 +74,9 @@ public class MessageUserAdapter extends RecyclerView.Adapter<MessageUserAdapter.
         return mMessagesList.size();
     }
 
+    public void update(MessageUserEntity entity){
+        mMessagesList.add(entity);
+        notifyDataSetChanged();
+    }
+
 }

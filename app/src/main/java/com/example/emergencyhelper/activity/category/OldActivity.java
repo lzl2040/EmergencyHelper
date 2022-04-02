@@ -13,7 +13,9 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.main.MainActivity;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
+import com.example.emergencyhelper.util.StaticData;
 import com.example.emergencyhelper.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -24,7 +26,8 @@ public class OldActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private ImageView backImg;
     private Context context;
-    private List<TaskEntity> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
+    //private List<TaskEntity> tasks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,31 +71,6 @@ public class OldActivity extends BaseActivity {
     }
 
     public void addData(){
-        TaskEntity data1 = new TaskEntity();
-        data1.setDesc("需要找位人，去看望一下家里的老人");
-        data1.setName("冷心为王");
-        data1.setDeadline("2022-04-04 05:50");
-        data1.setSite("兴安小区");
-        data1.setReward("300");
-        data1.setHeader(R.drawable.a10);
-        tasks.add(data1);
-
-        TaskEntity data2 = new TaskEntity();
-        data2.setDesc("老人一人在家，家里老人需要去看医院，想找一个能一起去医院看病的");
-        data2.setName("慕绾晴");
-        data2.setDeadline("2022-04-03 12:50");
-        data2.setSite("沙尾小区");
-        data2.setReward("500");
-        data2.setHeader(R.drawable.a2);
-        tasks.add(data2);
-
-        TaskEntity data3 = new TaskEntity();
-        data3.setDesc("老人家里卫生很乱，需要找人打理一下");
-        data3.setName("妄念");
-        data3.setDeadline("2022-04-02 15:20");
-        data3.setSite("大兴小区");
-        data3.setReward("200");
-        data3.setHeader(R.drawable.a13);
-        tasks.add(data3);
+        tasks = StaticData.getCategories().get(4).getTasks();
     }
 }

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseFragment;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.util.StaticData;
 
@@ -22,12 +23,13 @@ import java.util.List;
 public class SearchFragment extends BaseFragment {
     private String TAG = "SearchFragment";
     private RecyclerView recyclerView;
-    private static List<TaskEntity> tasks;
+    private static List<Task> tasks;
+    //private static List<TaskEntity> tasks;
     public SearchFragment() {
         // Required empty public constructor
     }
 
-    public static SearchFragment newInstance(List<TaskEntity> tasks1) {
+    public static SearchFragment newInstance(List<Task> tasks1) {
         SearchFragment fragment = new SearchFragment();
         tasks = tasks1;
         return fragment;

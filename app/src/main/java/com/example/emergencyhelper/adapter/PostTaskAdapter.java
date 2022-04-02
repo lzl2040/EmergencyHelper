@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.util.StaticData;
 import com.xuexiang.xui.adapter.simple.AdapterItem;
@@ -27,9 +28,10 @@ import java.util.List;
  */
 public class PostTaskAdapter extends RecyclerView.Adapter<PostTaskAdapter.ViewHolder> {
     public Context context;
-    public List<TaskEntity> taskes = new ArrayList<>();
+    public List<Task> taskes = new ArrayList<>();
+    //public List<TaskEntity> taskes = new ArrayList<>();
 
-    public PostTaskAdapter(Context context, List<TaskEntity> tasks){
+    public PostTaskAdapter(Context context, List<Task> tasks){
         this.context=context;
         this.taskes=tasks;
     }
@@ -44,12 +46,17 @@ public class PostTaskAdapter extends RecyclerView.Adapter<PostTaskAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TaskEntity te = taskes.get(position);
+        //TaskEntity te = taskes.get(position);
+        Task task = taskes.get(position);
         holder.getPos(position);
-        holder.desc.setText(te.getDesc());
-        holder.task_site.setText(te.getSite());
-        holder.task_time.setText(te.getDeadline());
-        holder.pay.setText(te.getReward()+"币/次");
+        holder.desc.setText(task.getContent());
+        holder.task_site.setText(task.getSite());
+        holder.task_time.setText(task.getDeadline());
+        holder.pay.setText(task.getReward()+"");
+//        holder.desc.setText(te.getDesc());
+//        holder.task_site.setText(te.getSite());
+//        holder.task_time.setText(te.getDeadline());
+//        holder.pay.setText(te.getReward()+"币/次");
         int curPos = position;
         holder.moreImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +83,7 @@ public class PostTaskAdapter extends RecyclerView.Adapter<PostTaskAdapter.ViewHo
      * 更新适配器
      * @param entities
      */
-    public void updateData(List<TaskEntity> entities){
+    public void updateData(List<Task> entities){
         taskes.clear();
         taskes.addAll(entities);
         notifyDataSetChanged();

@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.util.DateUtils;
 
@@ -27,9 +28,10 @@ import java.util.TimerTask;
  */
 public class GetTaskAdapter extends RecyclerView.Adapter<GetTaskAdapter.ViewHolder> {
     private Context context;
-    private List<TaskEntity> tasks;
+    //private List<TaskEntity> tasks;
+    private List<Task> tasks;
 
-    public GetTaskAdapter(Context context, List<TaskEntity> tasks) {
+    public GetTaskAdapter(Context context, List<Task> tasks) {
         this.context = context;
         this.tasks = tasks;
     }
@@ -44,15 +46,23 @@ public class GetTaskAdapter extends RecyclerView.Adapter<GetTaskAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TaskEntity task = tasks.get(position);
-        holder.nameTxt.setText(task.getName());
-        holder.headerImg.setImageResource(task.getHeader());
-        //holder.taskDeadLineTxt.setText(task.getDeadline());
-        holder.taskRewardTxt.setText(task.getReward());
-        holder.descTxt.setText(task.getDesc());
+        //TaskEntity task = tasks.get(position);
+        Task task = tasks.get(position);
+        holder.nameTxt.setText(task.getPostUser().getUsername());
+        holder.headerImg.setImageResource(task.getPostUser().getHeaderId());
+        holder.taskRewardTxt.setText(task.getReward()+"");
+        holder.descTxt.setText(task.getContent());
         holder.taskSiteTxt.setText(task.getSite());
         holder.taskDeadLineTxt.setText(task.getDeadline());
         holder.setTimer(task.getDeadline());
+//        holder.nameTxt.setText(task.getName());
+//        holder.headerImg.setImageResource(task.getHeader());
+//        //holder.taskDeadLineTxt.setText(task.getDeadline());
+//        holder.taskRewardTxt.setText(task.getReward());
+//        holder.descTxt.setText(task.getDesc());
+//        holder.taskSiteTxt.setText(task.getSite());
+//        holder.taskDeadLineTxt.setText(task.getDeadline());
+//        holder.setTimer(task.getDeadline());
     }
 
     @Override
