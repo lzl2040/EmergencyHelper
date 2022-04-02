@@ -127,6 +127,7 @@ public class HelperApplication extends Application {
         StaticData.setCategories(categories);
         StaticData.setTaskList(tasks);
         StaticData.setUserList(users);
+        StaticData.setCommunicates(new ArrayList<Communicate>());
     }
     
     public void saveTasks(){
@@ -229,6 +230,6 @@ public class HelperApplication extends Application {
         data11.setReward("120");
         data11.setHeader(R.drawable.a13);
         tasks.add(data11);
-        StaticData.setTasks(tasks);
+        //StaticData.setTasks(tasks);
     }
 }

@@ -2,6 +2,7 @@ package com.example.emergencyhelper.bean;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,13 @@ public class Communicate implements Serializable {
     //聊天日期
     private String communicateDate;
     //消息
-    private List<Message> messages;
+    private List<Message> messages = new ArrayList<>();
+
+    public Communicate(User startUser, User acceptUser, String communicateDate) {
+        this.startUser = startUser;
+        this.acceptUser = acceptUser;
+        this.communicateDate = communicateDate;
+    }
 
     public int getCommunicateId() {
         return communicateId;

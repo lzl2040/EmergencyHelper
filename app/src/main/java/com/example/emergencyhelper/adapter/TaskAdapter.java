@@ -1,6 +1,8 @@
 package com.example.emergencyhelper.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.activity.message.CommunicateActivity;
 import com.example.emergencyhelper.activity.my.DingdanActivity;
+import com.example.emergencyhelper.bean.Communicate;
+import com.example.emergencyhelper.bean.Message;
 import com.example.emergencyhelper.bean.Task;
+import com.example.emergencyhelper.bean.User;
 import com.example.emergencyhelper.entity.MessageUserEntity;
 import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.fragment.message.MessageFragment;
@@ -29,6 +35,7 @@ import java.util.List;
  */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     //public static List<TaskEntity>tasks = new ArrayList<>();
+    private String TAG = "TaskAdapter";
     public static List<Task> tasks = new ArrayList<>();
     public static Context context;
 
@@ -65,21 +72,40 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 Toast.makeText(context,"领取成功",Toast.LENGTH_LONG).show();
             }
         });
+
         //点击聊一聊
-//        holder.contactBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //需要头像,用户名,以及时间
-//                int headerId = te.getHeader();
-//                String name = te.getName();
-//                //时间先暂时这样算
-//                String timeStr = DateUtils.timeNum2String(System.currentTimeMillis());
-//                String strs[] = timeStr.split(" ");
-//                String time = strs[1];
-//                MessageUserEntity entity = new MessageUserEntity(headerId,name,"",time);
-//                MessageFragment.adapter.update(entity);
-//            }
-//        });
+        holder.contactBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int index = checkIsSameCommunication(StaticData.getCurUser(),task.getPostUser());
+                List<Communicate> communicates = StaticData.getCommunicates();
+                StaticData.setJumpClass(context.getClass());
+                if(index != -1){
+                    //说明之前聊过天
+                    Intent intent = new Intent(context, CommunicateActivity.class);
+                    intent.putExtra("index",index);
+                    intent.putExtra("communicate",communicates.get(index));
+                    context.startActivity(intent);
+                }else{
+                    //之前没有聊过天
+                    Log.e(TAG,"之前没有聊过");
+                    //时间只取时和分
+                    String timeStr = DateUtils.timeNum2String(System.currentTimeMillis());
+                    String strs[] = timeStr.split(" ");
+                    String time = strs[1];
+                    //MessageUserEntity entity = new MessageUserEntity(headerId,name,"",time);
+                    //存储这个新的聊天信息
+                    Communicate data = new Communicate(StaticData.getCurUser(),task.getPostUser(),time);
+                    communicates.add(data);
+                    StaticData.setCommunicates(communicates);
+                    Intent intent = new Intent(context, CommunicateActivity.class);
+                    intent.putExtra("index",communicates.size()-1);
+                    intent.putExtra("communicate",data);
+                    context.startActivity(intent);
+                }
+
+            }
+        });
     }
 
     public void removeData(int pos){
@@ -117,5 +143,25 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             task_reward = v.findViewById(R.id.task_reward);
             contactBtn = v.findViewById(R.id.contact);
         }
+    }
+
+    /**
+     * 检查是否是同一个交流
+     * @param start
+     * @param receive
+     * @return 返回下标
+     */
+    public int checkIsSameCommunication(User start,User receive){
+        int counts = 0;
+        List<Communicate> communicates = StaticData.getCommunicates();
+        for(Communicate communicate:communicates){
+            String phone1 = communicate.getStartUser().getPhone();
+            String phone2 = communicate.getAcceptUser().getPhone();
+            if(start.getPhone().equals(phone1) && receive.getPhone().equals(phone2)){
+                return counts;
+            }
+            counts++;
+        }
+        return -1;
     }
 }

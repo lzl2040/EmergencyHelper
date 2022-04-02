@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.emergencyhelper.entity.Message;
+import com.example.emergencyhelper.bean.Message;
 
 import java.util.List;
 import com.example.emergencyhelper.R;
@@ -46,7 +46,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Message message = messages.get(position);
         holder.contentTxt.setText(message.getContent());
-        holder.headerImg.setImageResource(message.getImgId());
+        holder.headerImg.setImageResource(message.getSendUser().getHeaderId());
     }
 
     @Override
@@ -72,5 +72,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             headerImg = v.findViewById(R.id.user_header);
             contentTxt = v.findViewById(R.id.message_content);
         }
+    }
+
+    public void update(Message message){
+        messages.add(message);
+        notifyDataSetChanged();
     }
 }

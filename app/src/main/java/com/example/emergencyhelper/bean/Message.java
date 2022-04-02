@@ -16,6 +16,15 @@ public class Message implements Serializable {
     private String msgDate;
     //消息类型
     private int msgType;
+    //发消息的用户
+    private User sendUser;
+
+    public Message(String content, String msgDate, int msgType, User sendUser) {
+        this.content = content;
+        this.msgDate = msgDate;
+        this.msgType = msgType;
+        this.sendUser = sendUser;
+    }
 
     public String getContent() {
         return content;
@@ -47,5 +56,13 @@ public class Message implements Serializable {
 
     public void setMsgId(int msgId) {
         this.msgId = msgId;
+    }
+
+    public User getSendUser() {
+        return sendUser;
+    }
+
+    public void setSendUser(User sendUser) {
+        this.sendUser = sendUser;
     }
 }

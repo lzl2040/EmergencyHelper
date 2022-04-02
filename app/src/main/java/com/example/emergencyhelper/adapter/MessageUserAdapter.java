@@ -14,14 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.message.CommunicateActivity;
+import com.example.emergencyhelper.bean.Communicate;
+import com.example.emergencyhelper.bean.Message;
 import com.example.emergencyhelper.entity.MessageUserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MessageUserAdapter extends RecyclerView.Adapter<MessageUserAdapter.ViewHolder> {
-
-    private List<MessageUserEntity> mMessagesList = new ArrayList<>();
+    private List<Communicate> communicates = new ArrayList<>();
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -39,8 +40,9 @@ public class MessageUserAdapter extends RecyclerView.Adapter<MessageUserAdapter.
             communicateBoxLinear = view.findViewById(R.id.communicate_box);
         }
     }
-    public MessageUserAdapter(Context context,List<MessageUserEntity> messages){
-        this.mMessagesList=messages;
+
+    public MessageUserAdapter(Context context,List<Communicate> communicates){
+        this.communicates = communicates;
         this.context = context;
     }
 
@@ -54,16 +56,23 @@ public class MessageUserAdapter extends RecyclerView.Adapter<MessageUserAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MessageUserEntity me = mMessagesList.get(position);
-        holder.header.setImageResource(me.getHeader());
-        holder.content.setText(me.getContent());
-        holder.name.setText(me.getName());
-        holder.time.setText(me.getTime());
+        Communicate communicate = communicates.get(position);
+        holder.header.setImageResource(communicate.getAcceptUser().getHeaderId());
+        holder.name.setText(communicate.getAcceptUser().getUsername());
+        holder.time.setText(communicate.getCommunicateDate());
+        List<Message> messages = communicate.getMessages();
+        if(messages.size() == 0){
+            holder.content.setText("");
+        }else{
+            holder.content.setText(messages.get(messages.size() - 1).getContent());
+        }
+
         holder.communicateBoxLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, CommunicateActivity.class);
-                intent.putExtra("communicateName",holder.name.getText().toString());
+                intent.putExtra("index",position);
+                intent.putExtra("communicate",communicate);
                 context.startActivity(intent);
             }
         });
@@ -71,12 +80,12 @@ public class MessageUserAdapter extends RecyclerView.Adapter<MessageUserAdapter.
 
     @Override
     public int getItemCount() {
-        return mMessagesList.size();
+        return communicates.size();
     }
 
-    public void update(MessageUserEntity entity){
-        mMessagesList.add(entity);
+    public void update(List<Communicate> communicateList){
+        communicates.clear();
+        communicates.addAll(communicateList);
         notifyDataSetChanged();
     }
-
 }

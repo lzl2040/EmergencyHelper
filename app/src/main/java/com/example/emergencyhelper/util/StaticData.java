@@ -2,11 +2,13 @@ package com.example.emergencyhelper.util;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.bean.Category;
+import com.example.emergencyhelper.bean.Communicate;
 import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.bean.User;
 import com.xuexiang.xui.adapter.simple.AdapterItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,8 @@ public class StaticData {
     private static List<Category> categories;
     //任务
     private static List<Task> taskList;
+    //聊天
+    private static List<Communicate> communicates;
     //底部导航栏的位置,默认为0
     private static int bottomPosition = 0;
     //对发布任务的操作图标
@@ -29,6 +33,8 @@ public class StaticData {
             new AdapterItem("取消任务", R.mipmap.error)
     };
     private static User curUser;
+    //聊天界面跳转界面的原界面
+    private static Class jumpClass;
 
     public static List<TaskEntity> searchTasks;
 
@@ -46,14 +52,6 @@ public class StaticData {
 
     public static void setBottomPosition(int bottomPosition) {
         StaticData.bottomPosition = bottomPosition;
-    }
-
-    public static List<TaskEntity> getTasks() {
-        return tasks;
-    }
-
-    public static void setTasks(List<TaskEntity> tasks) {
-        StaticData.tasks = tasks;
     }
 
     public static List<Category> getCategories() {
@@ -78,5 +76,21 @@ public class StaticData {
 
     public static void setCurUser(User curUser) {
         StaticData.curUser = curUser;
+    }
+
+    public static List<Communicate> getCommunicates() {
+        return communicates;
+    }
+
+    public static void setCommunicates(List<Communicate> communicates) {
+        StaticData.communicates = communicates;
+    }
+
+    public static Class getJumpClass() {
+        return jumpClass;
+    }
+
+    public static void setJumpClass(Class jumpClass) {
+        StaticData.jumpClass = jumpClass;
     }
 }
