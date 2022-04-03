@@ -16,7 +16,6 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.message.CommunicateActivity;
 import com.example.emergencyhelper.bean.Communicate;
 import com.example.emergencyhelper.bean.Message;
-import com.example.emergencyhelper.entity.MessageUserEntity;
 
 import java.util.ArrayList;
 import java.util.List;

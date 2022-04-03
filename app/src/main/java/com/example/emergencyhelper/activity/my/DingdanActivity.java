@@ -1,25 +1,16 @@
 package com.example.emergencyhelper.activity.my;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.GetTaskAdapter;
-import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
 import com.example.emergencyhelper.bean.Task;
-import com.example.emergencyhelper.entity.TaskEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +19,6 @@ public class DingdanActivity extends BaseActivity {
     private String TAG = "DingdanActivity";
     public static RecyclerView recyclerView;
     public static Context context;
-    public static TaskEntity task;
     //public static List<TaskEntity> tasks = new ArrayList<>();
     public static List<Task> tasks = new ArrayList<>();
     @Override

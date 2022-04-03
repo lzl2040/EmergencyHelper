@@ -2,7 +2,6 @@ package com.example.emergencyhelper.fragment.near;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,11 +12,8 @@ import android.view.ViewGroup;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.HelperAdaper;
-import com.example.emergencyhelper.adapter.TopicAdapter;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.entity.HelperEntity;
-import com.example.emergencyhelper.entity.TaskEntity;
-import com.example.emergencyhelper.entity.TopicEntity;
 
 import java.util.ArrayList;
 import java.util.List;

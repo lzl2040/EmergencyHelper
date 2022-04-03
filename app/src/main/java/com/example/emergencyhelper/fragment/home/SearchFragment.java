@@ -2,7 +2,6 @@ package com.example.emergencyhelper.fragment.home;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,8 +14,6 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.bean.Task;
-import com.example.emergencyhelper.entity.TaskEntity;
-import com.example.emergencyhelper.util.StaticData;
 
 import java.util.List;
 

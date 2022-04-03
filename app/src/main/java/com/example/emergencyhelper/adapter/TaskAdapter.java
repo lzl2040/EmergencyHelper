@@ -18,12 +18,8 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.message.CommunicateActivity;
 import com.example.emergencyhelper.activity.my.DingdanActivity;
 import com.example.emergencyhelper.bean.Communicate;
-import com.example.emergencyhelper.bean.Message;
 import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.bean.User;
-import com.example.emergencyhelper.entity.MessageUserEntity;
-import com.example.emergencyhelper.entity.TaskEntity;
-import com.example.emergencyhelper.fragment.message.MessageFragment;
 import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.util.StaticData;
 

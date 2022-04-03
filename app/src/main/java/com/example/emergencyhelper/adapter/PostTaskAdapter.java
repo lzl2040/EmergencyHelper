@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.bean.Task;
-import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.util.StaticData;
 import com.xuexiang.xui.adapter.simple.AdapterItem;
 import com.xuexiang.xui.adapter.simple.XUISimpleAdapter;

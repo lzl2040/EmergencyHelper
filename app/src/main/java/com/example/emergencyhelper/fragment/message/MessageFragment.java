@@ -1,10 +1,7 @@
 package com.example.emergencyhelper.fragment.message;
 
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -16,12 +13,10 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.MessageUserAdapter;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.bean.Communicate;
-import com.example.emergencyhelper.entity.MessageUserEntity;
 import com.example.emergencyhelper.util.StaticData;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MessageFragment extends BaseFragment {

@@ -28,7 +28,7 @@
                 android:textSize="@dimen/top_title_bar_text_size"
                 android:textColor="@color/white"
                 android:gravity="center"
-                android:text="@string/coporate_service"/>
+                android:text="@string/cooporate_service"/>
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>

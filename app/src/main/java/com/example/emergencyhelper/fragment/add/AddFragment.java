@@ -1,6 +1,5 @@
 package com.example.emergencyhelper.fragment.add;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -17,7 +16,6 @@ import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.my.PostActivity;
 import com.example.emergencyhelper.base.BaseFragment;
-import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.util.StaticData;
 import com.xuexiang.xui.widget.edittext.MultiLineEditText;
 import com.xuexiang.xui.widget.picker.widget.TimePickerView;

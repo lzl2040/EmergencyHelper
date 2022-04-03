@@ -4,11 +4,10 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.bean.Category;
 import com.example.emergencyhelper.bean.Communicate;
 import com.example.emergencyhelper.bean.Task;
-import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.bean.User;
+import com.example.emergencyhelper.entity.SortItemEntity;
 import com.xuexiang.xui.adapter.simple.AdapterItem;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,11 +31,21 @@ public class StaticData {
             new AdapterItem("确认完成", R.mipmap.determine),
             new AdapterItem("取消任务", R.mipmap.error)
     };
+    //首页分类的图标
+    public static SortItemEntity[] sortItemEntities = new SortItemEntity[]{
+            new SortItemEntity(R.drawable.family_service,R.string.home_service),
+            new SortItemEntity(R.drawable.social_service,R.string.social_service),
+            new SortItemEntity(R.mipmap.emergency_service,R.string.emergency_service),
+            new SortItemEntity(R.drawable.school_service,R.string.school_service),
+            new SortItemEntity(R.drawable.old_service,R.string.old_service),
+            new SortItemEntity(R.drawable.children_service,R.string.children_service),
+            new SortItemEntity(R.drawable.cooporate_service,R.string.cooporate_service),
+            new SortItemEntity(R.mipmap.disable,R.string.disable_service),
+            new SortItemEntity(R.mipmap.expert,R.string.expert_certificate)
+    };
     private static User curUser;
     //聊天界面跳转界面的原界面
     private static Class jumpClass;
-
-    public static List<TaskEntity> searchTasks;
 
     public static List<User> getUserList() {
         return userList;

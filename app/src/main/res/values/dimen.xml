@@ -48,9 +48,9 @@
     <dimen name="bottom_bar_size">24dp</dimen>
     <dimen name="bottom_bar_text_size">12sp</dimen>
 <!--    home界面-->
-    <dimen name="home_top_sort_icon">25dp</dimen>
+    <dimen name="home_top_sort_icon">22dp</dimen>
     <dimen name="message_top">30dp</dimen>
-    <dimen name="home_top_sort_text_size">@dimen/font_15</dimen>
+    <dimen name="home_top_sort_text_size">@dimen/font_14</dimen>
     <dimen name="home_search_box_text_size">@dimen/font_12</dimen>
 
 <!--item_get_task-->

@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.entity.HelperEntity;
-import com.example.emergencyhelper.entity.TaskEntity;
 
 import java.util.ArrayList;
 import java.util.List;

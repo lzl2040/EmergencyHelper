@@ -1,11 +1,8 @@
 package com.example.emergencyhelper.activity.main;
 
-import androidx.annotation.MainThread;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +14,6 @@ import android.widget.ImageView;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.base.BaseActivity;
 import com.example.emergencyhelper.bean.Task;
-import com.example.emergencyhelper.entity.TaskEntity;
 import com.example.emergencyhelper.fragment.home.SearchFragment;
 import com.example.emergencyhelper.util.CheckUtil;
 import com.example.emergencyhelper.util.StaticData;

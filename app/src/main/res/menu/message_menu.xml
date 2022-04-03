@@ -3,5 +3,5 @@
     <item
         android:id="@+id/message_set"
         android:title="消息清除"
-        android:icon="@drawable/q1"/>
+        android:icon="@drawable/social_service"/>
 </menu>

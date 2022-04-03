@@ -3,13 +3,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_service">家庭服务</string>
-    <string name="coporate_service">合作互助</string>
+    <string name="cooporate_service">合作互助</string>
     <string name="emergency_service">应急服务</string>
     <string name="disable_service">残疾服务</string>
     <string name="old_service">老人服务</string>
     <string name="school_service">校园服务</string>
     <string name="social_service">社会服务</string>
     <string name="children_service">小孩服务</string>
+    <string name="expert_certificate">专家认证</string>
     <string name="my_task">我的任务</string>
     <string name="my_post">我的发布</string>
     <string name="point_shop">我的积分</string>
