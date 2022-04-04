@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.category.ExpertActivity">
+    <androidx.appcompat.widget.Toolbar
+        app:popupTheme="@style/TopBarTheme"
+        android:background="@color/gold"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_title_bar_height">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/back2"
+                android:layout_width="@dimen/top_title_bar_back_size"
+                android:layout_height="@dimen/top_title_bar_back_size"/>
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/top_title_bar_text_size"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:text="@string/expert_certificate"/>
+        </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/gold"
+        app:tabSelectedTextColor="@color/gold"
+        app:tabTextColor="@color/black"
+        app:tabMode="scrollable"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

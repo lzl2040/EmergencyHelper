@@ -3,7 +3,9 @@ package com.example.emergencyhelper.application;
 import android.app.Application;
 
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.bean.Category;
+import com.example.emergencyhelper.bean.Expert;
+import com.example.emergencyhelper.bean.ExpertCategory;
+import com.example.emergencyhelper.bean.TaskCategory;
 import com.example.emergencyhelper.bean.Communicate;
 import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.bean.User;
@@ -26,19 +28,19 @@ public class HelperApplication extends Application {
 
     public void save(){
         //存储分类
-        List<Category> categories = new ArrayList<>();
+        List<TaskCategory> categories = new ArrayList<>();
         //存储任务
         List<Task> tasks = new ArrayList<>();
         //存储用户
         List<User> users = new ArrayList<>();
-        Category category = new Category(1,getString(R.string.home_service));
-        Category category1 = new Category(2,getString(R.string.social_service));
-        Category category2 = new Category(3,getString(R.string.emergency_service));
-        Category category3 = new Category(4,getString(R.string.school_service));
-        Category category4 = new Category(5,getString(R.string.old_service));
-        Category category5 = new Category(6,getString(R.string.children_service));
-        Category category6 = new Category(7,getString(R.string.cooporate_service));
-        Category category7 = new Category(8,getString(R.string.disable_service));
+        TaskCategory category = new TaskCategory(1,getString(R.string.home_service));
+        TaskCategory category1 = new TaskCategory(2,getString(R.string.social_service));
+        TaskCategory category2 = new TaskCategory(3,getString(R.string.emergency_service));
+        TaskCategory category3 = new TaskCategory(4,getString(R.string.school_service));
+        TaskCategory category4 = new TaskCategory(5,getString(R.string.old_service));
+        TaskCategory category5 = new TaskCategory(6,getString(R.string.children_service));
+        TaskCategory category6 = new TaskCategory(7,getString(R.string.cooporate_service));
+        TaskCategory category7 = new TaskCategory(8,getString(R.string.disable_service));
         //保存用户
         User user1 = new User("18166158481","小西瓜", R.drawable.a13,"123456");
         User user2 = new User("18166158482","张先生",R.drawable.a12,"123456");
@@ -104,6 +106,30 @@ public class HelperApplication extends Application {
         Task task20 = new Task("可以帮忙买下菜吗,行动不便不好去买菜","2022-04-02 16:20","联建小吃街",100,user8,category7);
         category7.getTasks().add(task19);
         category7.getTasks().add(task20);
+        //添加专家分类
+        List<ExpertCategory> expertCategories = new ArrayList<>();
+        ExpertCategory expertCategory = new ExpertCategory(0,"水电问题");
+        ExpertCategory expertCategory1 = new ExpertCategory(1,"家电维修");
+        ExpertCategory expertCategory2 = new ExpertCategory(2,"室内装修");
+        ExpertCategory expertCategory3 = new ExpertCategory(3,"门锁问题");
+        //添加专家
+        List<Expert> experts = new ArrayList<>();
+        Expert expert = new Expert("李华","18123451342","在水电维修领域工作近20年",102,expertCategory);
+        Expert expert1 = new Expert("张三时","18345561363","电力维修",123,expertCategory);
+        expertCategory.getExperts().add(expert);expertCategory.getExperts().add(expert1);
+
+        Expert expert2 = new Expert("王名","19345327865","冰箱,电视机,洗衣机都可",201,expertCategory1);
+        Expert expert3 = new Expert("王逸散","13467856745","主要负责电视维修",145,expertCategory1);
+        expertCategory1.getExperts().add(expert2);expertCategory1.getExperts().add(expert3);
+
+        Expert expert4 = new Expert("吴散","16789345690","负责室内装修,价格可聊",143,expertCategory2);
+        Expert expert5 = new Expert("陈时","18756349867","擅长西式装修",156,expertCategory2);
+        expertCategory2.getExperts().add(expert4);expertCategory2.getExperts().add(expert5);
+
+        Expert expert6 = new Expert("马歌","14560983478","专攻开锁,换锁20年",504,expertCategory3);
+        Expert expert7 = new Expert("林义军","18645267895","开锁、换锁",603,expertCategory3);
+        expertCategory3.getExperts().add(expert6);expertCategory3.getExperts().add(expert7);
+
         users.add(user1);users.add(user2);users.add(user3);users.add(user4);
         users.add(user5);users.add(user6);users.add(user7);users.add(user8);
         users.add(user9);users.add(user10);users.add(user11);users.add(user12);
@@ -120,6 +146,15 @@ public class HelperApplication extends Application {
         categories.add(category3);categories.add(category4);categories.add(category5);
         categories.add(category6);categories.add(category7);
 
+        expertCategories.add(expertCategory);expertCategories.add(expertCategory1);
+        expertCategories.add(expertCategory2);expertCategories.add(expertCategory3);
+
+        experts.add(expert);experts.add(expert1);experts.add(expert2);experts.add(expert3);
+        experts.add(expert4);experts.add(expert5);experts.add(expert6);experts.add(expert7);
+
+
+        StaticData.setExpertCategories(expertCategories);
+        StaticData.setExperts(experts);
         StaticData.setCurUser(user);
         StaticData.setCategories(categories);
         StaticData.setTaskList(tasks);

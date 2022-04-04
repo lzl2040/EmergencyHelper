@@ -2,7 +2,6 @@ package com.example.emergencyhelper.bean;
 
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 任务的bean类
@@ -25,9 +24,9 @@ public class Task implements Serializable {
     //任务领取者
     private User receiveUser;
     //分类
-    private Category category;
+    private TaskCategory category;
 
-    public Task(String content, String deadline, String site, int reward, User postUser, Category category) {
+    public Task(String content, String deadline, String site, int reward, User postUser, TaskCategory category) {
         this.content = content;
         this.deadline = deadline;
         this.site = site;
@@ -95,11 +94,11 @@ public class Task implements Serializable {
         this.receiveUser = receiveUser;
     }
 
-    public Category getCategory() {
+    public TaskCategory getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(TaskCategory category) {
         this.category = category;
     }
 }

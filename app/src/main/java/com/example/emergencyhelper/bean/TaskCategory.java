@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 任务分类
  * author ： yxm521
  * time    ： 2022/4/1
  */
-public class Category {
+public class TaskCategory {
     private int categoryId;
     private String name;
     private List<Task> tasks = new ArrayList<>();
 
-    public Category(int categoryId, String name) {
+    public TaskCategory(int categoryId, String name) {
         this.categoryId = categoryId;
         this.name = name;
     }

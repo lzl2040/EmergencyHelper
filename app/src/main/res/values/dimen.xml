@@ -109,4 +109,8 @@
     <dimen name="my_task_information_num_text">@dimen/font_16</dimen>
     <dimen name="my_function_icon_size">24dp</dimen>
     <dimen name="my_function_text_size">@dimen/font_14</dimen>
+<!--   item_expert-->
+    <dimen name="item_expert_header_size">90dp</dimen>
+    <dimen name="item_expert_introducion_text">@dimen/font_14</dimen>
+
 </resources>

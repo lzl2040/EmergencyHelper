@@ -1,7 +1,9 @@
 package com.example.emergencyhelper.util;
 
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.bean.Category;
+import com.example.emergencyhelper.bean.Expert;
+import com.example.emergencyhelper.bean.ExpertCategory;
+import com.example.emergencyhelper.bean.TaskCategory;
 import com.example.emergencyhelper.bean.Communicate;
 import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.bean.User;
@@ -18,12 +20,16 @@ import java.util.List;
 public class StaticData {
     //用户列表
     private static List<User> userList;
-    //分类
-    private static List<Category> categories;
-    //任务
+    //任务分类
+    private static List<TaskCategory> categories;
+    //任务数据
     private static List<Task> taskList;
-    //聊天
+    //聊天数据
     private static List<Communicate> communicates;
+    //专家数据
+    private static List<Expert> experts;
+    //专家分类
+    private static List<ExpertCategory> expertCategories;
     //底部导航栏的位置,默认为0
     private static int bottomPosition = 0;
     //对发布任务的操作图标
@@ -63,11 +69,11 @@ public class StaticData {
         StaticData.bottomPosition = bottomPosition;
     }
 
-    public static List<Category> getCategories() {
+    public static List<TaskCategory> getCategories() {
         return categories;
     }
 
-    public static void setCategories(List<Category> categories) {
+    public static void setCategories(List<TaskCategory> categories) {
         StaticData.categories = categories;
     }
 
@@ -101,5 +107,21 @@ public class StaticData {
 
     public static void setJumpClass(Class jumpClass) {
         StaticData.jumpClass = jumpClass;
+    }
+
+    public static List<Expert> getExperts() {
+        return experts;
+    }
+
+    public static void setExperts(List<Expert> experts) {
+        StaticData.experts = experts;
+    }
+
+    public static List<ExpertCategory> getExpertCategories() {
+        return expertCategories;
+    }
+
+    public static void setExpertCategories(List<ExpertCategory> expertCategories) {
+        StaticData.expertCategories = expertCategories;
     }
 }
