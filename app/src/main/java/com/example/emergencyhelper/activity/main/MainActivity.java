@@ -5,9 +5,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.base.BaseActivity;
@@ -25,6 +29,7 @@ import java.util.Map;
 public class MainActivity extends BaseActivity{
     private String TAG = "MainActivity";
     private BottomNavigationView bottomNavigationView;
+    private ImageView callPoliceImg;
     //fragment管理器
     private FragmentManager fragmentManager;
     //fragment事务
@@ -49,6 +54,7 @@ public class MainActivity extends BaseActivity{
         //super.initView();
         Log.e(TAG,"initView...");
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        callPoliceImg = findViewById(R.id.call_police);
     }
 
     @Override
@@ -61,6 +67,16 @@ public class MainActivity extends BaseActivity{
                 Log.e(TAG,"item_id="+item.getItemId());
                 StaticData.setBottomPosition(item.getItemId());
                 return setFragmentTransaction(fragmentMap.get(item.getItemId()));
+            }
+        });
+
+        callPoliceImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + "110");
+                intent.setData(data);
+                startActivity(intent);
             }
         });
     }

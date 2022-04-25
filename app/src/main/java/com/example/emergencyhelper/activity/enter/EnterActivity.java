@@ -52,6 +52,7 @@ public class EnterActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
+        //动态申请权限
         checkPermissions();
         initView();
     }

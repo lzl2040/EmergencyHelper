@@ -25,7 +25,7 @@ public class FamilyActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private ImageView backImg;
     private Context context;
-    private List<Task> tasks = new ArrayList<>();
+    public static List<Task> tasks = StaticData.getCategories().get(0).getTasks();
     //private List<TaskEntity> tasks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class FamilyActivity extends BaseActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        addData();
+        //addData();
         recyclerView.setAdapter(new TaskAdapter(tasks,this));
     }
 

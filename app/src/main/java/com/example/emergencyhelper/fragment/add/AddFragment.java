@@ -2,6 +2,8 @@ package com.example.emergencyhelper.fragment.add;
 
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,18 +17,22 @@ import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
+import com.example.emergencyhelper.activity.category.FamilyActivity;
 import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.my.PostActivity;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.util.StaticData;
+import com.xuexiang.xui.utils.WidgetUtils;
+import com.xuexiang.xui.widget.dialog.MiniLoadingDialog;
 import com.xuexiang.xui.widget.edittext.MultiLineEditText;
 import com.xuexiang.xui.widget.picker.widget.TimePickerView;
 import com.xuexiang.xui.widget.picker.widget.builder.TimePickerBuilder;
 import com.xuexiang.xui.widget.picker.widget.configure.TimePickerType;
 import com.xuexiang.xui.widget.picker.widget.listener.OnTimeSelectChangeListener;
 import com.xuexiang.xui.widget.picker.widget.listener.OnTimeSelectListener;
+import com.xuexiang.xui.widget.progress.loading.ARCLoadingView;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -44,6 +50,9 @@ public class AddFragment extends BaseFragment implements EventListener {
     private TimePickerView timePickerViewDialog;
     private ImageView recordImg;
     private EventManager manager;
+    private MiniLoadingDialog dialog;
+    private Handler handler = new Handler();
+
     public AddFragment() {
         // Required empty public constructor
     }
@@ -64,6 +73,8 @@ public class AddFragment extends BaseFragment implements EventListener {
         Log.d(TAG,"initView...");
         manager = EventManagerFactory.create(getActivity(),"asr");
         manager.registerListener(this);
+        dialog = WidgetUtils.getMiniLoadingDialog(getActivity());
+        dialog.updateMessage("正在进行自动分类...");
         submit = v.findViewById(R.id.commit);
         pay = v.findViewById(R.id.pay);
         content =v.findViewById(R.id.content);
@@ -95,11 +106,19 @@ public class AddFragment extends BaseFragment implements EventListener {
                     task.setReward(Integer.valueOf(pays));
                     task.setPostUser(StaticData.getUserList().get(0));
                     PostActivity.tasks.add(task);
-                    content.setContentText("");
-                    site.setText("");
-                    deadline.setText("");
-                    pay.setText("");
-                    Toast.makeText(getActivity(),"发布成功",Toast.LENGTH_LONG).show();
+                    //暂时固定为家庭服务
+                    FamilyActivity.tasks.add(task);
+                    dialog.show();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            content.setContentText("");
+                            site.setText("");
+                            deadline.setText("");
+                            pay.setText("");
+                            dialog.dismiss();
+                        }
+                    },2000);
                 }
             }
         });
@@ -168,6 +187,11 @@ public class AddFragment extends BaseFragment implements EventListener {
         initView(v);
         setListener();
         return v;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 
     @Override

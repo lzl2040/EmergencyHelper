@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.main.MainActivity;
+import com.example.emergencyhelper.adapter.OldTaskAdapter;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
 import com.example.emergencyhelper.bean.Task;
@@ -66,7 +67,7 @@ public class OldActivity extends BaseActivity {
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         addData();
-        recyclerView.setAdapter(new TaskAdapter(tasks,this));
+        recyclerView.setAdapter(new OldTaskAdapter(tasks,context));
     }
 
     public void addData(){

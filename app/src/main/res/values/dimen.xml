@@ -43,6 +43,16 @@
     <dimen name="item_task_bottom_small_icon_size">12dp</dimen>
     <dimen name="item_task_get_task__btn_text_size">@dimen/font_10</dimen>
     <dimen name="item_task_information_text_size">@dimen/font_12</dimen>
+
+<!--    old_item_task-->
+    <!--    领取任务item-->
+    <dimen name="old_item_task_contact_btn_width">60dp</dimen>
+    <dimen name="old_item_task_contact_btn_height">30dp</dimen>
+    <dimen name="old_item_task_get_task_btn_width">120dp</dimen>
+    <dimen name="old_item_task_get_task_btn_height">60dp</dimen>
+    <dimen name="old_item_task_bottom_small_icon_size">18dp</dimen>
+    <dimen name="old_item_task_get_task_btn_text_size">@dimen/font_18</dimen>
+    <dimen name="old_item_task_information_text_size">@dimen/font_18</dimen>
 <!--发布任务界面-->
     <dimen name="post_task_calendar_size">24dp</dimen>
     <dimen name="bottom_bar_size">24dp</dimen>
