@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.baidu.speech.EventListener;
+import com.baidu.speech.EventManager;
+import com.baidu.speech.EventManagerFactory;
+import com.baidu.speech.asr.SpeechConstant;
 import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.R;
@@ -26,15 +30,20 @@ import com.xuexiang.xui.widget.picker.widget.listener.OnTimeSelectListener;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
-public class AddFragment extends BaseFragment {
+public class AddFragment extends BaseFragment implements EventListener {
     private String TAG = "AddFragment";
     private Button submit;
     private MultiLineEditText content;
     private EditText deadline,pay,site;
     private ImageView calendarImg;
+    private ImageView locationImg;
     private TimePickerView timePickerViewDialog;
+    private ImageView recordImg;
+    private EventManager manager;
     public AddFragment() {
         // Required empty public constructor
     }
@@ -53,12 +62,17 @@ public class AddFragment extends BaseFragment {
     public void initView(View v) {
         //super.initView();
         Log.d(TAG,"initView...");
+        manager = EventManagerFactory.create(getActivity(),"asr");
+        manager.registerListener(this);
         submit = v.findViewById(R.id.commit);
         pay = v.findViewById(R.id.pay);
         content =v.findViewById(R.id.content);
         site = v.findViewById(R.id.site);
         deadline = v.findViewById(R.id.deadline);
         calendarImg = v.findViewById(R.id.calendar);
+        locationImg = v.findViewById(R.id.location);
+        recordImg = v.findViewById(R.id.recordImg);
+        recordImg.setTag(R.mipmap.record);
     }
 
     @Override
@@ -70,7 +84,6 @@ public class AddFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 Task task = new Task();
-                //TaskEntity taskEntity = new TaskEntity();
                 String pays = pay.getText().toString();
                 String contents = content.getContentText().toString();
                 String sites = site.getText().toString();
@@ -81,10 +94,6 @@ public class AddFragment extends BaseFragment {
                     task.setSite(sites);
                     task.setReward(Integer.valueOf(pays));
                     task.setPostUser(StaticData.getUserList().get(0));
-//                    taskEntity.setDesc(contents);
-//                    taskEntity.setSite(sites);
-//                    taskEntity.setReward(Integer.valueOf(pays)+"");
-//                    taskEntity.setDeadline(deadlines);
                     PostActivity.tasks.add(task);
                     content.setContentText("");
                     site.setText("");
@@ -126,6 +135,29 @@ public class AddFragment extends BaseFragment {
                 timePickerViewDialog.show();
             }
         });
+
+        locationImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                site.setText("琴湖18栋");
+            }
+        });
+
+        recordImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int value = Integer.valueOf(recordImg.getTag().toString());
+                if(value == R.mipmap.record){
+                    recordImg.setImageResource(R.mipmap.stop);
+                    recordImg.setTag(R.mipmap.stop);
+                    manager.send(SpeechConstant.ASR_START,null,null,0,0);
+                }else{
+                    recordImg.setImageResource(R.mipmap.record);
+                    recordImg.setTag(R.mipmap.record);
+                    manager.send(SpeechConstant.ASR_STOP,null,null,0,0);
+                }
+            }
+        });
     }
 
     @Override
@@ -136,5 +168,26 @@ public class AddFragment extends BaseFragment {
         initView(v);
         setListener();
         return v;
+    }
+
+    @Override
+    public void onEvent(String name, String params, byte[] data, int offset, int length) {
+        if (name.equals(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL)) {
+            // 识别相关的结果都在这里
+            if (params == null || params.isEmpty()) {
+                return;
+            }
+            if (params.contains("\"final_result\"")) {
+                // 一句话的最终识别结果
+                String regrex = "\\[(.*?),";  //使用正则表达式抽取我们需要的内容
+                Pattern pattern = Pattern.compile(regrex);
+                Matcher matcher = pattern.matcher(params);
+                if (matcher.find()) {
+                    int a  = matcher.group(0).indexOf("[");
+                    int b  = matcher.group(0).indexOf(",");
+                    content.setContentText(matcher.group(0).substring(a+2,b-3));
+                }
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ import com.example.emergencyhelper.bean.TaskCategory;
 import com.example.emergencyhelper.bean.Communicate;
 import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.bean.User;
+import com.example.emergencyhelper.bean.UserAndTaskCategory;
 import com.example.emergencyhelper.entity.SortItemEntity;
 import com.xuexiang.xui.adapter.simple.AdapterItem;
 
@@ -30,6 +31,8 @@ public class StaticData {
     private static List<Expert> experts;
     //专家分类
     private static List<ExpertCategory> expertCategories;
+    //用户与分类之间的对应关系
+    private static List<UserAndTaskCategory> userAndTaskCategories;
     //底部导航栏的位置,默认为0
     private static int bottomPosition = 0;
     //对发布任务的操作图标
@@ -123,5 +126,13 @@ public class StaticData {
 
     public static void setExpertCategories(List<ExpertCategory> expertCategories) {
         StaticData.expertCategories = expertCategories;
+    }
+
+    public static List<UserAndTaskCategory> getUserAndTaskCategories() {
+        return userAndTaskCategories;
+    }
+
+    public static void setUserAndTaskCategories(List<UserAndTaskCategory> userAndTaskCategories) {
+        StaticData.userAndTaskCategories = userAndTaskCategories;
     }
 }

@@ -6,8 +6,10 @@ import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,12 +35,18 @@ import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.adapter.ViewPageAdapter;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.bean.Task;
+import com.example.emergencyhelper.bean.UserAndTaskCategory;
 import com.example.emergencyhelper.entity.SortItemEntity;
+import com.example.emergencyhelper.ui.DragFloatActionButton;
 import com.example.emergencyhelper.util.StaticData;
 import com.example.emergencyhelper.util.ViewUtil;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 
 public class HomePageFragment extends BaseFragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
@@ -46,6 +54,8 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
     private RecyclerView recyclerView;
     private List<Task> tasks = new ArrayList<>();
     private EditText searchEdit;
+    private SwipeRefreshLayout refreshLayout;
+    public static DragFloatActionButton dragBtn;
     private TaskAdapter ta;
     private Context context;
     private ViewGroup pointsLayout;
@@ -58,6 +68,8 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
     private List<View> views = new ArrayList<>();
     private List<SortItemEntity> data = new ArrayList<>();
     private List<Class> cls = new ArrayList<>();
+    private Handler handler = new Handler();
+    private List<Task> oldTasks = StaticData.getCategories().get(4).getTasks();
 
     public HomePageFragment() {
         // Required empty public constructor
@@ -82,6 +94,10 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
         searchEdit = v.findViewById(R.id.search_box);
         pager = v.findViewById(R.id.viewPager);
         pointsLayout = v.findViewById(R.id.points);
+        refreshLayout = v.findViewById(R.id.freshLayout);
+        dragBtn = v.findViewById(R.id.drag_btn);
+        //设置刷新的颜色变化
+        refreshLayout.setColorSchemeResources(R.color.gold,R.color.orange,R.color.bisque);
     }
 
     @Override
@@ -90,6 +106,122 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
         Log.e(TAG,"setListener...");
         searchEdit.setOnClickListener(this);
         pager.setOnPageChangeListener(this);
+        //下拉刷新的监视器
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //下拉刷新数据
+                getRefreshData();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        refreshLayout.setRefreshing(false);
+                        ta.notifyDataSetChanged();
+                    }
+                },2000);
+
+            }
+        });
+
+        dragBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dragBtn.setImageResource(R.mipmap.stop_record);
+            }
+        });
+    }
+
+    private boolean checkHasDifferent(List<UserAndTaskCategory> taskCategories){
+        boolean flag = false;
+        for(int i = 1;i < taskCategories.size();i++){
+            if(taskCategories.get(i) != taskCategories.get(i-1)){
+                return true;
+            }
+        }
+        return flag;
+    }
+
+    /**
+     * 得到下拉刷新的数据
+     */
+    public void getRefreshData(){
+        List<UserAndTaskCategory> categories = StaticData.getUserAndTaskCategories();
+        Collections.sort(categories);
+        StaticData.setUserAndTaskCategories(categories);
+        if(checkHasDifferent(categories)){
+            //先选取老人,暂取定值
+            int oldLen = oldTasks.size();
+            int rand1 = (new Random().nextInt(oldLen));
+            Task task = oldTasks.get(rand1);
+            //然后取排名前一(2个)和前二(1个)的
+            int firstIndex = categories.get(0).getCategory().getCategoryId() - 1;
+            int secondIndex = categories.get(1).getCategory().getCategoryId() - 1;
+            List<Task> firstTasks = StaticData.getCategories().get(firstIndex).getTasks();
+            List<Task> secondTasks = StaticData.getCategories().get(secondIndex).getTasks();
+            List<Task> randomFirst = getRandomTasks(2,firstTasks);
+            List<Task> randomSecond = getRandomTasks(1,secondTasks);
+            tasks.removeAll(tasks);
+            tasks.add(task);
+            tasks.addAll(randomFirst);
+            tasks.addAll(randomSecond);
+        }else{
+            //先选取老人,暂取定值
+            int oldLen = oldTasks.size();
+            int rand1 = (new Random().nextInt(oldLen));
+            Task task = oldTasks.get(rand1);
+            //然后随机取
+            int len = StaticData.getCategories().size();
+            int rand = (new Random().nextInt(len));
+            int rand2 = -1;
+            while(rand2 != rand && rand2 != -1){
+                rand2 = (new Random().nextInt(len));
+            }
+            List<Task> randList1 = StaticData.getCategories().get(rand).getTasks();
+            List<Task> randList2 = StaticData.getCategories().get(rand2).getTasks();
+            List<Task> resultTask = getRandomTasks(1,randList1);
+            List<Task> resultTask2 = getRandomTasks(1,randList2);
+            tasks.removeAll(tasks);
+            tasks.add(task);
+            tasks.addAll(resultTask);
+            tasks.addAll(resultTask2);
+        }
+
+    }
+
+    /**
+     * 随机选取任务,不能重复
+     * @param num 选取的数目
+     * @param taskList 选取的源列表
+     * @return
+     */
+    public List<Task> getRandomTasks(int num,List<Task> taskList){
+        int randArr[] = new int[num];
+        Arrays.fill(randArr,-1);
+        int len = taskList.size();
+        int counts = 0;
+        List<Task> targetTasks = new ArrayList<>();
+        while (counts < num){
+            int rand = (new Random().nextInt(len));
+            boolean hasExist = false;
+            boolean isNear = false;
+            for(int i = 0;i < randArr.length;i++){
+                if(randArr[i] == rand){
+                    hasExist = true;
+                    break;
+                }
+            }
+
+            String site = taskList.get(rand).getSite();
+            if(site.contains("湘潭大学") || site.contains("湘大")){
+                isNear = true;
+            }
+            if(!hasExist && isNear){
+                randArr[counts] = rand;
+                targetTasks.add(taskList.get(rand));
+                counts++;
+            }
+        }
+        return targetTasks;
     }
 
     @Override
@@ -142,8 +274,10 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
     }
 
     public void addData(){
+        for(int i = 0;i < 5;i+=2){
+            tasks.add(StaticData.getTaskList().get(i));
+        }
 
-        tasks = StaticData.getCategories().get(4).getTasks();
         for(int i = 0;i < StaticData.sortItemEntities.length;i++){
             data.add(StaticData.sortItemEntities[i]);
         }

@@ -20,6 +20,8 @@ import com.example.emergencyhelper.activity.my.DingdanActivity;
 import com.example.emergencyhelper.bean.Communicate;
 import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.bean.User;
+import com.example.emergencyhelper.bean.UserAndTaskCategory;
+import com.example.emergencyhelper.fragment.home.HomePageFragment;
 import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.util.StaticData;
 
@@ -62,9 +64,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.get_task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //更新用户对于该分类的领取次数
+                int index = task.getCategory().getCategoryId() - 1;
+                UserAndTaskCategory userAndTaskCategory = StaticData.getUserAndTaskCategories().get(index);
+                int num = userAndTaskCategory.getNum();
+                num = num + 1;
+                userAndTaskCategory.setNum(num);
+                List<UserAndTaskCategory> categories = StaticData.getUserAndTaskCategories();
+                categories.set(index,userAndTaskCategory);
+                StaticData.setUserAndTaskCategories(categories);
                 task.setReceiveUser(StaticData.getCurUser());
                 DingdanActivity.tasks.add(task);
                 removeData(position);
+                HomePageFragment.dragBtn.setImageResource(R.mipmap.stop_record);
                 Toast.makeText(context,"领取成功",Toast.LENGTH_LONG).show();
             }
         });
@@ -107,6 +119,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public void removeData(int pos){
         tasks.remove(pos);
         notifyItemRemoved(pos);
+        notifyDataSetChanged();
+    }
+
+    public void updateData(List<Task> taskList){
+        tasks.clear();
+        tasks.addAll(taskList);
         notifyDataSetChanged();
     }
 

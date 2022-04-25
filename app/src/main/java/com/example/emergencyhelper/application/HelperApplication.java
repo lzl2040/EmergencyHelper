@@ -1,6 +1,7 @@
 package com.example.emergencyhelper.application;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.bean.Expert;
@@ -9,6 +10,7 @@ import com.example.emergencyhelper.bean.TaskCategory;
 import com.example.emergencyhelper.bean.Communicate;
 import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.bean.User;
+import com.example.emergencyhelper.bean.UserAndTaskCategory;
 import com.example.emergencyhelper.util.StaticData;
 
 import java.util.ArrayList;
@@ -55,55 +57,84 @@ public class HelperApplication extends Application {
         User user11 = new User("18166158491","飘飘呼",R.drawable.a3,"123456");
         User user12 = new User("18166158492","寒烟若雨",R.drawable.a2,"123456");
         User user13 = new User("18166158493","镜花水月",R.drawable.a14,"123456");
-        User user = new User("18274427303","辰天框",R.drawable.a2,"123456");
+        User user = new User("18274427303","辰天空",R.drawable.a2,"123456");
+
+        //保存用户领取的每个分类任务的关系
+        List<UserAndTaskCategory> userAndTaskCategories = new ArrayList<>();
+        UserAndTaskCategory userAndTaskCategory = new UserAndTaskCategory(user,category,0);
+        UserAndTaskCategory userAndTaskCategory1 = new UserAndTaskCategory(user,category1,0);
+        UserAndTaskCategory userAndTaskCategory2 = new UserAndTaskCategory(user,category2,0);
+        UserAndTaskCategory userAndTaskCategory3 = new UserAndTaskCategory(user,category3,0);
+        UserAndTaskCategory userAndTaskCategory4 = new UserAndTaskCategory(user,category4,0);
+        UserAndTaskCategory userAndTaskCategory5 = new UserAndTaskCategory(user,category5,0);
+        UserAndTaskCategory userAndTaskCategory6 = new UserAndTaskCategory(user,category6,0);
+        UserAndTaskCategory userAndTaskCategory7 = new UserAndTaskCategory(user,category7,0);
         //保存任务
-        Task task = new Task("需要外出几天，需要照顾一下宠物","2022-04-01 12:30","中信小区",300,user1,category);
-        Task task1 = new Task("家里的衣柜比较乱，希望找能收拾屋子的家里的衣柜比较乱，希望找能收拾屋子的","2022-04-02 10:19","泰沙小区",500,user2,category);
-        Task task2 = new Task("找一个上门打扫卫生的阿姨","2022-04-01 23:34","大兴小区",200,user2,category);
+        Task task = new Task("需要外出几天，需要照顾一下宠物","2022-04-17 12:30","中信小区",300,user1,category);
+        Task task1 = new Task("家里的衣柜比较乱，希望找能收拾屋子的家里的衣柜比较乱，希望找能收拾屋子的","2022-04-17 10:19","泰沙小区",500,user2,category);
+        Task task2 = new Task("找一个上门打扫卫生的阿姨","2022-04-17 23:34","大兴小区",200,user2,category);
+        Task task1_1 = new Task("需要找个人帮忙买点菜,有偿","2022-04-17 23:34","湘潭大学",50,user6,category);
+        Task task1_2 = new Task("家里网不好，需要找个人来修理","2022-04-17 22:00","湘潭大学",100,user4,category);
+        Task task1_3 = new Task("帮忙拿一个快递,具体私聊","2022-04-17 20:00","湘潭大学",70,user8,category);
         category.getTasks().add(task);
         category.getTasks().add(task1);
         category.getTasks().add(task2);
+        category.getTasks().add(task1_1);
+        category.getTasks().add(task1_2);
+        category.getTasks().add(task1_3);
 
-        Task task3 = new Task("项目缺人，想找一个一起一起做的","2022-04-02 06:30","凡汐公司",1000,user3,category6);
-        Task task4 = new Task("本人最近事务繁多，需要找一位帮忙完成项目的开发，只需要1-2天时间即可","2022-04-01 08:40","欣鑫公司",1100,user4,category6);
+        Task task3 = new Task("项目缺人，想找一个一起一起做的","2022-04-17 06:30","凡汐公司",1000,user3,category6);
+        Task task4 = new Task("本人最近事务繁多，需要找一位帮忙完成项目的开发，只需要1-2天时间即可","2022-04-17 08:40","欣鑫公司",1100,user4,category6);
+        Task task4_1 = new Task("找3-5个人帮忙完成一个软件，有偿，工资面议","2022-04-17 10:20","湘潭大学东门",1100,user9,category6);
+        Task task4_2 = new Task("互联网＋比赛招人","2022-04-17 12:20","湘潭大学南苑",50,user7,category6);
         category6.getTasks().add(task3);
         category6.getTasks().add(task4);
+        category6.getTasks().add(task4_1);
+        category6.getTasks().add(task4_2);
 
-        Task task5 = new Task("需要外出几天，需要照顾一下宠物","2022-04-12 06:00","典鑫小区",200,user5,category2);
-        Task task6 = new Task("家里水管破了，急需上门修理水管","2022-04-03 12:00","惠霄小区",80,user6,category2);
-        Task task7 = new Task("厕所堵住了，有疏通厕所的上门疏通一下吗","2022-04-01 10:30","大兴小区",100,user7,category2);
+        Task task5 = new Task("需要外出几天，需要照顾一下宠物","2022-04-17 06:00","典鑫小区",200,user5,category2);
+        Task task6 = new Task("家里水管破了，急需上门修理水管","2022-04-17 12:00","惠霄小区",80,user6,category2);
+        Task task7 = new Task("厕所堵住了，有疏通厕所的上门疏通一下吗","2022-04-17 10:30","湘潭大学东门",100,user7,category2);
+        Task task7_1 = new Task("找人帮忙代课,很急","2022-04-17 10:30","湘潭大学",100,user2,category2);
         category2.getTasks().add(task5);
         category2.getTasks().add(task6);
         category2.getTasks().add(task7);
+        category2.getTasks().add(task7_1);
 
-        Task task8 = new Task("需要找一个能辅导孩子数学的老师，在暑假期间带着孩子一起学习","2022-04-10 13:50","电子厂旁",100,user8,category5);
-        Task task9 = new Task("找一位能够辅导孩子在化学的，马上就要学习化学了，希望能够带着孩子入门化学的学习，最好事化学专业的大学生或者研究生","2022-04-08 11:50","泰沙小区",100,user9,category5);
-        Task task10 = new Task("想找一位能带领孩子学习篮球的老师，希望周末有时间教导孩子的篮球","2021-04-01 07:50","大兴小区",120,user10,category5);
+        Task task8 = new Task("需要找一个能辅导孩子数学的老师，在暑假期间带着孩子一起学习","2022-04-17 13:50","电子厂旁",100,user8,category5);
+        Task task9 = new Task("找一位能够辅导孩子在化学的，马上就要学习化学了，希望能够带着孩子入门化学的学习，最好事化学专业的大学生或者研究生","2022-04-17 11:50","湘大教师公寓",100,user9,category5);
+        Task task10 = new Task("想找一位能带领孩子学习篮球的老师，希望周末有时间教导孩子的篮球","2021-04-17 07:50","大兴小区",120,user10,category5);
+        Task task10_1 = new Task("想找一个教练指导孩子的体育运动","2021-04-17 07:30","湘大体育馆",120,user3,category5);
         category5.getTasks().add(task8);
         category5.getTasks().add(task9);
         category5.getTasks().add(task10);
+        category5.getTasks().add(task10_1);
 
-        Task task11 = new Task("需要找位人，去看望一下家里的老人","2022-04-04 05:50","兴安小区",300,user11,category4);
-        Task task12 = new Task("老人一人在家，家里老人需要去看医院，想找一个能一起去医院看病的","2022-04-03 12:50","沙尾小区",500,user12,category4);
-        Task task13 = new Task("老人家里卫生很乱，需要找人打理一下","2022-04-02 15:20","大兴小区",200,user13,category4);
+        Task task11 = new Task("需要找位人，去看望一下家里的老人","2022-04-17 05:50","兴安小区",300,user11,category4);
+        Task task12 = new Task("老人一人在家，家里老人需要去看医院，想找一个能一起去医院看病的","2022-04-17 12:50","湘潭大学南门",500,user12,category4);
+        Task task13 = new Task("老人家里卫生很乱，需要找人打理一下","2022-04-17 15:20","湘大社区",200,user13,category4);
         category4.getTasks().add(task11);
         category4.getTasks().add(task12);
         category4.getTasks().add(task13);
 
-        Task task14 = new Task("有会高数的吗，能帮忙补习一下高数吗","2022-04-01 16:30","湘潭大学",100,user1,category3);
-        Task task15 = new Task("有多余的c语言书，有需要的吗","2022-03-31 12:23","湘潭大学",10,user4,category3);
-        Task task16 = new Task("能帮忙代取一下琴湖的快递吗","2021-04-01 18:00","湘潭大学",10,user8,category3);
+        Task task14 = new Task("有会高数的吗，能帮忙补习一下高数吗","2022-04-17 16:30","湘潭大学",100,user1,category3);
+        Task task15 = new Task("有多余的c语言书，有需要的吗","2022-04-17 12:23","湘潭大学",10,user4,category3);
+        Task task16 = new Task("能帮忙代取一下琴湖的快递吗","2021-04-17 18:00","湘潭大学",10,user8,category3);
         category3.getTasks().add(task14);
         category3.getTasks().add(task15);
         category3.getTasks().add(task16);
 
-        Task task17 = new Task("项目需要人帮忙辅助做一下，需要精通java","2022-04-01 16:23","凡汐科技",1000,user10,category1);
-        Task task18 = new Task("在泰山旅游，想找一个熟悉这里环境的当地人","2022-04-03 19:20","泰山",400,user5,category1);
+        Task task17 = new Task("项目需要人帮忙辅助做一下，需要精通java","2022-04-17 16:23","凡汐科技",1000,user10,category1);
+        Task task18 = new Task("在泰山旅游，想找一个熟悉这里环境的当地人","2022-04-17 19:20","泰山",400,user5,category1);
+        Task task18_1 = new Task("想找一个本地人熟悉一下湘大环境","2022-04-17 14:20","湘潭大学",400,user1,category1);
+        Task task18_2 = new Task("找二手电脑","2022-04-17 16:20","湘大琴湖公寓",400,user8,category1);
         category1.getTasks().add(task17);
         category1.getTasks().add(task18);
+        category1.getTasks().add(task18_1);
+        category1.getTasks().add(task18_2);
 
-        Task task19 = new Task("在湘大社区需要找人帮忙拿下快递","2022-04-04 16:23","湘大社区",50,user3,category7);
-        Task task20 = new Task("可以帮忙买下菜吗,行动不便不好去买菜","2022-04-02 16:20","联建小吃街",100,user8,category7);
+        Task task19 = new Task("在湘大社区需要找人帮忙拿下快递","2022-04-17 16:23","湘大社区",50,user3,category7);
+        Task task20 = new Task("可以帮忙买下菜吗,行动不便不好去买菜","2022-04-17 16:20","湘大联建小吃街",100,user8,category7);
         category7.getTasks().add(task19);
         category7.getTasks().add(task20);
         //添加专家分类
@@ -152,7 +183,12 @@ public class HelperApplication extends Application {
         experts.add(expert);experts.add(expert1);experts.add(expert2);experts.add(expert3);
         experts.add(expert4);experts.add(expert5);experts.add(expert6);experts.add(expert7);
 
+        userAndTaskCategories.add(userAndTaskCategory);userAndTaskCategories.add(userAndTaskCategory1);
+        userAndTaskCategories.add(userAndTaskCategory2);userAndTaskCategories.add(userAndTaskCategory3);
+        userAndTaskCategories.add(userAndTaskCategory4);userAndTaskCategories.add(userAndTaskCategory5);
+        userAndTaskCategories.add(userAndTaskCategory6);userAndTaskCategories.add(userAndTaskCategory7);
 
+        StaticData.setUserAndTaskCategories(userAndTaskCategories);
         StaticData.setExpertCategories(expertCategories);
         StaticData.setExperts(experts);
         StaticData.setCurUser(user);

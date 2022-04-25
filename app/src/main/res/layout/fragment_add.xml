@@ -43,24 +43,34 @@
                 android:text="任务内容:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-<!--            <EditText-->
-<!--                android:id="@+id/content"-->
-<!--                android:background="@null"-->
-<!--                android:layout_marginLeft="10dp"-->
-<!--                android:hint="请输入任务内容"-->
-<!--                android:textColorHint="@color/huibai_text"-->
-<!--                android:textSize="15sp"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="40dp"/>-->
-            <com.xuexiang.xui.widget.edittext.MultiLineEditText
-                android:id="@+id/content"
-                android:background="@color/back_color"
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
                 android:layout_marginTop="@dimen/margin_5"
                 android:layout_marginLeft="@dimen/margin_5"
-                android:layout_marginRight="@dimen/margin_5"
-                android:layout_width="match_parent"
-                android:layout_height="100dp" />
+                android:layout_marginRight="@dimen/margin_5">
+                <com.xuexiang.xui.widget.edittext.MultiLineEditText
+                    android:id="@+id/content"
+                    android:background="@color/back_color"
+                    android:layout_weight="5"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp" />
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/recordImg"
+                        android:src="@mipmap/record"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
         <View
             android:layout_marginTop="5dp"
@@ -68,27 +78,46 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/back_color"/>
-        <LinearLayout
-            android:orientation="horizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:text="地点:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <EditText
-                android:id="@+id/site"
-                android:background="@null"
-                android:layout_marginLeft="10dp"
-                android:hint="@string/task_position_tip"
-                android:textColorHint="@color/huibai_text"
-                android:textSize="15sp"
-                android:textColor="@color/black"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"/>
-        </LinearLayout>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="地点:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <EditText
+                    android:id="@+id/site"
+                    android:background="@null"
+                    android:layout_marginLeft="10dp"
+                    android:hint="@string/task_position_tip"
+                    android:textColorHint="@color/huibai_text"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+
+                    android:id="@+id/location"
+                    android:src="@mipmap/location"
+                    android:layout_width="@dimen/post_task_calendar_size"
+                    android:layout_height="@dimen/post_task_calendar_size"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
         <View
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
