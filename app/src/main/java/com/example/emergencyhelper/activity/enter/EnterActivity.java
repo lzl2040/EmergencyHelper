@@ -15,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.CheckBox;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.HomeSlidAdapter;
@@ -39,7 +40,6 @@ public class EnterActivity extends BaseActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.ACCESS_NETWORK_STATE,
             Manifest.permission.INTERNET};//需要获取的权限
     private List<String> mPermissons = new ArrayList<>();
@@ -47,7 +47,9 @@ public class EnterActivity extends BaseActivity {
     private boolean hasPermissionDismiss = false;
     private static int REQUEST_CODE = 20;
     private MaterialDialog tipDialog;
+    public static CheckBox checkBox;
     private String packageName = "com.example.emergencyhelper";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,17 +57,24 @@ public class EnterActivity extends BaseActivity {
         //动态申请权限
         checkPermissions();
         initView();
+        setListener();
+        setAdapter();
     }
+
     @Override
     public void initView() {
-        super.initView();
+        //super.initView();
         context = this;
         slidingTabLayout = findViewById(R.id.slides);
+        checkBox = findViewById(R.id.checkbox);
         viewPager = findViewById(R.id.viewpager);
         fragments.add(RegisterFragment.newInstance());
         fragments.add(LoginFragment.newInstance());
-        viewPager.setAdapter(new HomeSlidAdapter(getSupportFragmentManager(),titles,fragments));
-        viewPager.setOffscreenPageLimit(fragments.size());
+    }
+
+    @Override
+    public void setListener() {
+        //super.setListener();
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -93,6 +102,13 @@ public class EnterActivity extends BaseActivity {
 
             }
         });
+    }
+
+    @Override
+    public void setAdapter() {
+        //super.setAdapter();
+        viewPager.setAdapter(new HomeSlidAdapter(getSupportFragmentManager(),titles,fragments));
+        viewPager.setOffscreenPageLimit(fragments.size());
         slidingTabLayout.setViewPager(viewPager);
     }
 
@@ -128,6 +144,9 @@ public class EnterActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 显示申请权限的对话框
+     */
     private void showPermissionDialog(){
         if(tipDialog==null){
             tipDialog = new MaterialDialog.Builder(EnterActivity.this)

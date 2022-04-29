@@ -3,6 +3,7 @@ package com.example.emergencyhelper.bean;
 /**
  * author ： yxm521
  * time    ： 2022/4/4
+ * 用户和任务的关系
  */
 public class UserAndTaskCategory implements Comparable<UserAndTaskCategory>{
     private User user;

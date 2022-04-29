@@ -57,7 +57,7 @@ public class MessageUserAdapter extends RecyclerView.Adapter<MessageUserAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Communicate communicate = communicates.get(position);
         holder.header.setImageResource(communicate.getAcceptUser().getHeaderId());
-        holder.name.setText(communicate.getAcceptUser().getUsername());
+        holder.name.setText(communicate.getAcceptUser().getName());
         holder.time.setText(communicate.getCommunicateDate());
         List<Message> messages = communicate.getMessages();
         if(messages.size() == 0){

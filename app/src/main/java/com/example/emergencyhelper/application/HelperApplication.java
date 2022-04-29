@@ -1,6 +1,8 @@
 package com.example.emergencyhelper.application;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.emergencyhelper.R;
@@ -21,11 +23,19 @@ import java.util.List;
  * time    ： 2022/3/29
  */
 public class HelperApplication extends Application {
-
+    private static SharedPreferences userSP;
+    private Context context;
     @Override
     public void onCreate() {
         super.onCreate();
+        context = this;
+        //存放登录用户信息的
+        userSP = context.getSharedPreferences("user", MODE_PRIVATE);
         save();
+    }
+
+    public static SharedPreferences getUserSP() {
+        return userSP;
     }
 
     public void save(){

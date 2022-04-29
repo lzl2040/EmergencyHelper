@@ -54,7 +54,7 @@ public class CommunicateActivity extends BaseActivity {
         Intent intent = getIntent();
         communicate = (Communicate) intent.getSerializableExtra("communicate");
         communicateIndex = intent.getIntExtra("index",0);
-        String communicateUserName = communicate.getAcceptUser().getUsername();
+        String communicateUserName = communicate.getAcceptUser().getName();
         List<Message> msgs = communicate.getMessages();
         messages = msgs;
         msgs = null;

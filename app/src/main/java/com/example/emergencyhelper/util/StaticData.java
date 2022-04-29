@@ -1,6 +1,9 @@
 package com.example.emergencyhelper.util;
 
+import android.content.SharedPreferences;
+
 import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.application.HelperApplication;
 import com.example.emergencyhelper.bean.Expert;
 import com.example.emergencyhelper.bean.ExpertCategory;
 import com.example.emergencyhelper.bean.TaskCategory;
@@ -9,6 +12,8 @@ import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.bean.User;
 import com.example.emergencyhelper.bean.UserAndTaskCategory;
 import com.example.emergencyhelper.entity.SortItemEntity;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.xuexiang.xui.adapter.simple.AdapterItem;
 
 import java.util.List;
@@ -19,6 +24,7 @@ import java.util.List;
  * time    ： 2022/3/28
  */
 public class StaticData {
+    private static SharedPreferences userSP = HelperApplication.getUserSP();
     //用户列表
     private static List<User> userList;
     //任务分类
@@ -55,6 +61,34 @@ public class StaticData {
     private static User curUser;
     //聊天界面跳转界面的原界面
     private static Class jumpClass;
+    //Gson
+    private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+    /**
+     * 后端使用的接口
+     */
+    private static String baseUrl = "http://121.5.128.157:8060/HelperBs";
+    //登录
+    private static String loginUrl = "/login";
+    //注册
+    private static String registerUrl = "/register";
+
+    /**
+     * 将用户信息存放至 名为 user 的 SharedPreferences中
+     * @param user 注册返回的用户
+     */
+    public static void setUserSP(User user){
+        SharedPreferences.Editor userEditor = userSP.edit();
+        userEditor.putString("phone",user.getPhone());
+        userEditor.putString("pwd",user.getPwd());
+        if(user.getName() != null){
+            userEditor.putString("name",user.getName());
+        }
+        userEditor.apply();
+    }
+
+    public static Gson getGson() {
+        return gson;
+    }
 
     public static List<User> getUserList() {
         return userList;
@@ -134,5 +168,17 @@ public class StaticData {
 
     public static void setUserAndTaskCategories(List<UserAndTaskCategory> userAndTaskCategories) {
         StaticData.userAndTaskCategories = userAndTaskCategories;
+    }
+
+    public static String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public static String getLoginUrl() {
+        return loginUrl;
+    }
+
+    public static String getRegisterUrl() {
+        return registerUrl;
     }
 }

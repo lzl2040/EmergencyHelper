@@ -47,7 +47,7 @@ public class GetTaskAdapter extends RecyclerView.Adapter<GetTaskAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //TaskEntity task = tasks.get(position);
         Task task = tasks.get(position);
-        holder.nameTxt.setText(task.getPostUser().getUsername());
+        holder.nameTxt.setText(task.getPostUser().getName());
         holder.headerImg.setImageResource(task.getPostUser().getHeaderId());
         holder.taskRewardTxt.setText(task.getReward()+"");
         holder.descTxt.setText(task.getContent());

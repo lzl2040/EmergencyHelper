@@ -11,16 +11,21 @@ public class User implements Serializable {
     //电话号码
     private String phone;
     //用户名
-    private String username;
+    private String name;
     //头像地址
-    private int headerId;
+    private Integer headerId;
     //密码
     private String pwd;
 
-    public User(String phone, String username, int headerId, String pwd) {
+    public User(String phone, String name, Integer headerId, String pwd) {
         this.phone = phone;
-        this.username = username;
+        this.name = name;
         this.headerId = headerId;
+        this.pwd = pwd;
+    }
+
+    public User(String phone, String pwd) {
+        this.phone = phone;
         this.pwd = pwd;
     }
 
@@ -40,19 +45,19 @@ public class User implements Serializable {
         this.pwd = pwd;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public int getHeaderId() {
         return headerId;
     }
 
-    public void setHeaderId(int headerId) {
+    public void setHeaderId(Integer headerId) {
         this.headerId = headerId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

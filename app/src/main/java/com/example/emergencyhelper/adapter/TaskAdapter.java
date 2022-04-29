@@ -57,7 +57,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.getPos(position);
         holder.header.setImageResource(task.getPostUser().getHeaderId());
         holder.desc.setText(task.getContent());
-        holder.name.setText(task.getPostUser().getUsername());
+        holder.name.setText(task.getPostUser().getName());
         holder.task_site.setText(task.getSite());
         holder.task_time.setText(task.getDeadline());
         holder.task_reward.setText(task.getReward()+"");

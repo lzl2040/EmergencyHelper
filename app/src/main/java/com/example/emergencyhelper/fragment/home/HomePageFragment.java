@@ -148,7 +148,11 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
         List<UserAndTaskCategory> categories = StaticData.getUserAndTaskCategories();
         Collections.sort(categories);
         StaticData.setUserAndTaskCategories(categories);
+        List<Task> emergecyTasks = StaticData.getCategories().get(2).getTasks();
         if(checkHasDifferent(categories)){
+            int emergencyLen = emergecyTasks.size();
+            int rand2 = (new Random().nextInt(emergencyLen));
+            Task task2 = emergecyTasks.get(rand2);
             //先选取老人,暂取定值
             int oldLen = oldTasks.size();
             int rand1 = (new Random().nextInt(oldLen));
@@ -161,10 +165,14 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
             List<Task> randomFirst = getRandomTasks(2,firstTasks);
             List<Task> randomSecond = getRandomTasks(1,secondTasks);
             tasks.removeAll(tasks);
+            tasks.add(task2);
             tasks.add(task);
             tasks.addAll(randomFirst);
             tasks.addAll(randomSecond);
         }else{
+            int emergencyLen = emergecyTasks.size();
+            int rand3 = (new Random().nextInt(emergencyLen));
+            Task task3 = emergecyTasks.get(rand3);
             //先选取老人,暂取定值
             int oldLen = oldTasks.size();
             int rand1 = (new Random().nextInt(oldLen));
@@ -181,6 +189,7 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
             List<Task> resultTask = getRandomTasks(1,randList1);
             List<Task> resultTask2 = getRandomTasks(1,randList2);
             tasks.removeAll(tasks);
+            tasks.add(task3);
             tasks.add(task);
             tasks.addAll(resultTask);
             tasks.addAll(resultTask2);
