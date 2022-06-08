@@ -66,11 +66,18 @@ public class StaticData {
     /**
      * 后端使用的接口
      */
+    //基础地址
     private static String baseUrl = "http://121.5.128.157:8060/HelperBs";
     //登录
     private static String loginUrl = "/login";
     //注册
     private static String registerUrl = "/register";
+    //得到所有任务
+    private static String getAllTasksUrl = "/get/tasks";
+    //添加任务
+    private static String addTaskUrl = "/add/task";
+    //根据类别查找任务
+    private static String getTasksByCategoryUrl = "/get/tasks/category";
 
     /**
      * 将用户信息存放至 名为 user 的 SharedPreferences中
@@ -180,5 +187,21 @@ public class StaticData {
 
     public static String getRegisterUrl() {
         return registerUrl;
+    }
+
+    public static String getGetAllTasksUrl() {
+        return getAllTasksUrl;
+    }
+
+    public static void setGetAllTasksUrl(String getAllTasksUrl) {
+        StaticData.getAllTasksUrl = getAllTasksUrl;
+    }
+
+    public static String getAddTaskUrl() {
+        return addTaskUrl;
+    }
+
+    public static String getGetTasksByCategoryUrl() {
+        return getTasksByCategoryUrl;
     }
 }

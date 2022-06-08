@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EmergencyHelper</string>
+    <string name="app_name">似邻</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_service">家庭服务</string>

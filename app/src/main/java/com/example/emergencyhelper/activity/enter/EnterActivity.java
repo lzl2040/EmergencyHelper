@@ -18,10 +18,15 @@ import android.provider.Settings;
 import android.widget.CheckBox;
 
 import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.activity.main.MainActivity;
 import com.example.emergencyhelper.adapter.HomeSlidAdapter;
+import com.example.emergencyhelper.application.HelperApplication;
 import com.example.emergencyhelper.base.BaseActivity;
+import com.example.emergencyhelper.bean.User;
 import com.example.emergencyhelper.fragment.enter.LoginFragment;
 import com.example.emergencyhelper.fragment.enter.RegisterFragment;
+import com.example.emergencyhelper.util.StaticData;
+import com.example.emergencyhelper.util.ViewUtil;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction;
@@ -54,6 +59,15 @@ public class EnterActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter);
+        context = this;
+
+        //判断是否登录过，登录过则跳过登录
+        if(!HelperApplication.getUserSP().getString("phone","12").equals("12")) {
+            ViewUtil.jumpTo(context, MainActivity.class);
+            User user = new User(HelperApplication.getUserSP().getString("phone","12"),HelperApplication.getUserSP().getString("pwd","12"));
+            StaticData.setCurUser(user);
+            finish();
+        }
         //动态申请权限
         checkPermissions();
         initView();
@@ -63,8 +77,7 @@ public class EnterActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        //super.initView();
-        context = this;
+        //super.initView()
         slidingTabLayout = findViewById(R.id.slides);
         checkBox = findViewById(R.id.checkbox);
         viewPager = findViewById(R.id.viewpager);

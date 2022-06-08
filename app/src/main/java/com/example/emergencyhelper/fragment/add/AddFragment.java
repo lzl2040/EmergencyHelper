@@ -1,5 +1,7 @@
 package com.example.emergencyhelper.fragment.add;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.os.Handler;
@@ -19,11 +21,14 @@ import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
 import com.example.emergencyhelper.activity.category.FamilyActivity;
 import com.example.emergencyhelper.bean.Task;
+import com.example.emergencyhelper.bean.Task2;
+import com.example.emergencyhelper.requests.TaskRequest;
 import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.my.PostActivity;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.util.StaticData;
+import com.example.emergencyhelper.util.ViewUtil;
 import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.dialog.MiniLoadingDialog;
 import com.xuexiang.xui.widget.edittext.MultiLineEditText;
@@ -38,6 +43,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import lombok.SneakyThrows;
+import okhttp3.Response;
 
 
 public class AddFragment extends BaseFragment implements EventListener {
@@ -100,28 +108,32 @@ public class AddFragment extends BaseFragment implements EventListener {
                 String sites = site.getText().toString();
                 String deadlines = deadline.getText().toString();
                 if(pays.length()!=0&&contents.length()!=0&&sites.length()!=0){
-                    task.setContent(contents);
-                    task.setDeadline(deadlines);
-                    task.setSite(sites);
-                    task.setReward(Integer.valueOf(pays));
-                    task.setPostUser(StaticData.getUserList().get(0));
-                    PostActivity.tasks.add(task);
-                    //暂时固定为家庭服务
-                    FamilyActivity.tasks.add(task);
+                    System.out.println("当前电话号码:"+StaticData.getCurUser().getPhone());
+                    Task2 task2 = new Task2(contents,deadlines,sites,pays,1,StaticData.getCurUser().getPhone());
+//                    task.setContent(contents);
+//                    task.setDeadline(deadlines);
+//                    task.setSite(sites);
+//                    task.setReward(Integer.valueOf(pays));
+//                    task.setPostUser(StaticData.getUserList().get(0));
+//                    PostActivity.tasks.add(task);
+//                    //暂时固定为家庭服务
+//                    FamilyActivity.tasks.add(task);
                     dialog.show();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            content.setContentText("");
-                            site.setText("");
-                            deadline.setText("");
-                            pay.setText("");
-                            dialog.dismiss();
-                        }
-                    },2000);
+                    new PostTaskTask().execute(task2);
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            content.setContentText("");
+//                            site.setText("");
+//                            deadline.setText("");
+//                            pay.setText("");
+//                            dialog.dismiss();
+//                        }
+//                    },2000);
                 }
             }
         });
+
         //设置点击日历的监听事件
         calendarImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,6 +223,48 @@ public class AddFragment extends BaseFragment implements EventListener {
                     int b  = matcher.group(0).indexOf(",");
                     content.setContentText(matcher.group(0).substring(a+2,b-3));
                 }
+            }
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    class PostTaskTask extends AsyncTask<Task2,Integer,Integer>{
+        @SneakyThrows
+        @Override
+        protected Integer doInBackground(Task2... task2s) {
+            Response response = new TaskRequest().postTask(task2s[0]);
+            //没有网络
+            if(response == null){
+                return -1;
+            }
+            return response.code();
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            String msg = null;
+            dialog.dismiss();
+            switch (integer){
+                case -1:
+                    msg = "请检查网络状态后重新尝试！";
+                    ViewUtil.showErrorToast(msg,getActivity());
+                    break;
+                case 200:
+                    content.setContentText("");
+                    site.setText("");
+                    deadline.setText("");
+                    pay.setText("");
+                    ViewUtil.showNotice("发布成功",getActivity());
+                    break;
+                case 409:
+                    msg = "发生冲突！";
+                    ViewUtil.showErrorToast(msg,getActivity());
+                    break;
+                default:
+                    msg = "未知错误!\n code:" + integer;
+                    ViewUtil.showErrorToast(msg,getActivity());
+                    break;
             }
         }
     }

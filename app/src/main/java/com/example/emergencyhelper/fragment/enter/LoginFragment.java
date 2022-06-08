@@ -102,6 +102,7 @@ public class LoginFragment extends BaseFragment {
             Log.e(TAG, "doInBackground: get the user" + body);
             if(response.code() == 200){
                 StaticData.setUserSP(user);
+                StaticData.setCurUser(user);
             }
             return response.code();
         }

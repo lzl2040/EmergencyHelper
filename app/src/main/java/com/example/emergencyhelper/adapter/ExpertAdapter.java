@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.bean.Expert;
+import com.example.emergencyhelper.ui.RoundImage;
 
 import java.util.List;
 
@@ -38,6 +40,11 @@ public class ExpertAdapter extends RecyclerView.Adapter<ExpertAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Expert expert = experts.get(position);
+        if(position == 0){
+            holder.header.setImageResource(R.mipmap.e1);
+        }else{
+            holder.header.setImageResource(R.mipmap.e2);
+        }
         holder.nameTxt.setText(expert.getName());
         holder.phoneTxt.setText(expert.getPhone());
         holder.areaTxt.setText(expert.getArea());
@@ -55,12 +62,14 @@ public class ExpertAdapter extends RecyclerView.Adapter<ExpertAdapter.ViewHolder
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
+        RoundImage header;
         TextView nameTxt;
         TextView phoneTxt;
         TextView areaTxt;
         TextView receiveNumTxt;
         public ViewHolder(View view){
             super(view);
+            header = view.findViewById(R.id.header);
             nameTxt = view.findViewById(R.id.name);
             phoneTxt = view.findViewById(R.id.phone);
             areaTxt = view.findViewById(R.id.area);
