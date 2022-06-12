@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.base.BaseActivity;
-import com.example.emergencyhelper.bean.Task;
+import com.example.emergencyhelper.bean.TaskEntity;
 import com.example.emergencyhelper.fragment.home.SearchFragment;
 import com.example.emergencyhelper.util.CheckUtil;
 import com.example.emergencyhelper.util.StaticData;
@@ -91,11 +91,11 @@ public class SearchActivity extends BaseActivity {
         ft.commit();
     }
 
-    public List<Task> findFitTask(String keyWord){
-        List<Task> result = new ArrayList<>();
-        List<Task> allTasks = StaticData.getTaskList();
-        for(Task entity:allTasks){
-            String desc = entity.getContent();
+    public List<TaskEntity> findFitTask(String keyWord){
+        List<TaskEntity> result = new ArrayList<>();
+        List<TaskEntity> allTasks = StaticData.getTaskList();
+        for(TaskEntity entity:allTasks){
+            String desc = entity.getTaskContent();
             if(desc.contains(keyWord)){
                 result.add(entity);
             }

@@ -17,12 +17,13 @@ import com.example.emergencyhelper.util.StaticData;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MessageFragment extends BaseFragment {
     private String TAG = "MessageFragment";
     private RecyclerView recyclerView;
-    private List<Communicate> communicates;
+    private List<Communicate> communicates = new ArrayList<>();
     //private List<MessageUserEntity> messageList=new ArrayList<>();
     public static MessageUserAdapter adapter;
 
@@ -83,6 +84,6 @@ public class MessageFragment extends BaseFragment {
     }
 
     private void getData(){
-        communicates = StaticData.getCommunicates();
+//        communicates = StaticData.getCommunicates();
     }
 }

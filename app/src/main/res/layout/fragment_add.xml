@@ -117,7 +117,39 @@
             </LinearLayout>
 
         </RelativeLayout>
+        <View
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/back_color"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:text="任务分类:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner
+                    android:id="@+id/category_choose"
+                    android:background="@null"
+                    android:layout_marginLeft="10dp"
+                    android:hint="@string/choose_category_tip"
+                    android:textColorHint="@color/huibai_text"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"/>
+            </LinearLayout>
 
+        </RelativeLayout>
         <View
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"

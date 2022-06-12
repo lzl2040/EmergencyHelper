@@ -1,6 +1,6 @@
 package com.example.emergencyhelper.requests;
 
-import com.example.emergencyhelper.bean.Task2;
+import com.example.emergencyhelper.bean.Task;
 import com.example.emergencyhelper.util.StaticData;
 import com.google.gson.Gson;
 
@@ -24,7 +24,7 @@ public class TaskRequest {
     private final Gson gson = StaticData.getGson();
     private final MediaType jsonType=MediaType.Companion.parse("application/json;charset=utf-8");
 
-    public Response postTask(Task2 task2){
+    public Response postTask(Task task2){
         String jsonTask = gson.toJson(task2);
         System.out.println("字符串为:"+jsonTask);
         requestBody = RequestBody.Companion.create(jsonTask,jsonType);
@@ -61,13 +61,36 @@ public class TaskRequest {
      * @param categoryId 分类Id
      * @return
      */
-    public Response getTaskByCategory(Integer categoryId){
+    public Response getTaskByCategory(Integer categoryId,String phone,int pageNum){
         FormBody formBody = new FormBody.Builder()
                 .add("categoryId",categoryId+"")
+                .add("phone",phone)
+                .add("pageNum",pageNum+"")
                 .build();
         request = new Request.Builder()
                 .url(StaticData.getBaseUrl() + StaticData.getGetTasksByCategoryUrl())
                 .post(formBody)
+                .build();
+        try {
+            return okHttpClient.newCall(request).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 获得推荐任务列表
+     * @param phone
+     * @return
+     */
+    public Response getTasksByRecommend(String phone){
+        FormBody body = new FormBody.Builder()
+                .add("phone",phone)
+                .build();
+        request = new Request.Builder()
+                .url(StaticData.getBaseUrl() + StaticData.getGetTasksByRecommend())
+                .post(body)
                 .build();
         try {
             return okHttpClient.newCall(request).execute();

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.emergencyhelper.bean.Message;
 
 import java.util.List;
@@ -46,7 +47,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Message message = messages.get(position);
         holder.contentTxt.setText(message.getContent());
-        holder.headerImg.setImageResource(message.getSendUser().getHeaderId());
+        Glide.with(context).load(message.getSendUser().getImgUrl()).into(holder.headerImg);
+        //holder.headerImg.setImageResource(message.getSendUser().getImgUrl());
     }
 
     @Override

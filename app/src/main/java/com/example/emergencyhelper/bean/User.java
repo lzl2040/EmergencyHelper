@@ -8,20 +8,21 @@ import java.io.Serializable;
  * time    ： 2022/4/1
  */
 public class User implements Serializable {
-    //电话号码
     private String phone;
-    //用户名
     private String name;
-    //头像地址
-    private Integer headerId;
-    //密码
     private String pwd;
+    private String imgUrl;
+    private Integer scores;
 
-    public User(String phone, String name, Integer headerId, String pwd) {
+    public User() {
+    }
+
+    public User(String phone, String name, String pwd, String imgUrl, Integer scores) {
         this.phone = phone;
         this.name = name;
-        this.headerId = headerId;
         this.pwd = pwd;
+        this.imgUrl = imgUrl;
+        this.scores = scores;
     }
 
     public User(String phone, String pwd) {
@@ -37,6 +38,14 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getPwd() {
         return pwd;
     }
@@ -45,19 +54,19 @@ public class User implements Serializable {
         this.pwd = pwd;
     }
 
-    public int getHeaderId() {
-        return headerId;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setHeaderId(Integer headerId) {
-        this.headerId = headerId;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
-    public String getName() {
-        return name;
+    public Integer getScores() {
+        return scores;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setScores(Integer scores) {
+        this.scores = scores;
     }
 }

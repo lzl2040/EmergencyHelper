@@ -1,10 +1,14 @@
-package com.example.emergencyhelper.entity;
+package com.example.emergencyhelper.bean;
+
+
+import java.io.Serializable;
 
 /**
+ * 任务的bean类
  * author ： yxm521
- * time    ： 2022/5/3
+ * time    ： 2022/4/1
  */
-public class TaskEntity {
+public class TaskEntity implements Serializable {
     private Integer taskId;
     private String taskContent;
     private String taskDeadline;
@@ -22,6 +26,9 @@ public class TaskEntity {
     //任务类别
     private Integer categoryId;
 
+    public TaskEntity() {
+    }
+
     public TaskEntity(Integer taskId, String taskContent, String taskDeadline, String taskSite, String taskReward, Integer isComplete, String releaseUsername, String releasePhone, String releaseImgUrl, String receivePhone, String receiveUsername, String receiveImgUrl, Integer categoryId) {
         this.taskId = taskId;
         this.taskContent = taskContent;
@@ -36,9 +43,6 @@ public class TaskEntity {
         this.receiveUsername = receiveUsername;
         this.receiveImgUrl = receiveImgUrl;
         this.categoryId = categoryId;
-    }
-
-    public TaskEntity() {
     }
 
     public Integer getTaskId() {

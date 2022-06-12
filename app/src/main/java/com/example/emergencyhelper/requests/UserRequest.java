@@ -4,8 +4,11 @@ import com.example.emergencyhelper.bean.User;
 import com.example.emergencyhelper.util.StaticData;
 import com.google.gson.Gson;
 
+import java.io.File;
+
 import okhttp3.FormBody;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -59,6 +62,46 @@ public class UserRequest {
                 .build();
         request = new Request.Builder()
                 .url(StaticData.getBaseUrl() + StaticData.getLoginUrl())
+                .post(formBody)
+                .build();
+        try {
+            return okHttpClient.newCall(request).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Response uploadHeader(File file){
+        String key = "file";
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        builder.addFormDataPart(key,file.getName(),requestBody = RequestBody.Companion.create(file, MediaType.parse("image/*")));
+        //传入电话号码
+        builder.addFormDataPart("phone",StaticData.getCurUser().getPhone());
+        requestBody = builder.build();
+        request = new Request.Builder()
+                .url(StaticData.getBaseUrl() + StaticData.getUploadHeader())
+                .post(requestBody)
+                .build();
+        try {
+            return okHttpClient.newCall(request).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Response updateInfo(User user,String prePhone){
+        FormBody formBody = new FormBody.Builder()
+                .add("phone",user.getPhone())
+                .add("pwd",user.getPwd())
+                .add("name",user.getName())
+                .add("imgUrl",user.getImgUrl())
+                .add("scores",user.getScores()+"")
+                .add("prePhone",prePhone)
+                .build();
+        request = new Request.Builder()
+                .url(StaticData.getBaseUrl() + StaticData.getUpdateInfo())
                 .post(formBody)
                 .build();
         try {

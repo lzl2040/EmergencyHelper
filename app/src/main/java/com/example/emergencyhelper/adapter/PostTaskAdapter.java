@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.bean.Task;
+import com.example.emergencyhelper.bean.TaskEntity;
 import com.example.emergencyhelper.util.StaticData;
 import com.xuexiang.xui.adapter.simple.AdapterItem;
 import com.xuexiang.xui.adapter.simple.XUISimpleAdapter;
@@ -27,10 +27,10 @@ import java.util.List;
  */
 public class PostTaskAdapter extends RecyclerView.Adapter<PostTaskAdapter.ViewHolder> {
     public Context context;
-    public List<Task> taskes = new ArrayList<>();
+    public List<TaskEntity> taskes = new ArrayList<>();
     //public List<TaskEntity> taskes = new ArrayList<>();
 
-    public PostTaskAdapter(Context context, List<Task> tasks){
+    public PostTaskAdapter(Context context, List<TaskEntity> tasks){
         this.context=context;
         this.taskes=tasks;
     }
@@ -46,12 +46,12 @@ public class PostTaskAdapter extends RecyclerView.Adapter<PostTaskAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //TaskEntity te = taskes.get(position);
-        Task task = taskes.get(position);
+        TaskEntity task = taskes.get(position);
         holder.getPos(position);
-        holder.desc.setText(task.getContent());
-        holder.task_site.setText(task.getSite());
-        holder.task_time.setText(task.getDeadline());
-        holder.pay.setText(task.getReward()+"");
+        holder.desc.setText(task.getTaskContent());
+        holder.task_site.setText(task.getTaskSite());
+        holder.task_time.setText(task.getTaskDeadline());
+        holder.pay.setText(task.getTaskReward()+"");
 //        holder.desc.setText(te.getDesc());
 //        holder.task_site.setText(te.getSite());
 //        holder.task_time.setText(te.getDeadline());
@@ -82,7 +82,7 @@ public class PostTaskAdapter extends RecyclerView.Adapter<PostTaskAdapter.ViewHo
      * 更新适配器
      * @param entities
      */
-    public void updateData(List<Task> entities){
+    public void updateData(List<TaskEntity> entities){
         taskes.clear();
         taskes.addAll(entities);
         notifyDataSetChanged();

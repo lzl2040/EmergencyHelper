@@ -1,104 +1,110 @@
 package com.example.emergencyhelper.bean;
 
-
-import java.io.Serializable;
-
 /**
- * 任务的bean类
  * author ： yxm521
- * time    ： 2022/4/1
+ * time    ： 2022/6/7
  */
-public class Task implements Serializable {
-    //任务ID
-    private int taskId;
-    //任务内容
-    private String content;
-    //任务截止日期
-    private String deadline;
-    //任务地址
-    private String site;
-    //任务奖励
-    private int reward;
-    //任务发布者
-    private User postUser;
-    //任务领取者
-    private User receiveUser;
-    //分类
-    private TaskCategory category;
+public class Task {
+    private Integer taskId;
+    private String taskContent;
+    private String taskDeadline;
+    private String taskSite;
+    private String taskReward;
+    private Integer categoryId;
+    private String releaseUser;
+    private String receiveUser;
+    private Integer isComplete;
 
-    public Task(String content, String deadline, String site, int reward, User postUser, TaskCategory category) {
-        this.content = content;
-        this.deadline = deadline;
-        this.site = site;
-        this.reward = reward;
-        this.postUser = postUser;
-        this.category = category;
+    public Task(String taskContent, String taskDeadline, String taskSite, String taskReward, Integer categoryId, String releaseUser) {
+        this.taskContent = taskContent;
+        this.taskDeadline = taskDeadline;
+        this.taskSite = taskSite;
+        this.taskReward = taskReward;
+        this.categoryId = categoryId;
+        this.releaseUser = releaseUser;
     }
 
-    public Task() {
+    public Task(Integer taskId, String taskContent, String taskDeadline, String taskSite, String taskReward, Integer categoryId, String releaseUser, String receiveUser, Integer isComplete) {
+        this.taskId = taskId;
+        this.taskContent = taskContent;
+        this.taskDeadline = taskDeadline;
+        this.taskSite = taskSite;
+        this.taskReward = taskReward;
+        this.categoryId = categoryId;
+        this.releaseUser = releaseUser;
+        this.receiveUser = receiveUser;
+        this.isComplete = isComplete;
     }
 
-    public int getTaskId() {
+    public Integer getTaskId() {
         return taskId;
     }
 
-    public void setTaskId(int taskId) {
+    public void setTaskId(Integer taskId) {
         this.taskId = taskId;
     }
 
-    public String getContent() {
-        return content;
+    public String getTaskContent() {
+        return taskContent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setTaskContent(String taskContent) {
+        this.taskContent = taskContent;
     }
 
-    public String getDeadline() {
-        return deadline;
+    public String getTaskDeadline() {
+        return taskDeadline;
     }
 
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
+    public void setTaskDeadline(String taskDeadline) {
+        this.taskDeadline = taskDeadline;
     }
 
-    public String getSite() {
-        return site;
+    public String getTaskSite() {
+        return taskSite;
     }
 
-    public void setSite(String site) {
-        this.site = site;
+    public void setTaskSite(String taskSite) {
+        this.taskSite = taskSite;
     }
 
-    public int getReward() {
-        return reward;
+    public String getTaskReward() {
+        return taskReward;
     }
 
-    public void setReward(int reward) {
-        this.reward = reward;
+    public void setTaskReward(String taskReward) {
+        this.taskReward = taskReward;
     }
 
-    public User getPostUser() {
-        return postUser;
+    public Integer getCategoryId() {
+        return categoryId;
     }
 
-    public void setPostUser(User postUser) {
-        this.postUser = postUser;
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public User getReceiveUser() {
+    public String getReleaseUser() {
+        return releaseUser;
+    }
+
+    public void setReleaseUser(String releaseUser) {
+        this.releaseUser = releaseUser;
+    }
+
+    public String getReceiveUser() {
         return receiveUser;
     }
 
-    public void setReceiveUser(User receiveUser) {
+    public void setReceiveUser(String receiveUser) {
         this.receiveUser = receiveUser;
     }
 
-    public TaskCategory getCategory() {
-        return category;
+    public Integer getIsComplete() {
+        return isComplete;
     }
 
-    public void setCategory(TaskCategory category) {
-        this.category = category;
+    public void setIsComplete(Integer isComplete) {
+        this.isComplete = isComplete;
     }
 }

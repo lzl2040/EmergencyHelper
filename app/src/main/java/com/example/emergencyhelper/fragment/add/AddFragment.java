@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,19 +12,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
-import com.example.emergencyhelper.activity.category.FamilyActivity;
+import com.example.emergencyhelper.bean.TaskEntity;
 import com.example.emergencyhelper.bean.Task;
-import com.example.emergencyhelper.bean.Task2;
 import com.example.emergencyhelper.requests.TaskRequest;
 import com.example.emergencyhelper.util.DateUtils;
 import com.example.emergencyhelper.R;
-import com.example.emergencyhelper.activity.my.PostActivity;
 import com.example.emergencyhelper.base.BaseFragment;
 import com.example.emergencyhelper.util.StaticData;
 import com.example.emergencyhelper.util.ViewUtil;
@@ -37,7 +33,7 @@ import com.xuexiang.xui.widget.picker.widget.builder.TimePickerBuilder;
 import com.xuexiang.xui.widget.picker.widget.configure.TimePickerType;
 import com.xuexiang.xui.widget.picker.widget.listener.OnTimeSelectChangeListener;
 import com.xuexiang.xui.widget.picker.widget.listener.OnTimeSelectListener;
-import com.xuexiang.xui.widget.progress.loading.ARCLoadingView;
+import com.xuexiang.xui.widget.spinner.materialspinner.MaterialSpinner;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -59,6 +55,8 @@ public class AddFragment extends BaseFragment implements EventListener {
     private ImageView recordImg;
     private EventManager manager;
     private MiniLoadingDialog dialog;
+    private MaterialSpinner categorySpinner;
+    private int chooseCategoryId;
     private Handler handler = new Handler();
 
     public AddFragment() {
@@ -81,6 +79,7 @@ public class AddFragment extends BaseFragment implements EventListener {
         Log.d(TAG,"initView...");
         manager = EventManagerFactory.create(getActivity(),"asr");
         manager.registerListener(this);
+
         dialog = WidgetUtils.getMiniLoadingDialog(getActivity());
         dialog.updateMessage("正在进行自动分类...");
         submit = v.findViewById(R.id.commit);
@@ -92,6 +91,8 @@ public class AddFragment extends BaseFragment implements EventListener {
         locationImg = v.findViewById(R.id.location);
         recordImg = v.findViewById(R.id.recordImg);
         recordImg.setTag(R.mipmap.record);
+        categorySpinner = v.findViewById(R.id.category_choose);
+        categorySpinner.setItems(StaticData.categoryNames);
     }
 
     @Override
@@ -102,34 +103,16 @@ public class AddFragment extends BaseFragment implements EventListener {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Task task = new Task();
+                TaskEntity task = new TaskEntity();
                 String pays = pay.getText().toString();
                 String contents = content.getContentText().toString();
                 String sites = site.getText().toString();
                 String deadlines = deadline.getText().toString();
                 if(pays.length()!=0&&contents.length()!=0&&sites.length()!=0){
-                    System.out.println("当前电话号码:"+StaticData.getCurUser().getPhone());
-                    Task2 task2 = new Task2(contents,deadlines,sites,pays,1,StaticData.getCurUser().getPhone());
-//                    task.setContent(contents);
-//                    task.setDeadline(deadlines);
-//                    task.setSite(sites);
-//                    task.setReward(Integer.valueOf(pays));
-//                    task.setPostUser(StaticData.getUserList().get(0));
-//                    PostActivity.tasks.add(task);
-//                    //暂时固定为家庭服务
-//                    FamilyActivity.tasks.add(task);
+                    //System.out.println("当前电话号码:"+StaticData.getCurUser().getPhone());
+                    Task task2 = new Task(contents,deadlines,sites,pays,chooseCategoryId,StaticData.getCurUser().getPhone());
                     dialog.show();
                     new PostTaskTask().execute(task2);
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            content.setContentText("");
-//                            site.setText("");
-//                            deadline.setText("");
-//                            pay.setText("");
-//                            dialog.dismiss();
-//                        }
-//                    },2000);
                 }
             }
         });
@@ -189,6 +172,13 @@ public class AddFragment extends BaseFragment implements EventListener {
                 }
             }
         });
+
+        categorySpinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(MaterialSpinner view, int position, long id, Object item) {
+                chooseCategoryId = position + 1;
+            }
+        });
     }
 
     @Override
@@ -228,10 +218,10 @@ public class AddFragment extends BaseFragment implements EventListener {
     }
 
     @SuppressLint("StaticFieldLeak")
-    class PostTaskTask extends AsyncTask<Task2,Integer,Integer>{
+    class PostTaskTask extends AsyncTask<Task,Integer,Integer>{
         @SneakyThrows
         @Override
-        protected Integer doInBackground(Task2... task2s) {
+        protected Integer doInBackground(Task... task2s) {
             Response response = new TaskRequest().postTask(task2s[0]);
             //没有网络
             if(response == null){

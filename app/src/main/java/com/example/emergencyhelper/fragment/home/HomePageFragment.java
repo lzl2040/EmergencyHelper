@@ -1,7 +1,8 @@
 package com.example.emergencyhelper.fragment.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,25 +35,28 @@ import com.example.emergencyhelper.adapter.GridViewAdapter;
 import com.example.emergencyhelper.adapter.TaskAdapter;
 import com.example.emergencyhelper.adapter.ViewPageAdapter;
 import com.example.emergencyhelper.base.BaseFragment;
-import com.example.emergencyhelper.bean.Task;
+import com.example.emergencyhelper.bean.TaskEntity;
 import com.example.emergencyhelper.bean.UserAndTaskCategory;
 import com.example.emergencyhelper.entity.SortItemEntity;
+import com.example.emergencyhelper.requests.TaskRequest;
 import com.example.emergencyhelper.ui.DragFloatActionButton;
 import com.example.emergencyhelper.util.StaticData;
 import com.example.emergencyhelper.util.ViewUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
+
+import lombok.SneakyThrows;
+import okhttp3.Response;
 
 
 public class HomePageFragment extends BaseFragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private String TAG = "HomePageFragment";
     private RecyclerView recyclerView;
-    private List<Task> tasks = new ArrayList<>();
+    private List<TaskEntity> tasks = new ArrayList<>();
     private EditText searchEdit;
     private SwipeRefreshLayout refreshLayout;
     public static DragFloatActionButton dragBtn;
@@ -69,8 +73,6 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
     private List<SortItemEntity> data = new ArrayList<>();
     private List<Class> cls = new ArrayList<>();
     private Handler handler = new Handler();
-    private List<Task> oldTasks = StaticData.getCategories().get(4).getTasks();
-
     public HomePageFragment() {
         // Required empty public constructor
     }
@@ -110,16 +112,7 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //下拉刷新数据
-                getRefreshData();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        refreshLayout.setRefreshing(false);
-                        ta.notifyDataSetChanged();
-                    }
-                },2000);
-
+                new GetRecommendTasksTask().execute(StaticData.getCurUser().getPhone());
             }
         });
 
@@ -131,108 +124,6 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
         });
     }
 
-    private boolean checkHasDifferent(List<UserAndTaskCategory> taskCategories){
-        boolean flag = false;
-        for(int i = 1;i < taskCategories.size();i++){
-            if(taskCategories.get(i) != taskCategories.get(i-1)){
-                return true;
-            }
-        }
-        return flag;
-    }
-
-    /**
-     * 得到下拉刷新的数据
-     */
-    public void getRefreshData(){
-        List<UserAndTaskCategory> categories = StaticData.getUserAndTaskCategories();
-        Collections.sort(categories);
-        StaticData.setUserAndTaskCategories(categories);
-        List<Task> emergecyTasks = StaticData.getCategories().get(2).getTasks();
-        if(checkHasDifferent(categories)){
-            int emergencyLen = emergecyTasks.size();
-            int rand2 = (new Random().nextInt(emergencyLen));
-            Task task2 = emergecyTasks.get(rand2);
-            //先选取老人,暂取定值
-            int oldLen = oldTasks.size();
-            int rand1 = (new Random().nextInt(oldLen));
-            Task task = oldTasks.get(rand1);
-            //然后取排名前一(2个)和前二(1个)的
-            int firstIndex = categories.get(0).getCategory().getCategoryId() - 1;
-            int secondIndex = categories.get(1).getCategory().getCategoryId() - 1;
-            List<Task> firstTasks = StaticData.getCategories().get(firstIndex).getTasks();
-            List<Task> secondTasks = StaticData.getCategories().get(secondIndex).getTasks();
-            List<Task> randomFirst = getRandomTasks(2,firstTasks);
-            List<Task> randomSecond = getRandomTasks(1,secondTasks);
-            tasks.removeAll(tasks);
-            tasks.add(task2);
-            tasks.add(task);
-            tasks.addAll(randomFirst);
-            tasks.addAll(randomSecond);
-        }else{
-            int emergencyLen = emergecyTasks.size();
-            int rand3 = (new Random().nextInt(emergencyLen));
-            Task task3 = emergecyTasks.get(rand3);
-            //先选取老人,暂取定值
-            int oldLen = oldTasks.size();
-            int rand1 = (new Random().nextInt(oldLen));
-            Task task = oldTasks.get(rand1);
-            //然后随机取
-            int len = StaticData.getCategories().size();
-            int rand = (new Random().nextInt(len));
-            int rand2 = -1;
-            while(rand2 != rand && rand2 != -1){
-                rand2 = (new Random().nextInt(len));
-            }
-            List<Task> randList1 = StaticData.getCategories().get(rand).getTasks();
-            List<Task> randList2 = StaticData.getCategories().get(rand2).getTasks();
-            List<Task> resultTask = getRandomTasks(1,randList1);
-            List<Task> resultTask2 = getRandomTasks(1,randList2);
-            tasks.removeAll(tasks);
-            tasks.add(task3);
-            tasks.add(task);
-            tasks.addAll(resultTask);
-            tasks.addAll(resultTask2);
-        }
-
-    }
-
-    /**
-     * 随机选取任务,不能重复
-     * @param num 选取的数目
-     * @param taskList 选取的源列表
-     * @return
-     */
-    public List<Task> getRandomTasks(int num,List<Task> taskList){
-        int randArr[] = new int[num];
-        Arrays.fill(randArr,-1);
-        int len = taskList.size();
-        int counts = 0;
-        List<Task> targetTasks = new ArrayList<>();
-        while (counts < num){
-            int rand = (new Random().nextInt(len));
-            boolean hasExist = false;
-            boolean isNear = false;
-            for(int i = 0;i < randArr.length;i++){
-                if(randArr[i] == rand){
-                    hasExist = true;
-                    break;
-                }
-            }
-
-            String site = taskList.get(rand).getSite();
-            if(site.contains("湘潭大学") || site.contains("湘大")){
-                isNear = true;
-            }
-            if(!hasExist && isNear){
-                randArr[counts] = rand;
-                targetTasks.add(taskList.get(rand));
-                counts++;
-            }
-        }
-        return targetTasks;
-    }
-
     @Override
     public void setAdapter() {
         Log.e(TAG,"setAdapter...");
@@ -240,9 +131,9 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
-        ta = new TaskAdapter(tasks,getActivity());
+        List<TaskEntity> mid = new ArrayList<>();
+        ta = new TaskAdapter(mid,getActivity());
         recyclerView.setAdapter(ta);
-        //设置viewpage适配器
         pager.setAdapter(new ViewPageAdapter(views));
         addPoint();
     }
@@ -273,7 +164,6 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home_page, container, false);
         initView(v);
         setListener();
@@ -282,11 +172,19 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
         return v;
     }
 
-    public void addData(){
-        for(int i = 0;i < 5;i+=2){
-            tasks.add(StaticData.getTaskList().get(i));
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e(TAG,"onResume...");
+        List<TaskEntity> mid = new ArrayList<>();
+        ta = new TaskAdapter(mid,getActivity());
+        recyclerView.setAdapter(ta);
+        new GetRecommendTasksTask().execute(StaticData.getCurUser().getPhone());
+    }
 
+    public void addData(){
+        new GetRecommendTasksTask().execute(StaticData.getCurUser().getPhone());
+        //首页分类栏
         for(int i = 0;i < StaticData.sortItemEntities.length;i++){
             data.add(StaticData.sortItemEntities[i]);
         }
@@ -348,6 +246,44 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
                 break;
             default:
                 break;
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public class GetRecommendTasksTask extends AsyncTask<String,Integer,Integer>{
+        @SneakyThrows
+        @Override
+        protected Integer doInBackground(String... strings) {
+            Response response = new TaskRequest().getTasksByRecommend(strings[0]);
+            if(response == null){
+                return -1;
+            }
+            Gson gson = StaticData.getGson();
+            String body = response.body().string();
+            Log.e(TAG,"GetRecommendTasksTask:"+body);
+            Type type = new TypeToken<List<TaskEntity>>(){}.getType();
+            List<TaskEntity> mid = gson.fromJson(body,type);
+            tasks.clear();
+            tasks.addAll(mid);
+            return response.code();
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            String msg = "";
+            switch (integer){
+                case -1:
+                    msg = "请检查网络状态后重新尝试！";
+                    ViewUtil.showErrorToast(msg, getActivity());
+                    break;
+                case 200:
+                    ta.updateData(tasks);
+                    refreshLayout.setRefreshing(false);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

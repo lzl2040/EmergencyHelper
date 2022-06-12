@@ -8,7 +8,7 @@ import com.example.emergencyhelper.bean.Expert;
 import com.example.emergencyhelper.bean.ExpertCategory;
 import com.example.emergencyhelper.bean.TaskCategory;
 import com.example.emergencyhelper.bean.Communicate;
-import com.example.emergencyhelper.bean.Task;
+import com.example.emergencyhelper.bean.TaskEntity;
 import com.example.emergencyhelper.bean.User;
 import com.example.emergencyhelper.bean.UserAndTaskCategory;
 import com.example.emergencyhelper.entity.SortItemEntity;
@@ -27,18 +27,14 @@ public class StaticData {
     private static SharedPreferences userSP = HelperApplication.getUserSP();
     //用户列表
     private static List<User> userList;
-    //任务分类
-    private static List<TaskCategory> categories;
     //任务数据
-    private static List<Task> taskList;
+    private static List<TaskEntity> taskList;
     //聊天数据
     private static List<Communicate> communicates;
     //专家数据
     private static List<Expert> experts;
     //专家分类
     private static List<ExpertCategory> expertCategories;
-    //用户与分类之间的对应关系
-    private static List<UserAndTaskCategory> userAndTaskCategories;
     //底部导航栏的位置,默认为0
     private static int bottomPosition = 0;
     //对发布任务的操作图标
@@ -58,6 +54,7 @@ public class StaticData {
             new SortItemEntity(R.mipmap.disable,R.string.disable_service),
             new SortItemEntity(R.mipmap.expert,R.string.expert_certificate)
     };
+    public static String categoryNames[] = {"家庭服务","社会服务","应急服务","学校服务","老人服务","小孩服务","合作互助","残障服务"};
     private static User curUser;
     //聊天界面跳转界面的原界面
     private static Class jumpClass;
@@ -78,6 +75,12 @@ public class StaticData {
     private static String addTaskUrl = "/add/task";
     //根据类别查找任务
     private static String getTasksByCategoryUrl = "/get/tasks/category";
+    //上传头像
+    private static String uploadHeader = "/upload/header";
+    //更新用户信息
+    private static String updateInfo = "/update/user";
+    //获得推荐任务列表
+    private static String getTasksByRecommend = "/get/tasks/recommend";
 
     /**
      * 将用户信息存放至 名为 user 的 SharedPreferences中
@@ -90,6 +93,15 @@ public class StaticData {
         if(user.getName() != null){
             userEditor.putString("name",user.getName());
         }
+        if(user.getImgUrl() != null){
+            userEditor.putString("imgurl",user.getImgUrl());
+        }
+        if(user.getScores() == null){
+            userEditor.putInt("scores",0);
+        }else{
+            userEditor.putInt("scores",user.getScores());
+        }
+
         userEditor.apply();
     }
 
@@ -113,19 +125,11 @@ public class StaticData {
         StaticData.bottomPosition = bottomPosition;
     }
 
-    public static List<TaskCategory> getCategories() {
-        return categories;
-    }
-
-    public static void setCategories(List<TaskCategory> categories) {
-        StaticData.categories = categories;
-    }
-
-    public static List<Task> getTaskList() {
+    public static List<TaskEntity> getTaskList() {
         return taskList;
     }
 
-    public static void setTaskList(List<Task> taskList) {
+    public static void setTaskList(List<TaskEntity> taskList) {
         StaticData.taskList = taskList;
     }
 
@@ -169,14 +173,6 @@ public class StaticData {
         StaticData.expertCategories = expertCategories;
     }
 
-    public static List<UserAndTaskCategory> getUserAndTaskCategories() {
-        return userAndTaskCategories;
-    }
-
-    public static void setUserAndTaskCategories(List<UserAndTaskCategory> userAndTaskCategories) {
-        StaticData.userAndTaskCategories = userAndTaskCategories;
-    }
-
     public static String getBaseUrl() {
         return baseUrl;
     }
@@ -203,5 +199,17 @@ public class StaticData {
 
     public static String getGetTasksByCategoryUrl() {
         return getTasksByCategoryUrl;
+    }
+
+    public static String getUploadHeader() {
+        return uploadHeader;
+    }
+
+    public static String getUpdateInfo() {
+        return updateInfo;
+    }
+
+    public static String getGetTasksByRecommend() {
+        return getTasksByRecommend;
     }
 }

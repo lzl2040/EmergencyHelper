@@ -45,6 +45,7 @@ public class EnterActivity extends BaseActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_NETWORK_STATE,
             Manifest.permission.INTERNET};//需要获取的权限
     private List<String> mPermissons = new ArrayList<>();
@@ -62,9 +63,14 @@ public class EnterActivity extends BaseActivity {
         context = this;
 
         //判断是否登录过，登录过则跳过登录
-        if(!HelperApplication.getUserSP().getString("phone","12").equals("12")) {
+        if(!HelperApplication.getUserSP().getString("phone","").equals("")) {
             ViewUtil.jumpTo(context, MainActivity.class);
-            User user = new User(HelperApplication.getUserSP().getString("phone","12"),HelperApplication.getUserSP().getString("pwd","12"));
+            String phone = HelperApplication.getUserSP().getString("phone","");
+            String pwd = HelperApplication.getUserSP().getString("pwd","");
+            String name = HelperApplication.getUserSP().getString("name","");
+            String imgUrl = HelperApplication.getUserSP().getString("imgurl","");
+            int scores = HelperApplication.getUserSP().getInt("scores",0);
+            User user = new User(phone,name,pwd,imgUrl,scores);
             StaticData.setCurUser(user);
             finish();
         }

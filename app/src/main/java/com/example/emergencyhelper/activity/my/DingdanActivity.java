@@ -13,7 +13,7 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.main.MainActivity;
 import com.example.emergencyhelper.adapter.GetTaskAdapter;
 import com.example.emergencyhelper.base.BaseActivity;
-import com.example.emergencyhelper.bean.Task;
+import com.example.emergencyhelper.bean.TaskEntity;
 import com.example.emergencyhelper.util.ViewUtil;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class DingdanActivity extends BaseActivity {
     public static Context context;
     private ImageView backImg;
     //public static List<TaskEntity> tasks = new ArrayList<>();
-    public static List<Task> tasks = new ArrayList<>();
+    public static List<TaskEntity> tasks = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

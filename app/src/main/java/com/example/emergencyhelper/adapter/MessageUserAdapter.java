@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.message.CommunicateActivity;
 import com.example.emergencyhelper.bean.Communicate;
@@ -56,7 +57,8 @@ public class MessageUserAdapter extends RecyclerView.Adapter<MessageUserAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Communicate communicate = communicates.get(position);
-        holder.header.setImageResource(communicate.getAcceptUser().getHeaderId());
+        Glide.with(context).load(communicate.getAcceptUser().getImgUrl()).into(holder.header);
+        //holder.header.setImageResource(communicate.getAcceptUser().getImgUrl());
         holder.name.setText(communicate.getAcceptUser().getName());
         holder.time.setText(communicate.getCommunicateDate());
         List<Message> messages = communicate.getMessages();

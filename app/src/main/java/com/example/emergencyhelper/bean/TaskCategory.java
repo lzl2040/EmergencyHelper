@@ -11,7 +11,7 @@ import java.util.List;
 public class TaskCategory {
     private int categoryId;
     private String name;
-    private List<Task> tasks = new ArrayList<>();
+    private List<TaskEntity> tasks = new ArrayList<>();
 
     public TaskCategory(int categoryId, String name) {
         this.categoryId = categoryId;
@@ -34,11 +34,11 @@ public class TaskCategory {
         this.name = name;
     }
 
-    public List<Task> getTasks() {
+    public List<TaskEntity> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Task> tasks) {
+    public void setTasks(List<TaskEntity> tasks) {
         this.tasks = tasks;
     }
 }
