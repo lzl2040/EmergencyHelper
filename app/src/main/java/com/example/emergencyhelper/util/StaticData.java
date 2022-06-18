@@ -81,6 +81,24 @@ public class StaticData {
     private static String updateInfo = "/update/user";
     //获得推荐任务列表
     private static String getTasksByRecommend = "/get/tasks/recommend";
+    //获得自己发布的任务
+    private static String getSelfReleaseTasks = "/get/tasks/release/self";
+    //获得自己领取的任务
+    private static String getSelfReceiveTasks = "/get/tasks/receive/self";
+    //领取任务
+    private static String receiveTask = "/receive/task";
+    //搜索任务
+    private static String searchTask = "/get/tasks/search";
+    //确认任务完成
+    private static String confirmTaskComplete = "/update/task/isComplete";
+    //取消任务
+    private static String cancelTask = "/delete/task";
+    //获得话题列表
+    private static String getTopics = "/get/topics";
+    //话题下添加评论
+    private static String addComment = "/add/comment";
+    //获得话题下面的评论
+    private static String getComments = "/get/comments";
 
     /**
      * 将用户信息存放至 名为 user 的 SharedPreferences中
@@ -211,5 +229,41 @@ public class StaticData {
 
     public static String getGetTasksByRecommend() {
         return getTasksByRecommend;
+    }
+
+    public static String getGetSelfReleaseTasks() {
+        return getSelfReleaseTasks;
+    }
+
+    public static String getGetSelfReceiveTasks() {
+        return getSelfReceiveTasks;
+    }
+
+    public static String getReceiveTask() {
+        return receiveTask;
+    }
+
+    public static String getSearchTask() {
+        return searchTask;
+    }
+
+    public static String getConfirmTaskComplete() {
+        return confirmTaskComplete;
+    }
+
+    public static String getCancelTask() {
+        return cancelTask;
+    }
+
+    public static String getGetTopics() {
+        return getTopics;
+    }
+
+    public static String getAddComment() {
+        return addComment;
+    }
+
+    public static String getGetComments() {
+        return getComments;
     }
 }

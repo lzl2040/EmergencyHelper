@@ -282,6 +282,8 @@ public class HomePageFragment extends BaseFragment implements ViewPager.OnPageCh
                     refreshLayout.setRefreshing(false);
                     break;
                 default:
+                    msg = "未知错误!\n code:" + integer;
+                    ViewUtil.showErrorToast(msg,context);
                     break;
             }
         }

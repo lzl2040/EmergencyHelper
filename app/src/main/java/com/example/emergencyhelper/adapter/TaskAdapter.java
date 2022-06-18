@@ -1,6 +1,9 @@
 package com.example.emergencyhelper.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +19,25 @@ import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.bean.Communicate;
 import com.example.emergencyhelper.bean.TaskEntity;
 import com.example.emergencyhelper.bean.User;
+import com.example.emergencyhelper.requests.TaskRequest;
 import com.example.emergencyhelper.util.StaticData;
+import com.example.emergencyhelper.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.SneakyThrows;
+import okhttp3.Response;
 
 /**
  * 别人发布的任务的适配器
  */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
-    //public static List<TaskEntity>tasks = new ArrayList<>();
     private String TAG = "TaskAdapter";
-    public static List<TaskEntity> tasks = new ArrayList<>();
-    public static Context context;
+    private List<TaskEntity> tasks = new ArrayList<>();
+    private Context context;
+    private int categoryId,taskId;
+    private int receivePosition;
 
     public TaskAdapter(List<TaskEntity> tasks, Context context){
         this.context=context;
@@ -62,20 +71,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.get_task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //更新用户对于该分类的领取次数
-//                int index = task.getCategoryId();
-//                UserAndTaskCategory userAndTaskCategory = StaticData.getUserAndTaskCategories().get(index);
-//                int num = userAndTaskCategory.getNum();
-//                num = num + 1;
-//                userAndTaskCategory.setNum(num);
-//                List<UserAndTaskCategory> categories = StaticData.getUserAndTaskCategories();
-//                categories.set(index,userAndTaskCategory);
-//                StaticData.setUserAndTaskCategories(categories);
-//                task.setReceiveUser(StaticData.getCurUser());
-//                DingdanActivity.tasks.add(task);
-//                removeData(position);
-//                HomePageFragment.dragBtn.setImageResource(R.mipmap.stop_record);
-//                Toast.makeText(context,"领取成功",Toast.LENGTH_LONG).show();
+                categoryId = task.getCategoryId();
+                taskId = task.getTaskId();
+                Log.e(TAG,"分类ID为:"+categoryId);
+                receivePosition = position;
+                new ReceiveTaskTask().execute(StaticData.getCurUser().getPhone());
             }
         });
 
@@ -83,33 +83,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.contactBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                int index = checkIsSameCommunication(StaticData.getCurUser(),task.getPostUser());
-//                List<Communicate> communicates = StaticData.getCommunicates();
-//                StaticData.setJumpClass(context.getClass());
-//                if(index != -1){
-//                    //说明之前聊过天
-//                    Intent intent = new Intent(context, CommunicateActivity.class);
-//                    intent.putExtra("index",index);
-//                    intent.putExtra("communicate",communicates.get(index));
-//                    context.startActivity(intent);
-//                }else{
-//                    //之前没有聊过天
-//                    Log.e(TAG,"之前没有聊过");
-//                    //时间只取时和分
-//                    String timeStr = DateUtils.timeNum2String(System.currentTimeMillis());
-//                    String strs[] = timeStr.split(" ");
-//                    String time = strs[1];
-//                    //MessageUserEntity entity = new MessageUserEntity(headerId,name,"",time);
-//                    //存储这个新的聊天信息
-//                    Communicate data = new Communicate(StaticData.getCurUser(),task.getPostUser(),time);
-//                    communicates.add(data);
-//                    StaticData.setCommunicates(communicates);
-//                    Intent intent = new Intent(context, CommunicateActivity.class);
-//                    intent.putExtra("index",communicates.size()-1);
-//                    intent.putExtra("communicate",data);
-//                    context.startActivity(intent);
-//                }
-//
             }
         });
     }
@@ -157,23 +130,41 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         }
     }
 
-    /**
-     * 检查是否是同一个交流
-     * @param start
-     * @param receive
-     * @return 返回下标
-     */
-    public int checkIsSameCommunication(User start,User receive){
-        int counts = 0;
-        List<Communicate> communicates = StaticData.getCommunicates();
-        for(Communicate communicate:communicates){
-            String phone1 = communicate.getStartUser().getPhone();
-            String phone2 = communicate.getAcceptUser().getPhone();
-            if(start.getPhone().equals(phone1) && receive.getPhone().equals(phone2)){
-                return counts;
+    @SuppressLint("StaticFieldLeak")
+    public class ReceiveTaskTask extends AsyncTask<String,Integer,Integer>{
+        @SneakyThrows
+        @Override
+        protected Integer doInBackground(String... strings) {
+            Response response = new TaskRequest().receiveTask(StaticData.getCurUser().getPhone(),taskId,categoryId);
+            if(response == null){
+                return -1;
             }
-            counts++;
+            return response.code();
         }
-        return -1;
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            String msg = "";
+            switch (integer){
+                case -1:
+                    msg = "请检查网络状态后重新尝试！";
+                    ViewUtil.showErrorToast(msg,context);
+                    break;
+                case 401:
+                    msg = "领取失败!";
+                    ViewUtil.showErrorToast(msg,context);
+                    break;
+                case 200:
+                    tasks.remove(receivePosition);
+                    notifyDataSetChanged();
+                    ViewUtil.showNotice("领取成功",context);
+                    break;
+                default:
+                    msg = "未知错误!\n code:" + integer;
+                    ViewUtil.showErrorToast(msg,context);
+                    break;
+            }
+        }
     }
 }

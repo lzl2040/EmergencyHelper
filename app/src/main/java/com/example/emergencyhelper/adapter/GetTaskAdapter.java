@@ -50,12 +50,18 @@ public class GetTaskAdapter extends RecyclerView.Adapter<GetTaskAdapter.ViewHold
         TaskEntity task = tasks.get(position);
         holder.nameTxt.setText(task.getReleaseUsername());
         Glide.with(context).load(task.getReleaseImgUrl()).into(holder.headerImg);
-        //holder.headerImg.setImageResource(task.getPostUser().getHeaderId());
         holder.taskRewardTxt.setText(task.getTaskReward()+"");
         holder.descTxt.setText(task.getTaskContent());
         holder.taskSiteTxt.setText(task.getTaskSite());
-        holder.taskDeadLineTxt.setText(task.getTaskDeadline());
+        String deadline[] = task.getTaskDeadline().split(":");
+        holder.taskDeadLineTxt.setText(deadline[0]+":"+deadline[1]);
         holder.setTimer(task.getTaskDeadline());
+    }
+
+    public void updateData(List<TaskEntity> taskEntities){
+        tasks.clear();
+        tasks.addAll(taskEntities);
+        notifyDataSetChanged();
     }
 
     @Override

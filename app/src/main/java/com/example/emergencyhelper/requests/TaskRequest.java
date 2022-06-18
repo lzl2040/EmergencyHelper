@@ -99,4 +99,145 @@ public class TaskRequest {
             return null;
         }
     }
+
+    /**
+     * 获得自己发布的任务
+     * @param phone 电话号码
+     * @param pageNum 页数
+     * @return
+     */
+    public Response getSelfReleaseTasks(String phone,int pageNum){
+        FormBody formBody = new FormBody.Builder()
+                .add("phone",phone)
+                .add("pageNum",pageNum+"")
+                .build();
+        request = new Request.Builder()
+                .url(StaticData.getBaseUrl() + StaticData.getGetSelfReleaseTasks())
+                .post(formBody)
+                .build();
+        try {
+            return okHttpClient.newCall(request).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 获得自己领取的任务
+     * @param phone 电话号码
+     * @param pageNum 页数
+     * @return
+     */
+    public Response getSelfReceiveTasks(String phone,int pageNum){
+        FormBody formBody = new FormBody.Builder()
+                .add("phone",phone)
+                .add("pageNum",pageNum+"")
+                .build();
+        request = new Request.Builder()
+                .url(StaticData.getBaseUrl() + StaticData.getGetSelfReceiveTasks())
+                .post(formBody)
+                .build();
+        try {
+            return okHttpClient.newCall(request).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 领取任务
+     * @param phone 电话号码
+     * @param taskId 任务ID
+     * @param categoryId 分类ID
+     * @return
+     */
+    public Response receiveTask(String phone,int taskId,int categoryId){
+        FormBody formBody = new FormBody.Builder()
+                .add("phone",phone)
+                .add("taskId",taskId+"")
+                .add("categoryId",categoryId+"")
+                .build();
+        request = new Request.Builder()
+                .url(StaticData.getBaseUrl() + StaticData.getReceiveTask())
+                .post(formBody)
+                .build();
+        try {
+            return okHttpClient.newCall(request).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 根据关键词搜索任务
+     * @param keyWord 关键词
+     * @param phone 本用户的电话号码
+     * @param pageNum 页数
+     * @return
+     */
+    public Response searchTask(String keyWord,String phone,int pageNum){
+        FormBody formBody = new FormBody.Builder()
+                .add("phone",phone)
+                .add("keyWord",keyWord)
+                .add("pageNum",pageNum+"")
+                .build();
+        request = new Request.Builder()
+                .url(StaticData.getBaseUrl() + StaticData.getSearchTask())
+                .post(formBody)
+                .build();
+        try {
+            return okHttpClient.newCall(request).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 确认任务完成
+     * @param taskId 任务ID
+     * @return
+     */
+    public Response confirmComplete(int taskId,String phone,String score){
+        FormBody formBody = new FormBody.Builder()
+                .add("taskId",taskId+"")
+                .add("phone",phone)
+                .add("score",score)
+                .build();
+        request = new Request.Builder()
+                .url(StaticData.getBaseUrl() + StaticData.getConfirmTaskComplete())
+                .post(formBody)
+                .build();
+        try {
+            return okHttpClient.newCall(request).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 取消任务
+     * @param taskId 任务ID
+     * @return
+     */
+    public Response cancelTask(int taskId){
+        FormBody formBody = new FormBody.Builder()
+                .add("taskId",taskId+"")
+                .build();
+        request = new Request.Builder()
+                .url(StaticData.getBaseUrl() + StaticData.getCancelTask())
+                .post(formBody)
+                .build();
+        try {
+            return okHttpClient.newCall(request).execute();
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

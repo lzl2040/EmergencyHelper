@@ -3,9 +3,6 @@ package com.example.emergencyhelper.fragment.my;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
-import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.activity.enter.EnterActivity;
-import com.example.emergencyhelper.activity.my.DingdanActivity;
+import com.example.emergencyhelper.activity.my.ReceiveActivity;
 import com.example.emergencyhelper.activity.my.PointActivity;
 import com.example.emergencyhelper.activity.my.PostActivity;
 import com.example.emergencyhelper.activity.my.UpdateInfoActivity;
@@ -28,7 +25,6 @@ import com.example.emergencyhelper.bean.User;
 import com.example.emergencyhelper.util.CheckUtil;
 import com.example.emergencyhelper.util.StaticData;
 import com.example.emergencyhelper.util.ViewUtil;
-import com.xuexiang.xui.widget.button.roundbutton.RoundButton;
 
 public class MyFragment extends BaseFragment {
     private String TAG = "MyFragment";
@@ -92,7 +88,7 @@ public class MyFragment extends BaseFragment {
         dingdan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), DingdanActivity.class);
+                Intent intent = new Intent(getActivity(), ReceiveActivity.class);
                 getActivity().startActivity(intent);
             }
         });

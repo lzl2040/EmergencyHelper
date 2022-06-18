@@ -28,7 +28,7 @@
         <activity android:name=".activity.message.CommunicateActivity" />
         <activity android:name=".activity.my.PointActivity" />
         <activity android:name=".activity.my.PostActivity" />
-        <activity android:name=".activity.my.DingdanActivity" />
+        <activity android:name=".activity.my.ReceiveActivity" />
         <activity android:name=".activity.category.FamilyActivity" />
         <activity android:name=".activity.category.EmergencyActivity" />
         <activity android:name=".activity.category.SchoolActivity" />
