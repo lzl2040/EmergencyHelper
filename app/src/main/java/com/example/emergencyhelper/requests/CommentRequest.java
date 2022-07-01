@@ -1,5 +1,7 @@
 package com.example.emergencyhelper.requests;
 
+import com.example.emergencyhelper.R;
+import com.example.emergencyhelper.bean.Comment;
 import com.example.emergencyhelper.util.StaticData;
 import com.google.gson.Gson;
 
@@ -14,7 +16,7 @@ import okhttp3.Response;
  * author ： yxm521
  * time    ： 2022/6/18
  */
-public class TopicRequest {
+public class CommentRequest {
     private String TAG = "TopicRequest";
     private OkHttpClient okHttpClient = new OkHttpClient();
     private Request request;
@@ -23,17 +25,16 @@ public class TopicRequest {
     private final MediaType jsonType=MediaType.Companion.parse("application/json;charset=utf-8");
 
     /**
-     * 获得话题列表
-     * @param pageNum
+     * 添加评论
+     * @param comment
      * @return
      */
-    public Response getTopics(int pageNum){
-        FormBody formBody = new FormBody.Builder()
-                .add("pageNum",pageNum+"")
-                .build();
+    public Response addComment(Comment comment){
+        String commentJson = gson.toJson(comment);
+        requestBody = RequestBody.Companion.create(commentJson,jsonType);
         request = new Request.Builder()
-                .url(StaticData.getBaseUrl() + StaticData.getGetTopics())
-                .post(formBody)
+                .url(StaticData.getBaseUrl() + StaticData.getAddComment())
+                .post(requestBody)
                 .build();
         try {
             return okHttpClient.newCall(request).execute();
@@ -44,16 +45,18 @@ public class TopicRequest {
     }
 
     /**
-     * 更新话题的观看次数
+     * 得到评论
      * @param topicId
+     * @param pageNum
      * @return
      */
-    public Response updateViewNum(int topicId){
+    public Response getComments(int topicId,int pageNum){
         FormBody formBody = new FormBody.Builder()
                 .add("topicId",topicId+"")
+                .add("pageNum",pageNum+"")
                 .build();
         request = new Request.Builder()
-                .url(StaticData.getBaseUrl() + StaticData.getUpdateViewNum())
+                .url(StaticData.getBaseUrl() + StaticData.getGetComments())
                 .post(formBody)
                 .build();
         try {
@@ -63,5 +66,4 @@ public class TopicRequest {
             return null;
         }
     }
-
 }

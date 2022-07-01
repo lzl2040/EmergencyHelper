@@ -95,6 +95,8 @@ public class StaticData {
     private static String cancelTask = "/delete/task";
     //获得话题列表
     private static String getTopics = "/get/topics";
+    //更新观看数目
+    private static String updateViewNum = "/update/topic/viewNum";
     //话题下添加评论
     private static String addComment = "/add/comment";
     //获得话题下面的评论
@@ -265,5 +267,9 @@ public class StaticData {
 
     public static String getGetComments() {
         return getComments;
+    }
+
+    public static String getUpdateViewNum() {
+        return updateViewNum;
     }
 }

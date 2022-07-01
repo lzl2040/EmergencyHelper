@@ -1,7 +1,10 @@
 package com.example.emergencyhelper.fragment.near;
 
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,15 +17,32 @@ import android.view.ViewGroup;
 import com.example.emergencyhelper.R;
 import com.example.emergencyhelper.adapter.TopicAdapter;
 import com.example.emergencyhelper.base.BaseFragment;
-import com.example.emergencyhelper.entity.TopicEntity;
+import com.example.emergencyhelper.bean.TaskEntity;
+import com.example.emergencyhelper.bean.TopicEntity;
+import com.example.emergencyhelper.requests.TopicRequest;
+import com.example.emergencyhelper.util.StaticData;
+import com.example.emergencyhelper.util.ViewUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.SneakyThrows;
+import okhttp3.Response;
 
 public class TopicFragment extends BaseFragment {
     private String TAG = "TopicFragment";
     private RecyclerView recyclerView;
     private List<TopicEntity> topics = new ArrayList<>();
+    private SmartRefreshLayout refreshLayout;
+    private boolean isLoadMore = true;
+    private int pageNum = 1;
+    private TopicAdapter adapter;
     public TopicFragment() {
         // Required empty public constructor
     }
@@ -42,12 +62,22 @@ public class TopicFragment extends BaseFragment {
         //super.initView(v);
         Log.d(TAG,"initView...");
         recyclerView = v.findViewById(R.id.recyclerview);
+        refreshLayout = v.findViewById(R.id.refreshLayout);
     }
 
     @Override
     public void setListener() {
         //super.setListener();
         Log.d(TAG,"setListener...");
+        refreshLayout.setEnableRefresh(false);
+        refreshLayout.setEnableLoadMore(isLoadMore);
+        refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                isLoadMore = false;
+                pageNum = pageNum + 1;
+            }
+        });
     }
 
     @Override
@@ -57,8 +87,9 @@ public class TopicFragment extends BaseFragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+        adapter = new TopicAdapter(topics,getActivity());
+        recyclerView.setAdapter(adapter);
         addData();
-        recyclerView.setAdapter(new TopicAdapter(topics,getActivity()));
     }
 
     @Override
@@ -73,32 +104,45 @@ public class TopicFragment extends BaseFragment {
     }
 
     public void addData(){
+        new GetTopicsTask().execute(pageNum);
+    }
 
-        TopicEntity data1 = new TopicEntity();
-        data1.setComment_num(0);
-        data1.setSee_num(200);
-        data1.setTitle("电视坏了怎么办?");
-        data1.setDetail(" ");
-        data1.setName("醉挽清风");
-        data1.setImg_id(R.drawable.a3);
-        topics.add(data1);
+    @SuppressLint("StaticFieldLeak")
+    public class GetTopicsTask extends AsyncTask<Integer,Integer,Integer>{
+        @SneakyThrows
+        @Override
+        protected Integer doInBackground(Integer... integers) {
+            Response response = new TopicRequest().getTopics(integers[0]);
+            if(response == null){
+                return -1;
+            }
+            Gson gson = StaticData.getGson();
+            String body = response.body().string();
+            Log.e(TAG,"GetTopicsTask:"+body);
+            Type type = new TypeToken<List<TopicEntity>>(){}.getType();
+            List<TopicEntity> mid = gson.fromJson(body,type);
+            topics.addAll(mid);
+            return response.code();
+        }
 
-        TopicEntity data2 = new TopicEntity();
-        data2.setComment_num(3);
-        data2.setSee_num(110);
-        data2.setTitle("有什么好的办法去解决门声音大的问题");
-        data2.setDetail("可以在门缝里面放点纸，可以减小声音");
-        data2.setName("慕绾晴");
-        data2.setImg_id(R.drawable.a7);
-        topics.add(data2);
-
-        TopicEntity data3 = new TopicEntity();
-        data3.setSee_num(800);
-        data3.setComment_num(15);
-        data3.setTitle("有什么好点的办法防止漏水");
-        data3.setDetail("可以在网上买的防漏水的，学着说明书搞一下就");
-        data3.setName("浪子回头");
-        data3.setImg_id(R.drawable.a5);
-        topics.add(data3);
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            String msg = "";
+            switch (integer){
+                case -1:
+                    msg = "请检查网络状态后重新尝试！";
+                    ViewUtil.showErrorToast(msg, getActivity());
+                    break;
+                case 200:
+                    adapter.notifyDataSetChanged();
+                    refreshLayout.finishLoadMore();
+                    break;
+                default:
+                    msg = "未知错误!\n code:" + integer;
+                    ViewUtil.showErrorToast(msg,getActivity());
+                    break;
+            }
+        }
     }
 }

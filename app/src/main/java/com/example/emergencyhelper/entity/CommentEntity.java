@@ -3,29 +3,33 @@ package com.example.emergencyhelper.entity;
 import java.io.Serializable;
 
 public class CommentEntity implements Serializable {
-    private String name;
-    private String time;
+    private Integer commentId;
     private String content;
-    private int img_id;
-    private String poster_name;
-    private String page_desc;
-    private String page_post_time;
-    private int poster_header;
-    private int type;               //1代表是发布者的内容,2代表是评论
-    public String getName() {
-        return name;
+    private String postTime;
+    private String postUserPhone;
+    private String postImgUrl;
+    private String postUserName;
+    private Integer topicId;
+
+    public CommentEntity() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public CommentEntity(Integer commentId, String content, String postTime, String postUserPhone, String postImgUrl, String postUserName, Integer topicId) {
+        this.commentId = commentId;
+        this.content = content;
+        this.postTime = postTime;
+        this.postUserPhone = postUserPhone;
+        this.postImgUrl = postImgUrl;
+        this.postUserName = postUserName;
+        this.topicId = topicId;
     }
 
-    public String getTime() {
-        return time;
+    public Integer getCommentId() {
+        return commentId;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setCommentId(Integer commentId) {
+        this.commentId = commentId;
     }
 
     public String getContent() {
@@ -36,51 +40,43 @@ public class CommentEntity implements Serializable {
         this.content = content;
     }
 
-    public int getImg_id() {
-        return img_id;
+    public String getPostTime() {
+        return postTime;
     }
 
-    public void setImg_id(int img_id) {
-        this.img_id = img_id;
+    public void setPostTime(String postTime) {
+        this.postTime = postTime;
     }
 
-    public String getPoster_name() {
-        return poster_name;
+    public String getPostUserPhone() {
+        return postUserPhone;
     }
 
-    public void setPoster_name(String poster_name) {
-        this.poster_name = poster_name;
+    public void setPostUserPhone(String postUserPhone) {
+        this.postUserPhone = postUserPhone;
     }
 
-    public String getPage_desc() {
-        return page_desc;
+    public String getPostImgUrl() {
+        return postImgUrl;
     }
 
-    public void setPage_desc(String page_desc) {
-        this.page_desc = page_desc;
+    public void setPostImgUrl(String postImgUrl) {
+        this.postImgUrl = postImgUrl;
     }
 
-    public String getPage_post_time() {
-        return page_post_time;
+    public String getPostUserName() {
+        return postUserName;
     }
 
-    public void setPage_post_time(String page_post_time) {
-        this.page_post_time = page_post_time;
+    public void setPostUserName(String postUserName) {
+        this.postUserName = postUserName;
     }
 
-    public int getPoster_header() {
-        return poster_header;
+    public Integer getTopicId() {
+        return topicId;
     }
 
-    public void setPoster_header(int poster_header) {
-        this.poster_header = poster_header;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
+    public void setTopicId(Integer topicId) {
+        this.topicId = topicId;
     }
 }

@@ -28,13 +28,19 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"/>
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/white"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:layout_above="@+id/commet"
         android:layout_below="@+id/top_bar"
-        android:id="@+id/recyclerview"
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:background="@color/white"
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
     <LinearLayout
         android:id="@+id/commet"
         android:layout_alignParentBottom="true"
